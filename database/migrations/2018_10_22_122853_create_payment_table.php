@@ -14,7 +14,7 @@ class CreatePaymentTable extends Migration {
 	{
 		Schema::create('payment', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
+			$table->increments('id');
 			$table->bigInteger('worker_id');
 			$table->string('type');
 			$table->text('bank_name')->nullable();

@@ -14,7 +14,7 @@ class CreateUserPlaceTable extends Migration {
 	{
 		Schema::create('user_place', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
+			$table->increments('id');
 			$table->bigInteger('user_id');
 			$table->float('lat');
 			$table->float('lng');

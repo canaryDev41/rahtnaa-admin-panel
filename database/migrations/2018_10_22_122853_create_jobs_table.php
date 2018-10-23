@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateJobsTable extends Migration {
 
@@ -14,9 +15,9 @@ class CreateJobsTable extends Migration {
 	{
 		Schema::create('jobs', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
+			$table->increments('id');
 			$table->string('name');
-			$table->string('category');
+			$table->unsignedInteger('category_id');
 			$table->text('image')->nullable();
 			$table->boolean('status')->default(1);
 		});

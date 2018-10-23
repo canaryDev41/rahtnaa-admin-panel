@@ -32,6 +32,9 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    {{--google font cairo--}}
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration {
 
@@ -14,17 +15,17 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
-			$table->bigInteger('worker_id')->nullable();
-			$table->bigInteger('client_id')->nullable();
-			$table->float('total');
-			$table->float('lat');
-			$table->float('lng');
-			$table->text('job');
-			$table->string('start_date');
-			$table->string('end_date');
-			$table->text('tasks')->nullable();
-			$table->boolean('status')->default(1);
+			$table->increments('id');
+			$table->unsignedInteger('worker_id');
+			$table->unsignedInteger('user_id');
+            $table->unsignedInteger('job_id');
+            $table->float('total');
+            $table->float('lat');
+            $table->float('lng');
+			$table->dateTime('start_date');
+			$table->dateTime('end_date');
+			$table->text('tasks');
+			$table->tinyInteger('status');
 			$table->timestamps();
 		});
 	}

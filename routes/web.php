@@ -20,5 +20,11 @@ Route::post('/login', 'AdminController@submit')->name('admin.submit');
 Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
+
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
+    Route::resource('/workers', 'WorkersController');
+
+    Route::resource('/categories', 'CategoriesController');
+
 });
