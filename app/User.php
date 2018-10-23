@@ -2,20 +2,22 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+/**
+ * @property mixed status
+ */
+class User extends Model
 {
-    use Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'city', 'phone', 'image', 'type', 'rating', 'status'
     ];
 
     /**
@@ -26,4 +28,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getStatusAttribute($status){
+
+        return (boolean) $status;
+
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+    
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

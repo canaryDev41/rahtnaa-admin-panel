@@ -17,7 +17,7 @@
                             <i class="fa fa-comments fa-5x"></i>
                         </div>
                         <div class="col-xs-8 text-right">
-                            <div class="huge">26</div>
+                            <div class="huge">{{ $workers }}</div>
                             <div>عامله</div>
                         </div>
                     </div>
@@ -39,8 +39,8 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-8 text-right">
-                            <div class="huge">12</div>
-                            <div>New Tasks!</div>
+                            <div class="huge">{{ $users }}</div>
+                            <div>المستخدمين</div>
                         </div>
                     </div>
                 </div>

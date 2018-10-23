@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkerJobTable extends Migration {
+class CreateGalleriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,14 @@ class CreateWorkerJobTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('worker_job', function(Blueprint $table)
+		Schema::create('galleries', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->bigInteger('worker_id');
-			$table->bigInteger('job_id');
+            $table->text('image');
+            $table->text('job');
+            $table->unsignedInteger('worker_id');
+            $table->unsignedInteger('job_id');
+			$table->boolean('status');
 		});
 	}
 
@@ -28,7 +31,7 @@ class CreateWorkerJobTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('worker_job');
+		Schema::drop('galleries');
 	}
 
 }

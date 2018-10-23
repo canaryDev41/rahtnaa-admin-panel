@@ -14,7 +14,7 @@ class CreateWorkerTaxTable extends Migration {
 	{
 		Schema::create('worker_tax', function(Blueprint $table)
 		{
-			$table->bigInteger('worker_id', true);
+			$table->increments('worker_id');
 			$table->float('total')->default(0);
 			$table->timestamps();
 		});

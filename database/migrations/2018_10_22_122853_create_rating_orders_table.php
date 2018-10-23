@@ -14,7 +14,7 @@ class CreateRatingOrdersTable extends Migration {
 	{
 		Schema::create('rating_orders', function(Blueprint $table)
 		{
-			$table->bigInteger('id', true);
+			$table->increments('id');
 			$table->bigInteger('order_id');
 			$table->bigInteger('worker_id')->nullable();
 			$table->float('rating');

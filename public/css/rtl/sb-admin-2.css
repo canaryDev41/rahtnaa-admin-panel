@@ -9,6 +9,10 @@ body {
   font-family: 'Cairo', sans-serif;
 }
 
+.form-control{
+  height:38px;
+}
+
 @font-face {
   font-family: dubaiFont;
   src: url('/fonts/DubaiW23-Regular.ttf');

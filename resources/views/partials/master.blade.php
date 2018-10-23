@@ -32,6 +32,9 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    {{-- custome css --}}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
     {{--google font cairo--}}
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
 
@@ -41,6 +44,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    @yield('header')
 
 </head>
 
@@ -88,7 +93,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="ابحث هنا ...">
+                            <input type="text" class="form-control" style="height: 34px;" placeholder="ابحث هنا ...">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
@@ -98,10 +103,10 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> لوحة التحكم</a>
+                        <a href="{{ route('dashboard.index') }}"> لوحة التحكم</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                        <a href="#"> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="flot.html">Flot Charts</a>
@@ -113,7 +118,7 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        <a href="{{ route('workers.index') }}"> العمال</a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -169,11 +174,11 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active" href="blank.html">Blank Page</a>
+                                <a href="blank.html">Blank Page</a>
                             </li>
                             <li>
                                 <a href="login.html">Login Page</a>
@@ -190,8 +195,9 @@
 
     <!-- Page Content -->
     <div id="page-wrapper">
+
         @yield('body')
-        <!-- /.row -->
+
     </div>
     <!-- /#page-wrapper -->
 
