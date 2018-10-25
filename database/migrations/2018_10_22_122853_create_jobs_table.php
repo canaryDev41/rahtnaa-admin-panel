@@ -20,6 +20,8 @@ class CreateJobsTable extends Migration {
 			$table->unsignedInteger('category_id');
 			$table->text('image')->nullable();
 			$table->boolean('status')->default(1);
+            $table->softDeletes();
+            $table->timestamps();
 		});
 	}
 

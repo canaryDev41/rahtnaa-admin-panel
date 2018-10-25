@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTasksTable extends Migration {
 
@@ -18,8 +19,8 @@ class CreateTasksTable extends Migration {
 			$table->text('name');
 			$table->integer('price');
 			$table->string('measure');
-			$table->bigInteger('job_id');
-			$table->integer('status')->default(1);
+			$table->unsignedInteger('job_id');
+			$table->boolean('status')->default(1);
 		});
 	}
 

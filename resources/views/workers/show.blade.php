@@ -1,150 +1,129 @@
 @extends('partials.master')
 
-@section('header')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-
-            var readURL = function (input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('.avatar').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-
-            $(".file-upload").on('change', function () {
-                readURL(this);
-            });
-        });
-    </script>
-@endsection
-
 @section('body')
+    <profile inline-template>
+        <div class="container bootstrap snippet">
 
-    <div class="container bootstrap snippet">
-        <div class="row">
-            <h3>
-الملف الشخصي:
-            {{ $worker->user->name }}
-            </h3>
+            <div class="row">
+                <h3>
+                    الملف الشخصي:
+                    {{ $worker->name }}
+                </h3>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3"><!--left col-->
 
-            <p>city: {{ $worker->user->name }}</p>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-3"><!--left col-->
-
-
-                <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail"
-                         alt="avatar">
-                    <h6>تغيير الصورة الشخصيه ...</h6>
-                    <input type="file" class="text-center center-block file-upload">
-                </div>
-                </hr><br>
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">حالة المستخدم </div>
-                    <div class="panel-body">
-                        @php
-                            echo $worker->user->status ? '<i class="fa fa-check"></i> فعال' : '<i class="fa fa-ban"></i> غير فعال';
-                        @endphp
+                    <div class="text-center">
+                        <img src="https://scontent-ort2-1.cdninstagram.com/vp/ef6185e57bd746191b84b915c65c674b/5BEE92F3/t51.2885-19/s150x150/23348280_670380543165607_5774003425419198464_n.jpg" class="avatar img-thumbnail"
+                             alt="avatar">
+                        <h6>الصورة الشخصيه ...</h6>
                     </div>
-                </div>
+                    </hr>
+                    <br>
 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">حالة المستخدم</div>
+                        <div class="panel-body">
+                            @php
+                                echo $worker->status ? '<i class="fa fa-check"></i> فعال' : '<i class="fa fa-ban"></i> غير فعال';
+                            @endphp
+                        </div>
+                    </div>
 
-                <ul class="list-group">
-                    <li class="list-group-item text-muted">الأنشطه</li>
-                    <li class="list-group-item text-left"><span class="pull-right"><strong>معرض الأعمال</strong></span> 125
-                    </li>
-                    <li class="list-group-item text-left"><span class="pull-right"><strong>التقييم</strong></span> 13</li>
-                    <li class="list-group-item text-left"><span class="pull-right"><strong>الوظائف</strong></span> 37</li>
-                    <li class="list-group-item text-left"><span class="pull-right"><strong>الطلبات</strong></span> 78
-                    </li>
-                </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item text-muted">الأنشطه</li>
+                        <li class="list-group-item text-left"><span
+                                    class="pull-right"><strong>معرض الأعمال</strong></span> 125
+                        </li>
+                        <li class="list-group-item text-left"><span class="pull-right"><strong>التقييم</strong></span>
+                            13
+                        </li>
+                        <li class="list-group-item text-left"><span class="pull-right"><strong>الوظائف</strong></span>
+                            37
+                        </li>
+                        <li class="list-group-item text-left"><span class="pull-right"><strong>الطلبات</strong></span>
+                            78
+                        </li>
+                    </ul>
 
-            </div><!--/col-3-->
-            <div class="col-sm-9">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">البيانات الأساسية</a></li>
-                    <li><a data-toggle="tab" href="#messages">التقييم والبلاغات</a></li>
-                </ul>
+                </div><!--/col-3-->
+                <div class="col-sm-9">
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#basics">البيانات الأساسية</a></li>
+                        <li><a data-toggle="tab" href="#ratings">التقييم و التعليقات</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="basics">
+                            <hr>
                             <div class="form-group">
 
                                 <div class="col-xs-6">
+
                                     <label for="name"><h4>الاسم</h4></label>
-                                    <input type="text" class="form-control" name="name" id="name"
+                                    <input type="text" class="form-control" disabled name="name" id="name"
+                                           value="{{ $worker->name }}"
                                            placeholder="اسم العامل هنا ...">
+
                                 </div>
+
                             </div>
+
                             <div class="form-group">
 
                                 <div class="col-xs-6">
                                     <label for="city">
                                         <h4>المدينة</h4>
                                     </label>
-                                    <select class="form-control" name="city" id="city">
-                                        <option value="1">الخرطوم</option>
-                                        <option value="2">امدرمان</option>
-                                        <option value="3">بحري</option>
-                                    </select>
+                                    <input type="text" class="form-control" disabled value="{{ $worker->city->name }}">
                                 </div>
+
                             </div>
 
                             <div class="form-group">
 
                                 <div class="col-xs-6">
                                     <label for="phone"><h4>رقم الجوال</h4></label>
-                                    <input type="number" class="form-control" name="phone" id="phone"
+                                    <input type="number" class="form-control" name="phone" disabled id="phone"
+                                           value="{{ $worker->phone }}"
                                            placeholder="رقم الجوال هنا ...">
                                 </div>
+
                             </div>
 
                             <div class="form-group">
+
                                 <div class="col-xs-6">
                                     <label for="email"><h4>البريد الإلكتروني</h4></label>
-                                    <input type="text" class="form-control" name="email" id="email"
-                                           placeholder="البريد الإلكتروني هنا ..." title="enter your mobile number if any.">
+                                    <input type="text" class="form-control" name="email" id="email" disabled
+                                           value="{{ $worker->email }}"
+                                           placeholder="البريد الإلكتروني هنا ...">
                                 </div>
+
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-primary" type="submit">
-                                   حفظ!
-                                        <i class="fa fa-save"></i>
-                                    </button>
-                                </div>
+                            <hr>
+
+                        </div><!--/tab-pane-->
+                        <div class="tab-pane" id="ratings">
+                            <hr>
+                            <div class="col col-md-12">
+                                <ul>
+                                    <li>test 1</li>
+                                    <li>test 1</li>
+                                    <li>test 1</li>
+                                </ul>
                             </div>
-                        </form>
 
-                        <hr>
-
-                    </div><!--/tab-pane-->
-                    <div class="tab-pane" id="messages">
-
-                        <h2></h2>
+                        </div><!--/tab-pane-->
 
                     </div><!--/tab-pane-->
+                </div><!--/tab-content-->
 
-                </div><!--/tab-pane-->
-            </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
+            </div><!--/col-9-->
+        </div>
+    </profile>
 
 @endsection

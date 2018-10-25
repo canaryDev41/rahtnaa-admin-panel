@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateRatingOrdersTable extends Migration {
+class CreateWorkersPlaceTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +13,12 @@ class CreateRatingOrdersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('rating_orders', function(Blueprint $table)
+		Schema::create('workers_place', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->bigInteger('order_id');
-			$table->bigInteger('worker_id')->nullable();
-			$table->float('rating');
-			$table->text('comment');
-			$table->boolean('status')->default(1);
+			$table->bigInteger('worker_id');
+			$table->float('lat');
+			$table->float('lng');
 			$table->timestamps();
 		});
 	}
@@ -32,7 +31,7 @@ class CreateRatingOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('rating_orders');
+		Schema::drop('workers_place');
 	}
 
 }

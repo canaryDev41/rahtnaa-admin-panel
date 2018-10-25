@@ -17,10 +17,11 @@ class CreateGalleriesTable extends Migration {
 		{
 			$table->increments('id');
             $table->text('image');
-            $table->text('job');
+            $table->text('description');
             $table->unsignedInteger('worker_id');
             $table->unsignedInteger('job_id');
 			$table->boolean('status');
+			$table->softDeletes();
 		});
 	}
 

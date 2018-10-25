@@ -14,6 +14,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     ضبط العمال
+                    <a href="{{ route('workers.create') }}" class="btn btn-xs btn-default right"><i class="fa fa-plus"></i> اضافة عامل جديد</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -32,11 +33,11 @@
                             <tbody>
                             @foreach($workers as $worker)
                                 <tr class="">
-                                    <td>{{ $worker->user->name }}</td>
-                                    <td>{{ $worker->user->city }}</td>
-                                    <td>{{ $worker->user->phone }}</td>
-                                    <td>{{ $worker->user->email }}</td>
-                                    <td>{{ $worker->user->status ? 'فعال' : 'غير فعال' }}</td>
+                                    <td>{{ $worker->name }}</td>
+                                    <td>{{ $worker->city->name }}</td>
+                                    <td>{{ $worker->phone }}</td>
+                                    <td>{{ $worker->email }}</td>
+                                    <td>{{ $worker->status ? 'فعال' : 'غير فعال' }}</td>
                                     <td>
                                         <a href="{{ route('workers.show', $worker->id) }}" class="btn btn-default">استعراض</a>
                                         <a href="{{ route('workers.edit', $worker->id) }}" class="btn btn-success">تعديل</a>

@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration {
 			$table->dateTime('start_date');
 			$table->dateTime('end_date');
 			$table->text('tasks');
-			$table->tinyInteger('status');
+			$table->tinyInteger('status')->comment('0 => canceled, 1 => placed, 2 => completed');
 			$table->timestamps();
 		});
 	}

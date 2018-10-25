@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration {
 
@@ -19,9 +20,9 @@ class CreateUsersTable extends Migration {
 			$table->unsignedInteger('city_id');
 			$table->string('phone');
 			$table->string('email')->nullable();
-			$table->text('password');
+			$table->text('password')->nullable();
 			$table->text('image')->nullable();
-			$table->boolean('status')->default(0);
+			$table->boolean('status')->default(1);
 			$table->timestamps();
 		});
 	}

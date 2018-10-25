@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateUserPlaceTable extends Migration {
+class CreateRatingsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +13,13 @@ class CreateUserPlaceTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('user_place', function(Blueprint $table)
+		Schema::create('ratings', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->bigInteger('user_id');
-			$table->float('lat');
-			$table->float('lng');
-			$table->boolean('status')->default(1);
+			$table->bigInteger('order_id');
+			$table->bigInteger('worker_id')->nullable();
+			$table->float('rate');
+			$table->text('comment');
 			$table->timestamps();
 		});
 	}
@@ -31,7 +32,7 @@ class CreateUserPlaceTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('user_place');
+		Schema::drop('ratings');
 	}
 
 }

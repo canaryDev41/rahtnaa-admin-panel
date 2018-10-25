@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>راحتنا - لوحة التحكم</title>
 
@@ -70,8 +71,8 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
- مرحباً :{{ auth()->user()->name }}
-                <i class="fa fa-caret-down"></i>
+                    مرحباً :{{ auth()->user()->name }}
+                    <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> الملف الشخصي</a>
@@ -121,67 +122,27 @@
                         <a href="{{ route('workers.index') }}"> العمال</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i>
+                            قائمه متعدده المستويات
+                            <span
+                                    class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
+                                <a href="#">العنصر الاول</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Buttons</a>
+                                <a href="#">العنصر الثاني</a>
                             </li>
                             <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level <span class="fa arrow"></span></a>
+                                <a href="#">
+                                    العنصر الثالث
+                                    <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
+                                        <a href="#">العنصر الاول في القائمه الثانيه</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-third-level -->
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="blank.html">Blank Page</a>
-                            </li>
-                            <li>
-                                <a href="login.html">Login Page</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -194,22 +155,22 @@
     </nav>
 
     <!-- Page Content -->
-    <div id="page-wrapper">
+    <div id="app">
+        <div id="page-wrapper">
 
-        @yield('body')
+            @yield('body')
 
-    </div>
-    <!-- /#page-wrapper -->
+        </div>
+    </div><!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
 
 <!-- jQuery Version 1.11.0 -->
-<script src="{{ asset('js/jquery-1.11.0.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="{{ asset('js/metisMenu/metisMenu.min.js') }}"></script>
 
@@ -219,6 +180,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+
+{{-- include app.js file --}}
 
 </body>
 

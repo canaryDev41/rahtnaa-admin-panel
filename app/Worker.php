@@ -4,13 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed image
+ * @property mixed name
+ * @property mixed city_id
+ * @property mixed phone
+ * @property mixed email
+ * @property mixed national_id_image
+ * @property mixed status
+ * @property mixed password
+ */
+
 class Worker extends Model
 {
-    protected $table = 'worker';
 
     protected $fillable = [
         'name', 'email', 'password', 'city_id', 'phone', 'image', 'rating', 'status', 'national_id_image'
     ];
+
+    protected $with = ['city'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -36,5 +48,6 @@ class Worker extends Model
     public function payment(){
 
     }
+
 
 }

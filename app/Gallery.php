@@ -5,15 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Gallery extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'image',
+        'description',
+        'worker_id',
+        'job_id',
+        'status'
     ];
-    
-    public function jobs(){
-        return $this->hasMany(Job::class);
-    }
+
 }
