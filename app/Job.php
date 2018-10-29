@@ -23,4 +23,8 @@ class Job extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function workers(){
+        return $this->belongsToMany(Worker::class);
+    }
 }

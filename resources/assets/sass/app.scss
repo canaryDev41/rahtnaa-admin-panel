@@ -6,9 +6,38 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
+@import "table";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.avatar-container{
+  display: flex;
+  align-items: center;
+}
+
+.ml-2{
+  margin-left:1.5rem;
+}
+.v--modal{
+  text-align: right !important;
+}
+.modal-fixed{
+  position: fixed;
+  top:50%;
+  left:50%;
+  -webkit-transform: translate(-50%,50%);
+  -moz-transform: translate(-50%,50%);
+  -ms-transform: translate(-50%,50%);
+  -o-transform: translate(-50%,50%);
+  transform: translate(-50%,50%);
+  background: #fff;
+  border-radius: 5px;
+  
+}
+.panel{
+  margin-bottom:0;
 }

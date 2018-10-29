@@ -25,6 +25,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
 
     Route::resource('/workers', 'WorkersController');
 
+    Route::resource('/jobs', 'JobsController');
+
     Route::resource('/categories', 'CategoriesController');
 
 });

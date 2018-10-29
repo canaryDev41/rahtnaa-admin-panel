@@ -15,7 +15,7 @@
                 <div class="col-sm-3"><!--left col-->
 
                     <div class="text-center">
-                        <img src="https://scontent-ort2-1.cdninstagram.com/vp/ef6185e57bd746191b84b915c65c674b/5BEE92F3/t51.2885-19/s150x150/23348280_670380543165607_5774003425419198464_n.jpg" class="avatar img-thumbnail"
+                        <img src="" class="avatar img-thumbnail"
                              alt="avatar">
                         <h6>الصورة الشخصيه ...</h6>
                     </div>

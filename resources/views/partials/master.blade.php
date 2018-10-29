@@ -35,6 +35,7 @@
 
     {{-- custome css --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
     {{--google font cairo--}}
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
@@ -122,6 +123,9 @@
                         <a href="{{ route('workers.index') }}"> العمال</a>
                     </li>
                     <li>
+                        <a href="{{ route('jobs.index') }}"> الوظائف</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i>
                             قائمه متعدده المستويات
                             <span
@@ -177,6 +181,8 @@
 <!-- Morris Charts JavaScript -->
 <script src="{{ asset('js/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('js/morris/morris.min.js') }}"></script>
+
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('js/sb-admin-2.js') }}"></script>

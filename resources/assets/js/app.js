@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9,6 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+/*Vue Modal component
+ *
+ */
+
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -17,6 +25,8 @@ window.Vue = require('vue');
 
 Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 Vue.component('profile', require('./components/ProfileComponent.vue'));
+Vue.component('workers', require('./components/WorkersComponent.vue'));
+Vue.component('jobs', require('./components/JobsComponent.vue'));
 
 const app = new Vue({
     el: '#app',
