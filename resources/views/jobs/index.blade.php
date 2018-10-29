@@ -58,11 +58,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
-            @include('partials.modals.create-job')
-
+            
         </div>
-
 
     </jobs>    <!-- /.row -->
     <!-- /.row -->

@@ -20,7 +20,8 @@ class CreateGalleriesTable extends Migration {
             $table->text('description');
             $table->unsignedInteger('worker_id');
             $table->unsignedInteger('job_id');
-			$table->boolean('status');
+			$table->boolean('status')->default(1);
+			$table->timestamps();
 			$table->softDeletes();
 		});
 	}
