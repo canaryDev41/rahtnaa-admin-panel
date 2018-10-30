@@ -6,7 +6,7 @@
         },
         data() {
             return {
-                message: 'this is a message model'
+
             }
         }
     }

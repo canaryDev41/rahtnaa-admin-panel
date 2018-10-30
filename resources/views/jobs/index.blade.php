@@ -42,7 +42,7 @@
                                             <td>{{ $job->workers->count() }}</td>
                                             <td>
                                                 <a href="" class="btn btn-default">استعراض</a>
-                                                <a href="" class="btn btn-success">تعديل</a>
+                                                <a href="{{ route('jobs.edit', $job) }}" class="btn btn-success">تعديل</a>
                                                 <a href="" class="btn btn-danger">حذف</a>
                                             </td>
                                         </tr>
@@ -58,8 +58,6 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
-            @include('partials.modals.create-job')
 
         </div>
 

@@ -105,7 +105,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="{{ route('dashboard.index') }}"> لوحة التحكم</a>
+                        <a href="{{ route('dashboard.index') }}" class="{{ request()->url('/dashboard/') ? 'active' : '' }}"> لوحة التحكم</a>
                     </li>
                     <li>
                         <a href="#"> Charts<span class="fa arrow"></span></a>
@@ -120,10 +120,10 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="{{ route('workers.index') }}"> العمال</a>
+                        <a href="{{ route('workers.index') }}" class="{{ request()->url('/dashboard/workers') ? 'active' : '' }}"> العمال</a>
                     </li>
                     <li>
-                        <a href="{{ route('jobs.index') }}"> الوظائف</a>
+                        <a href="{{ route('jobs.index') }}" class="{{ Request::url('/dashboard/jobs') ? 'active' : '' }}"> الوظائف</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i>

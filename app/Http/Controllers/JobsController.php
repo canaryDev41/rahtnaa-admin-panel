@@ -40,7 +40,9 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        Job::create($request->all());
+
+        return redirect()->route('jobs.index');
     }
 
     /**
@@ -57,24 +59,30 @@ class JobsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Job $job
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
-        //
+        $categories = Category::all();
+
+        return view('jobs.edit', ['job' => $job, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Job $job
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Job $job)
     {
-        //
+        $job->update($request->all());
+
+        return redirect()->route('jobs.index');
     }
 
     /**
