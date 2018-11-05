@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Job;
 use App\Order;
 use App\User;
@@ -16,12 +17,14 @@ class DashboardController extends Controller
         $users = User::count();
         $jobs = Job::count();
         $orders = Order::count();
+        $cities = City::count();
 
         return view('dashboard.index')->with([
             'workers' => $workers,
             'users' => $users,
-            '$jobs' => $jobs,
+            'jobs' => $jobs,
             'orders' => $orders,
+            'cities' => $cities,
         ]);
     }
 }

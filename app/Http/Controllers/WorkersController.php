@@ -126,4 +126,12 @@ class WorkersController extends Controller
     {
         //
     }
+
+    public function activate(Worker $worker){
+
+    }
+
+    public function inactivate(Worker $worker){
+
+    }
 }

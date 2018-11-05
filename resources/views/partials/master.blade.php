@@ -1,194 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>راحتنا - لوحة التحكم</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/rtl/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- not use this in ltr -->
-    <link href="{{ asset('css/rtl/bootstrap.rtl.css') }}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{{ asset('css/plugins/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="{{ asset('css/plugins/timeline.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/rtl/sb-admin-2.css') }}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{ asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-
-    {{-- custome css --}}
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-
-    {{--google font cairo--}}
-    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    @yield('header')
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <!-- Favicon -->
+    <link href="{{asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{asset('fonts/nucleoIcons/css/nucleo.css')}}" rel="stylesheet">
+    <link href="{{asset('fonts/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <!-- Argon CSS -->
+    <!--<link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
+    <!--Argon rtl CSS-->
+    <link type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+{{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
+    <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
 
 <body>
-
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">راحتنا - لوحة التحكم</a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-left">
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    مرحباً :{{ auth()->user()->name }}
-                    <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> الملف الشخصي</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> الاعدادات</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out fa-fw"></i> تسجيل الخروج</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" style="height: 34px;" placeholder="ابحث هنا ...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+<!-- Sidenav -->
+<div id="app">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div class="container-fluid"> <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+                    aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button> <!-- Brand --> <a class="navbar-brand pt-0"
+                                                                                       href="./index.html"> <img
+                        src="{{asset('img/brand/blue.png')}}" class="navbar-brand-img" alt="..."> </a> <!-- User -->
+            <ul class="nav align-items-center d-md-none">
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="ni ni-bell-55"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
+                         aria-labelledby="navbar-default_dropdown_1">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <div class="media align-items-center">
+                          <span class="avatar avatar-sm rounded-circle">
+                            <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                          </span>
                         </div>
-                        <!-- /input-group -->
+                    </a>
+                </li>
+            </ul>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+                        <div class="col-6 collapse-brand">
+                            <a href="./index.html">
+                                <img src="./assets/img/brand/blue.png">
+                            </a>
+                        </div>
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse"
+                                    data-target="#sidenav-collapse-main" aria-controls="sidenav-main"
+                                    aria-expanded="false"
+                                    aria-label="Toggle sidenav">
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form -->
+                <form class="mt-4 mb-3 d-md-none">
+                    <div class="input-group input-group-rounded input-group-merge">
+                        <input type="search" class="form-control form-control-rounded form-control-prepended"
+                               placeholder="ابحث" aria-label="Search">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fa fa-search"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard.index') }}">
+                            <i class="ni ni-tv-2 text-primary"></i> اللوحة الرئسية
+                        </a>
                     </li>
-                    <li>
-                        <a href="{{ route('dashboard.index') }}" class="{{ request()->url('/dashboard/') ? 'active' : '' }}"> لوحة التحكم</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/icons.html">
+                            <i class="ni ni-planet text-blue"></i> العمال
+                        </a>
                     </li>
-                    <li>
-                        <a href="#"> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/maps.html">
+                            <i class="ni ni-pin-3 text-orange"></i>  المدن
+                        </a>
                     </li>
-                    <li>
-                        <a href="{{ route('workers.index') }}" class="{{ request()->url('/dashboard/workers') ? 'active' : '' }}"> العمال</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/profile.html">
+                            <i class="ni ni-single-02 text-yellow"></i>  التصنيفات
+                        </a>
                     </li>
-                    <li>
-                        <a href="{{ route('jobs.index') }}" class="{{ Request::url('/dashboard/jobs') ? 'active' : '' }}"> الوظائف</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/tables.html">
+                            <i class="ni ni-bullet-list-67 text-red"></i>  الأعمال
+                        </a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i>
-                            قائمه متعدده المستويات
-                            <span
-                                    class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">العنصر الاول</a>
-                            </li>
-                            <li>
-                                <a href="#">العنصر الثاني</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    العنصر الثالث
-                                    <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">العنصر الاول في القائمه الثانيه</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/login.html">
+                            <i class="ni ni-key-25 text-info"></i> المهام
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./examples/register.html">
+                            <i class="ni ni-circle-08 text-pink"></i> الطلبات
+                        </a>
                     </li>
                 </ul>
             </div>
-            <!-- /.sidebar-collapse -->
         </div>
-        <!-- /.navbar-static-side -->
     </nav>
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Top navbar -->
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('dashboard.index') }}">اللوحه
+                    الرئسية</a>
+                <!-- Form -->
+                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="ابحث" type="text">
+                        </div>
+                    </div>
+                </form>
+                <!-- User -->
+                <ul class="navbar-nav align-items-center d-none d-md-flex">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder"
+                       src="https://cdn2.tokendaily.co/user-images/4a2359b48887048317100f5e5d28d0d6.jpeg">
+                </span>
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                            <a href="" class="dropdown-item">
+                                <i class="ni ni-single-02"></i>
+                                <span>الحساب الشخصي</span>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <i class="ni ni-settings-gear-65"></i>
+                                <span>الأعدادات</span>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <i class="ni ni-calendar-grid-58"></i>
+                                <span>اخر الاخبار</span>
+                            </a>
+                            <a href="" class="dropdown-item">
+                                <i class="ni ni-support-16"></i>
+                                <span>مساعده</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ route('admin.logout') }}" class="dropdown-item">
+                                <i class="ni ni-user-run"></i>
+                                <span>تسجيل خروج</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Header -->
 
-    <!-- Page Content -->
-    <div id="app">
-        <div id="page-wrapper">
+        {{--page content--}}
+        @yield('body')
 
-            @yield('body')
-
-        </div>
-    </div><!-- /#page-wrapper -->
-
+    </div>
 </div>
-<!-- /#wrapper -->
+<!-- Argon Scripts -->
+<!-- Core -->
 
-<!-- jQuery Version 1.11.0 -->
-
-<!-- Bootstrap Core JavaScript -->
-
-<script src="{{ asset('js/app.js') }}"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{ asset('js/metisMenu/metisMenu.min.js') }}"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="{{ asset('js/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('js/morris/morris.min.js') }}"></script>
-
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{{ asset('js/sb-admin-2.js') }}"></script>
-
-{{-- include app.js file --}}
-
+<script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<!-- Optional JS -->
+<script src="./assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
+<!-- Argon JS -->
+<script src="{{asset('js/argon.js')}}"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

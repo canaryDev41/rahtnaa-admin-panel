@@ -20,12 +20,12 @@ class CreateOrdersTable extends Migration {
 			$table->unsignedInteger('user_id');
             $table->unsignedInteger('job_id');
             $table->float('total');
-            $table->float('lat');
-            $table->float('lng');
+            $table->decimal('lat', 10, 7);
+            $table->decimal('lng', 10, 7);
 			$table->dateTime('start_date');
 			$table->dateTime('end_date');
 			$table->text('tasks');
-			$table->tinyInteger('status')->comment('0 => canceled, 1 => placed, 2 => completed');
+			$table->tinyInteger('status')->comment('0 => canceled, 1 => under-process, 2 => completed');
 			$table->timestamps();
 		});
 	}

@@ -1,90 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>راحتنا - تسجيل الدخول</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/rtl/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- not use this in ltr -->
-    <link href="{{ asset('css/rtl/bootstrap.rtl.css') }}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{{ asset('css/plugins/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="{{ asset('css/plugins/timeline.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/rtl/sb-admin-2.css') }}" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{ asset('css/font-awesome/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-
-    {{--google font cairo--}}
-    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Rahtnna - admin panel: Login</title>
+    <!-- Favicon -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{asset('fonts/nucleoIcons/css/nucleo.css')}}" rel="stylesheet">
+    <link href="{{asset('fonts/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <!-- Argon CSS -->
+    <!--<link type="text/css" href="../assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
+    <!--Argon rtl CSS-->
+    <link type="text/css" href="{{asset('css/argon-rtl.css')}}" rel="stylesheet">
 </head>
 
-<body>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">تسجيل الدخول للوحة التحكم</h3>
+<body class="bg-default">
+<div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+        <div class="container">
+            <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <h1 class="text-white">مرحبا!</h1>
+                        <p class="text-lead text-light">راحتنا - تسجيل الدخول الى لوحه التحكم</p>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <form role="form" action="{{ route('admin.submit') }}" method="POST">
-                        {{ csrf_field() }}
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="البريد الالكتروني" name="email" required type="email" autofocus>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card bg-secondary shadow border-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <small>الرجاء ادخال البريد الاكتروني و كلمة المرور</small>
+                        </div>
+                        <form action="{{ route('admin.login') }}" method="post">
+                            {{ csrf_field() }}
+                            <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="البريد الإلكتروني" type="email" name="email" required>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="كلمة المرور" name="password" type="password" minlength="6" required>
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="كلمة المرور" type="password" name="password" required>
+                                </div>
                             </div>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <button class="btn btn-success btn-block" type="submit">تسجيل الدخول</button>
-                        </fieldset>
-                    </form>
+                            <div class="custom-control custom-control-alternative custom-checkbox">
+                                <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                                <label class="custom-control-label" for=" customCheckLogin">
+                                    <span class="text-muted">تذكرني</span>
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary my-4">تسجيل الدخول</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <a href="#" class="text-light">
+                            <small>نسيت كلمة المرور؟</small>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Footer -->
+<footer class="py-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    &copy; {{ date('Y') }} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative
+                        Tim</a>
+                </div>
+            </div>
 
-<!-- jQuery Version 1.11.0 -->
-<script src="{{ asset('js/jquery-1.11.0.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{ asset('js/metisMenu/metisMenu.min.js') }}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{{ asset('js/sb-admin-2.js') }}"></script>
-
+        </div>
+    </div>
+</footer>
+<!-- Argon Scripts -->
+<script src="{{asset('js/app.js')}}"></script>
+<!-- Core -->
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<!-- Argon JS -->
+<script src="{{asset('js/argon.js')}}"></script>
 </body>
 
 </html>

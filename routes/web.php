@@ -12,7 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $config['center'] = 'Manshia Bridge, Sudan';
+    $config['zoom'] = '18';
+    $config['map_height'] = '500px';
+
+    GMaps::initialize($config);
+
+    $map = GMaps::create_map();
+
+    return view('welcome')->with(['map', $map]);
+
 });
 
 Route::get('/login', 'AdminController@login')->name('admin.login');
@@ -28,5 +38,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/jobs', 'JobsController');
 
     Route::resource('/categories', 'CategoriesController');
+
+    Route::resource('/orders', 'OrdersController');
 
 });
