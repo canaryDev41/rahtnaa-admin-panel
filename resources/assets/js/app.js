@@ -15,7 +15,10 @@ window.Vue = require('vue');
 
 import VModal from 'vue-js-modal'
 
-Vue.use(VModal)
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
+
+Vue.use(VModal);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

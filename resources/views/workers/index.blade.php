@@ -65,13 +65,13 @@
                                         {{ $worker->rating }}
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-default btn-sm"><i class="fa fa-expand-arrows-alt"></i> استعراض  </a>
+                                        <a href="" class="btn btn-default btn-sm"><i class="fa fa-expand-arrows-alt"></i>  </a>
                                         @if($worker->status)
-                                            <a href="" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i>  تعطيل </a>
+                                            <a href="" class="btn btn-warning btn-sm mr-0"><i class="fa fa-ban"></i>  تعطيل </a>
                                             @else
-                                            <a href="{{ route('') }}" class="btn btn- btn-sm">تفعيل</a>
+                                            <a href="" class="btn btn-success btn-sm">تفعيل</a>
                                             @endif
-                                        <a href="" class="btn btn-primary btn-sm"> <i class="fa fa-trash"></i> حذف </a>
+                                        <a href="" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
                                     </td>
 
                                 </tr>

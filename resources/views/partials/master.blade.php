@@ -98,32 +98,32 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/icons.html">
+                        <a class="nav-link" href="{{ route('workers.index') }}">
                             <i class="ni ni-planet text-blue"></i> العمال
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/maps.html">
+                        <a class="nav-link" href="">
                             <i class="ni ni-pin-3 text-orange"></i>  المدن
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/profile.html">
+                        <a class="nav-link" href="{{ route('categories.index') }}">
                             <i class="ni ni-single-02 text-yellow"></i>  التصنيفات
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/tables.html">
+                        <a class="nav-link" href="{{ route('jobs.index') }}">
                             <i class="ni ni-bullet-list-67 text-red"></i>  الأعمال
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/login.html">
+                        <a class="nav-link" href="">
                             <i class="ni ni-key-25 text-info"></i> المهام
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./examples/register.html">
+                        <a class="nav-link" href="{{ route('orders.index') }}">
                             <i class="ni ni-circle-08 text-pink"></i> الطلبات
                         </a>
                     </li>

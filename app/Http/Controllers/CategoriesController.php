@@ -10,13 +10,13 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
 
-        return view('categories.index');
+        return view('categories.index')->with(['categories' => $categories]);
     }
 
     /**

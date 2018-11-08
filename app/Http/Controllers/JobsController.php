@@ -15,7 +15,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::paginate(10);
 
         return view('jobs.index', ['jobs' => $jobs]);
     }
@@ -91,8 +91,14 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Job $job)
     {
-        //
+        $job->delete();
+
+        if(\request()->expectsJson()){
+            return response(['message' =>'deleted successfully'],202);
+        }
+
+        return back();
     }
 }

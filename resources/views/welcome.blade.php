@@ -12,12 +12,12 @@
 
         <!-- Styles -->
 
-        {!! $map['js'] !!}
+        {{--{!! $map['js'] !!}--}}
 
     </head>
     <body>
 
-        {!! $map['html'] !!}
+        {{--{!! $map['html'] !!}--}}
 
     </body>
 </html>
