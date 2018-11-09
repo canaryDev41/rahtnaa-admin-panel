@@ -10,8 +10,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-lg-12 col-md-10">
-                    <h1 class="text-white">إدراه التصنيفات</h1>
-                    <p class="text-white mt-0 mb-5">من هنا يمكنك إداره جميع التصنيفات</p>
+                    <h1 class="text-white">إدراه الوظائف</h1>
+                    <p class="text-white mt-0 mb-5">من هنا يمكنك إداره جميع الوظائف</p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            <h3 class="mb-0">إداره التصنيفات</h3>
+                            <h3 class="mb-0">إداره الوظائف</h3>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush" v-if="jobs" key="jobs">

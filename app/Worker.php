@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property mixed image
@@ -17,10 +18,11 @@ use Illuminate\Database\Eloquent\Model;
 class Worker extends Model
 {
 
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'email',
-        'password',
         'city_id',
         'phone',
         'image',

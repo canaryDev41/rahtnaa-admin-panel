@@ -92,12 +92,12 @@
                 </form>
                 <!-- Navigation -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('dashboard.index')) active @endif">
                         <a class="nav-link" href="{{ route('dashboard.index') }}">
                             <i class="ni ni-tv-2 text-primary"></i> اللوحة الرئسية
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('workers.index')) active @endif">
                         <a class="nav-link" href="{{ route('workers.index') }}">
                             <i class="ni ni-planet text-blue"></i> العمال
                         </a>
@@ -107,22 +107,22 @@
                             <i class="ni ni-pin-3 text-orange"></i>  المدن
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('categories.index')) active @endif">
                         <a class="nav-link" href="{{ route('categories.index') }}">
                             <i class="ni ni-single-02 text-yellow"></i>  التصنيفات
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('jobs.index')) active @endif">
                         <a class="nav-link" href="{{ route('jobs.index') }}">
                             <i class="ni ni-bullet-list-67 text-red"></i>  الأعمال
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('tasks.index')) active @endif">
                         <a class="nav-link" href="">
                             <i class="ni ni-key-25 text-info"></i> المهام
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Route::currentRouteNamed('orders.index')) active @endif">
                         <a class="nav-link" href="{{ route('orders.index') }}">
                             <i class="ni ni-circle-08 text-pink"></i> الطلبات
                         </a>

@@ -20,11 +20,12 @@ class CreateWorkersTable extends Migration {
             $table->unsignedInteger('city_id');
             $table->string('phone');
             $table->string('email')->nullable();
-            $table->text('password')->nullable();
             $table->text('image')->nullable();
             $table->float('rating')->default(0);
             $table->boolean('status')->default(0);
 			$table->text('national_id_image');
+
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

@@ -17,7 +17,7 @@ class WorkersController extends Controller
      */
     public function index()
     {
-        $workers = Worker::all();
+        $workers = Worker::paginate(10);
 
         return view('workers.index', ['workers' => $workers]);
     }
@@ -79,15 +79,10 @@ class WorkersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Worker $worker)
     {
         $cities = City::all();
 
-        try {
-            $worker = Worker::find($id);
-        } catch (ModelNotFoundException $e) {
-            $worker = null;
-        }
         return view('workers.show', ['worker' => $worker, 'cities' => $cities]);
     }
 
@@ -122,9 +117,15 @@ class WorkersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Worker $worker)
     {
-        //
+        $worker->delete();
+
+        if(\request()->expectsJson()){
+            return response(['message' =>'deleted successfully'],202);
+        }
+
+        return back();
     }
 
     public function activate(Worker $worker){
