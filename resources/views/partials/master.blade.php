@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
-    <title>Rahtnna Admin Panel</title>
+    <meta name="description" content="rahtnaa admin panel">
+    <meta name="author" content="rahtnaa-sd.com">
+    <title>راحتنا - لوحة التحكم</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
@@ -27,8 +27,8 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
                     aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation"><span
                         class="navbar-toggler-icon"></span></button> <!-- Brand --> <a class="navbar-brand pt-0"
-                                                                                       href="./index.html"> <img
-                        src="{{asset('img/brand/blue.png')}}" class="navbar-brand-img" alt="..."> </a> <!-- User -->
+                                                                                       href="{{ route('dashboard.index') }}"> <img
+                        src="" class="navbar-brand-img" alt="..."> </a> <!-- User -->
             <ul class="nav align-items-center d-md-none">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -47,8 +47,8 @@
                 <div class="navbar-collapse-header d-md-none">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <a href="./index.html">
-                                <img src="./assets/img/brand/blue.png">
+                            <a href="{{ route('dashboard.index') }}">
+                                <img src="">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
