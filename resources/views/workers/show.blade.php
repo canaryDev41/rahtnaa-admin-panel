@@ -87,7 +87,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="{{ route('workers.update', $worker) }}" method="post">
+                            {{ method_field('put') }}
+                            @csrf
                             <h6 class="heading-small text-muted mb-4"></h6>
                             <div class="pl-lg-4">
                                 <div class="row">
@@ -104,6 +106,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-first-name">رقم الجوال</label>
                                             <input type="text" id="input-first-name"
+                                                   name="phone"
                                                    class="form-control form-control-alternative"
                                                    placeholder="First name" value="{{ $worker->phone }}">
                                         </div>
@@ -122,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <a href="#!" class="btn btn-sm btn-success">تحديث</a>
+                                    <input type="submit" value="تحديث" class="btn btn-success btn-sm">
                                 </div>
                             </div>
                         </form>

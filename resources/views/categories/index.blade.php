@@ -45,14 +45,14 @@
                                         {{ $category->jobs->count() }}
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-default btn-sm"><i
-                                                    class="fa fa-expand-arrows-alt"></i></a>
                                         @if($category->status)
                                             <a href="" class="btn btn-warning btn-sm">تعطيل</a>
                                         @else
-                                            test fdsaf
+                                            <a href="" class="btn btn-warning btn-sm">تفعيل</a>
                                         @endif
-                                        <a href="{{ route('categories.destroy', $category->id) }}"
+                                        <a href="
+{{--{{ route('categories.destroy', $category->id) }}--}}
+                                                "
                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Http\Requests\WorkersRequest;
 use App\Worker;
+use foo\bar;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,6 @@ class WorkersController extends Controller
             "name" => 'required|min:2',
             "city_id" => 'required|integer',
             "phone" => 'required|regex:/(0)[0-9]{9}/|unique:workers',
-            "email" => 'required|email',
             "national_id_image" => 'required|mimes:jpeg,jpg,png',
             "status" => 'required',
         ]);
@@ -63,7 +63,6 @@ class WorkersController extends Controller
         //$worker->password = bcrypt($request->get('password'));
         $worker->city_id = $request->get('city_id');
         $worker->phone = $request->get('phone');
-        $worker->email = $request->get('email');
         $worker->national_id_image = $nationalIdPath;
         $worker->status = $request->get('status');
 
@@ -102,20 +101,36 @@ class WorkersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param Worker $worker
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @internal param Request $request
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Worker $worker, Request $request)
     {
-        //
+
+        $this->validate($request, [
+            "name" => 'required|min:2',
+            "city_id" => 'required|integer',
+            "phone" => 'required',
+        ]);
+
+        $worker->update([
+            'name' => $request->name,
+            'city_id' => $request->city_id,
+            'phone' => $request->phone
+        ]);
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Worker $worker
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function destroy(Worker $worker)
     {

@@ -115,17 +115,7 @@
                         <hr>
 
                     </div><!--/tab-pane-->
-                    <div class="tab-pane" id="ratings">
-                        <hr>
-                        <div class="col col-md-12">
-                            <ul>
-                                <li>test 1</li>
-                                <li>test 1</li>
-                                <li>test 1</li>
-                            </ul>
-                        </div>
-
-                    </div><!--/tab-pane-->
+                    <!--/tab-pane-->
 
                 </div><!--/tab-pane-->
             </div><!--/tab-content-->
