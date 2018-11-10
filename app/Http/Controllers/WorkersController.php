@@ -128,11 +128,32 @@ class WorkersController extends Controller
         return back();
     }
 
-    public function activate(Worker $worker){
+    public function activate($worker_id){
+        $worker = Worker::where('id', $worker_id)->first();
 
+        $worker->update([
+            'status' => true
+        ]);
+
+        if(\request()->expectsJson()){
+            return response(['message' =>$worker],202);
+        }
+
+        return back();
     }
 
-    public function inactivate(Worker $worker){
+    public function inactivate($worker_id){
 
+        $worker = Worker::where('id', $worker_id)->first();
+
+        $worker->update([
+            'status' => false
+        ]);
+
+        if(\request()->expectsJson()){
+            return response(['message' =>'updated successfully'],202);
+        }
+
+        return back();
     }
 }

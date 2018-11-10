@@ -151,10 +151,9 @@
                                                     class="fa fa-expand-arrows-alt"></i>
                                         </a>
 
-                                        <a v-if="worker.status" href="" class="btn btn-warning btn-sm mr-0"><i
-                                                    class="fa fa-ban"></i>
-                                            تعطيل </a>
-                                        <a v-else-if="worker.status" href="" class="btn btn-success btn-sm">تفعيل</a>
+                                        <a v-if="worker.status" @click="inactivate(worker)" class="btn btn-warning text-white btn-sm mr-0">
+                                            <i class="fa fa-ban"></i> تعطيل </a>
+                                        <a v-else="worker.status" @click="activate(worker)" class="btn btn-success text-white btn-sm mr-0"> <i class="fa fa-check"></i> تفعيل  </a>
 
                                         <a @click="confirm(worker)" class="btn btn-danger btn-sm text-white"> <i
                                                     class="fa fa-trash"></i> </a>

@@ -1,6 +1,6 @@
 <script>
     export default{
-        props:['initialWorkers'],
+        props: ['initialWorkers'],
 
 
         data() {
@@ -12,6 +12,36 @@
         },
 
         methods: {
+            activate(worker){
+                axios.get(`/dashboard/workers/${worker.id}/activate`).then(respose => {
+                    this.$swal({
+                        type: 'success',
+                        title: 'تمت العمليه!',
+                        text: 'اكتملت عمليه التفعيل بنجاح',
+                        timer: 1500,
+                        showConfirmButton: false,
+                    })
+                })
+
+                setTimeout(function () {
+                    location.reload();
+                }, 1490);
+            },
+            inactivate(worker){
+                axios.get(`/dashboard/workers/${worker.id}/inactivate`).then(respose => {
+                    this.$swal({
+                        type: 'success',
+                        title: 'تمت العمليه!',
+                        text: 'اكتملت عمليه التعطيل بنجاح',
+                        timer: 1500,
+                        showConfirmButton: false,
+                    })
+                });
+
+                setTimeout(function () {
+                    location.reload();
+                }, 1490);
+            },
             addModal(){
 //                axios.get(`/dashboard/cities`).then(respose => {
 //                    console.log(respose.data)
@@ -35,7 +65,7 @@
                 }).then((result) => {
                     if (result.value) {
                         this.destroy(worker)
-                    }else{
+                    } else {
                         this.$swal({
                             type: 'error',
                             title: 'تمت الإلغاء!',

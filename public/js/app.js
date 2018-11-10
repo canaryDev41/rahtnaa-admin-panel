@@ -80873,6 +80873,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        activate: function activate(worker) {
+            var _this = this;
+
+            axios.get('/dashboard/workers/' + worker.id + '/activate').then(function (respose) {
+                _this.$swal({
+                    type: 'success',
+                    title: 'تمت العمليه!',
+                    text: 'اكتملت عمليه التفعيل بنجاح',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+
+            setTimeout(function () {
+                location.reload();
+            }, 1490);
+        },
+        inactivate: function inactivate(worker) {
+            var _this2 = this;
+
+            axios.get('/dashboard/workers/' + worker.id + '/inactivate').then(function (respose) {
+                _this2.$swal({
+                    type: 'success',
+                    title: 'تمت العمليه!',
+                    text: 'اكتملت عمليه التعطيل بنجاح',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+
+            setTimeout(function () {
+                location.reload();
+            }, 1490);
+        },
         addModal: function addModal() {
             //                axios.get(`/dashboard/cities`).then(respose => {
             //                    console.log(respose.data)
@@ -80883,7 +80917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location = "/dashboard/workers/" + worker.id;
         },
         confirm: function confirm(worker) {
-            var _this = this;
+            var _this3 = this;
 
             // $swal function calls SweetAlert into the application with the specified configuration.
             this.$swal({
@@ -80897,9 +80931,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 showCloseButton: true
             }).then(function (result) {
                 if (result.value) {
-                    _this.destroy(worker);
+                    _this3.destroy(worker);
                 } else {
-                    _this.$swal({
+                    _this3.$swal({
                         type: 'error',
                         title: 'تمت الإلغاء!',
                         text: 'تم إلغاء عمليه الحذف',
@@ -80910,10 +80944,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         destroy: function destroy(worker) {
-            var _this2 = this;
+            var _this4 = this;
 
             axios.delete('/dashboard/workers/' + worker.id).then(function (respose) {
-                _this2.$swal({
+                _this4.$swal({
                     type: 'success',
                     title: 'تمت العمليه!',
                     text: 'اكتملت عمليه الحذف بنجاح',
@@ -80921,7 +80955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     showConfirmButton: false
                 });
 
-                _this2.workers.splice(_this2.workers.indexOf(worker), 1);
+                _this4.workers.splice(_this4.workers.indexOf(worker), 1);
             });
         }
     },

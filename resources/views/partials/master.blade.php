@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
-    <!-- Favicon -->
-    <link href="{{asset('img/brand/favicon.png')}}" rel="icon" type="image/png">
+    <title>Rahtnna Admin Panel</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
@@ -17,7 +15,6 @@
     <!-- Argon CSS -->
     <!--<link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
     <!--Argon rtl CSS-->
-    <link type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
@@ -34,24 +31,11 @@
                         src="{{asset('img/brand/blue.png')}}" class="navbar-brand-img" alt="..."> </a> <!-- User -->
             <ul class="nav align-items-center d-md-none">
                 <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        <i class="ni ni-bell-55"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right"
-                         aria-labelledby="navbar-default_dropdown_1">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         <div class="media align-items-center">
                           <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                            <img alt="" src="https://image.flaticon.com/icons/png/512/236/236832.png">
                           </span>
                         </div>
                     </a>
@@ -157,8 +141,8 @@
                            aria-expanded="false">
                             <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder"
-                       src="https://cdn2.tokendaily.co/user-images/4a2359b48887048317100f5e5d28d0d6.jpeg">
+                  <img alt=""
+                       src="https://image.flaticon.com/icons/png/512/236/236832.png">
                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
@@ -173,14 +157,6 @@
                             <a href="" class="dropdown-item">
                                 <i class="ni ni-settings-gear-65"></i>
                                 <span>الأعدادات</span>
-                            </a>
-                            <a href="" class="dropdown-item">
-                                <i class="ni ni-calendar-grid-58"></i>
-                                <span>اخر الاخبار</span>
-                            </a>
-                            <a href="" class="dropdown-item">
-                                <i class="ni ni-support-16"></i>
-                                <span>مساعده</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('admin.logout') }}" class="dropdown-item">
@@ -204,12 +180,8 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<!-- Optional JS -->
-<script src="./assets/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js')}}"></script>
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
