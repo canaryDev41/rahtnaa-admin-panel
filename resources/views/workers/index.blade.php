@@ -124,7 +124,6 @@
                                     <th scope="col">الاسم</th>
                                     <th scope="col">رقم الجوال</th>
                                     <th scope="col">المدينه</th>
-                                    <th scope="col">البريد الالكتروني</th>
                                     <th scope="col">التقييم</th>
                                     <th scope="col">الضبط</th>
                                 </tr>
@@ -143,7 +142,6 @@
                                     </td>
                                     <td v-text="worker.phone"></td>
                                     <td v-text="worker.city.name"></td>
-                                    <td v-text="worker.email"></td>
                                     <td v-text="worker.rating"></td>
                                     <td>
                                         <a @click="show(worker)"
