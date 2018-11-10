@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Rahtnna - admin panel: Login</title>
+    <title>راحتنا - لوحة التحكم: تسجيل الدخول</title>
     <!-- Favicon -->
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -96,8 +96,7 @@
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6">
                 <div class="copyright text-center text-xl-left text-muted">
-                    &copy; {{ date('Y') }} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative
-                        Tim</a>
+                    &copy; {{ date('Y') }} <a href="https://canarydev41.github.io/" class="font-weight-bold ml-1" target="_blank">canaryDev41</a>
                 </div>
             </div>
 
