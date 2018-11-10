@@ -17,6 +17,7 @@
     <!--<link type="text/css" href="../assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
     <!--Argon rtl CSS-->
     <link type="text/css" href="{{asset('css/argon-rtl.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
 </head>
 
 <body class="bg-default">
@@ -29,6 +30,17 @@
                     <div class="col-lg-5 col-md-6">
                         <h1 class="text-white">مرحبا!</h1>
                         <p class="text-lead text-light">راحتنا - تسجيل الدخول الى لوحه التحكم</p>
+                        @if(session()->has('message'))
+                            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                                <span class="alert-inner--text"><strong>تنبيه!</strong> {{ session()->get('message') }}</span>
+
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -56,7 +68,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="البريد الإلكتروني" type="email" name="email" required>
+                                    <input class="form-control" placeholder="البريد الإلكتروني" type="email"
+                                           name="email" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,7 +77,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="كلمة المرور" type="password" name="password" required>
+                                    <input class="form-control" placeholder="كلمة المرور" type="password"
+                                           name="password" required>
                                 </div>
                             </div>
                             <div class="custom-control custom-control-alternative custom-checkbox">
@@ -96,7 +110,8 @@
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6">
                 <div class="copyright text-center text-xl-left text-muted">
-                    &copy; {{ date('Y') }} <a href="https://canarydev41.github.io/" class="font-weight-bold ml-1" target="_blank">canaryDev41</a>
+                    &copy; {{ date('Y') }} <a href="https://canarydev41.github.io/" class="font-weight-bold ml-1"
+                                              target="_blank">canaryDev41</a>
                 </div>
             </div>
 

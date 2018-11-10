@@ -16,12 +16,16 @@ class AdminController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        $status = auth('admin')->attempt([
-            'email' => $request->get('email'),
-            'password' => $request->get('password')
-        ]);
-
-        return $status ? redirect('/dashboard') : redirect('/');
+        if (
+            auth('admin')->attempt([
+                'email' => $request->get('email'),
+                'password' => $request->get('password')
+            ])
+        ){
+            return redirect('/dashboard');
+        }else{
+            return back()->with('message', 'بيانات تسجيل الدخول خطأ... الرجاء المحاوله مره اخرى');
+        }
     }
 
     public function logout(){
