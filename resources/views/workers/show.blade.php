@@ -99,17 +99,7 @@
                                                    value="{{ $worker->name }}">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-email">البريد
-                                                الالكتروني</label>
-                                            <input type="email" id="input-email"
-                                                   class="form-control form-control-alternative" name="email"
-                                                   value="{{ $worker->email }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
+
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-first-name">رقم الجوال</label>
@@ -118,6 +108,8 @@
                                                    placeholder="First name" value="{{ $worker->phone }}">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-last-name">المدينه</label>
