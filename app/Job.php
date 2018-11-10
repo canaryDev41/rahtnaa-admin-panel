@@ -27,6 +27,6 @@ class Job extends Model
     }
 
     public function workers(){
-        return $this->belongsToMany(Worker::class);
+        return $this->belongsToMany(Worker::class, 'worker_job');
     }
 }
