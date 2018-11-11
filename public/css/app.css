@@ -37,10 +37,6 @@
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
-  color: rgba(0, 0, 0, 0.9);
-  background-color: #eee;
-}
 
 *,
 *::before,
@@ -26936,7 +26932,7 @@ a.btn-icon-only {
 
 #chart-tooltip .arrow {
   top: 100%;
-  left: 50%;
+  right: 50%;
   -webkit-transform: translateX(50%) translateX(0.5rem);
           transform: translateX(50%) translateX(0.5rem);
 }

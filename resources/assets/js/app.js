@@ -33,4 +33,9 @@ Vue.component('jobs', require('./components/JobsComponent.vue'));
 
 const app = new Vue({
     el: '#app',
+    computed:{
+        currentYear(){
+            return new Date().getFullYear()
+        }
+    }
 });

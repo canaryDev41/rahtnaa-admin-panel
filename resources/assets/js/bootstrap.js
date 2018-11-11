@@ -46,7 +46,7 @@ if (token) {
 
 // import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
@@ -54,3 +54,14 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+require('./themeScipts/stellar');
+require('./themeScipts/simpleLightbox.min');
+require('./themeScipts/jquery.nice-select.min');
+require('./themeScipts/imagesloaded.pkgd.min');
+require('./themeScipts/isotope-min');
+require('./themeScipts/owl.carousel.min');
+require('./themeScipts/jquery.ajaxchimp.min');
+require('./themeScipts/jquery.waypoints.min');
+require('./themeScipts/jquery.counterup');
+require('./themeScipts/jquery.magnific-popup.min');
+require('./themeScipts/theme');
