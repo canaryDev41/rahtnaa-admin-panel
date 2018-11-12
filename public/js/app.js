@@ -80879,51 +80879,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        activate: function activate(worker) {
+        toggleActivation: function toggleActivation(worker) {
             var _this = this;
 
-            axios.get('/dashboard/workers/' + worker.id + '/activate').then(function (respose) {
+            var endpoint = worker.status ? 'inactivate' : 'activate';
+
+            axios.get('/dashboard/workers/' + worker.id + '/' + endpoint).then(function (response) {
                 _this.$swal({
-                    type: 'success',
-                    title: 'تمت العمليه!',
-                    text: 'اكتملت عمليه التفعيل بنجاح',
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-            });
-
-            setTimeout(function () {
-                location.reload();
-            }, 1490);
-        },
-        inactivate: function inactivate(worker) {
-            var _this2 = this;
-
-            axios.get('/dashboard/workers/' + worker.id + '/inactivate').then(function (respose) {
-                _this2.$swal({
                     type: 'success',
                     title: 'تمت العمليه!',
                     text: 'اكتملت عمليه التعطيل بنجاح',
                     timer: 1500,
                     showConfirmButton: false
                 });
-            });
 
-            setTimeout(function () {
-                location.reload();
-            }, 1490);
-        },
-        addModal: function addModal() {
-            //                axios.get(`/dashboard/cities`).then(respose => {
-            //                    console.log(respose.data)
-            //                })
-            console.log('test');
+                worker.status = !worker.status;
+            });
         },
         show: function show(worker) {
             window.location = "/dashboard/workers/" + worker.id;
         },
         confirm: function confirm(worker) {
-            var _this3 = this;
+            var _this2 = this;
 
             // $swal function calls SweetAlert into the application with the specified configuration.
             this.$swal({
@@ -80937,9 +80914,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 showCloseButton: true
             }).then(function (result) {
                 if (result.value) {
-                    _this3.destroy(worker);
+                    _this2.destroy(worker);
                 } else {
-                    _this3.$swal({
+                    _this2.$swal({
                         type: 'error',
                         title: 'تمت الإلغاء!',
                         text: 'تم إلغاء عمليه الحذف',
@@ -80950,10 +80927,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         destroy: function destroy(worker) {
-            var _this4 = this;
+            var _this3 = this;
 
             axios.delete('/dashboard/workers/' + worker.id).then(function (respose) {
-                _this4.$swal({
+                _this3.$swal({
                     type: 'success',
                     title: 'تمت العمليه!',
                     text: 'اكتملت عمليه الحذف بنجاح',
@@ -80961,7 +80938,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     showConfirmButton: false
                 });
 
-                _this4.workers.splice(_this4.workers.indexOf(worker), 1);
+                _this3.workers.splice(_this3.workers.indexOf(worker), 1);
             });
         }
     },
