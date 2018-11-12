@@ -1,5 +1,9 @@
 @extends('partials.master')
 
+@section('map-section')
+{!! $map['js'] !!}
+@endsection
+
 @section('body')
 
     <!-- Header -->
@@ -10,8 +14,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h3 class="display-2 text-white">الملف الشخصي</h3>
-                    <p class="text-white mt-0 mb-5">{{ $worker->name }}</p>
+                    <h3 class="display-2 text-white"> تفاصيل الطلب: #{{ $order->id }}</h3>
+                    <p class="text-white mt-0 mb-5"></p>
                 </div>
             </div>
         </div>
@@ -19,70 +23,14 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-                <div class="card card-profile shadow">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="#">
-                                    <img src="http://i.pravatar.cc/180" class="rounded-circle">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-info mr-4">رقم الجوال</a>
-                            <a href="#" class="btn btn-sm btn-default float-right">رسالة</a>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0 pt-md-4">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                    <div>
-                                        <span class="heading">{{ $worker->jobs->count() }}</span>
-                                        <span class="description">الوظائف</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">6</span>
-                                        <span class="description">المهام</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">7</span>
-                                        <span class="description">الطلبات</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h3>
-                                {{ $worker->name }}
-                            </h3>
-                            <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ $worker->city->name }}
-                            </div>
-                            <div class="h5 mt-4">
-                                <h3>الوظائف</h3>
-                                <i class="ni business_briefcase-24 mr-2"></i>
-                                <ul class="list-group list-unstyled">
-                                    @foreach($worker->jobs as $job)
-                                        <li >
-                                            <span class="badge badge-pill badge-default">{{ $job->name }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8 order-xl-1">
+            <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">الملف الشخصي</h3>
+                                <h3 class="mb-0">بيانات الطلب الاساسيه</h3>
+                            </div>
+                            <div class="col-4">
                             </div>
                         </div>
                     </div>
@@ -90,49 +38,116 @@
                         <form>
                             <h6 class="heading-small text-muted mb-4"></h6>
                             <div class="pl-lg-4">
+
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="title">الوظيفة</p>
+                                        <span class="text-muted">{{ $order->job->name }}</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="title">التكلفة</p>
+                                        <span class="text-muted">{{ $order->total }} ج.س</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="title">تاريخ البدايه</p>
+                                        <span class="text-muted">{{ $order->start_date }}</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="title">تاريخ النهايه</p>
+                                        <span class="text-muted">{{ $order->end_date }}</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="title">الحاله</p>
+                                        <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
+                                    </div>
+                                </div>
+
+
+                                <hr>
+
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-username">الاسم</label>
-                                            <input type="text" id="input-username"
-                                                   class="form-control form-control-alternative" name="name"
-                                                   value="{{ $worker->name }}">
+                                        <p class="title">معلومات العميل</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-username">اسم
+                                                        العميل</label>
+                                                    <input type="text" id="input-username"
+                                                           class="form-control form-control-alternative" readonly name="name"
+                                                           value="{{ $order->user->name }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-email">رقم
+                                                        الجوال</label>
+                                                    <input type="email" id="input-email"
+                                                           class="form-control form-control-alternative" readonly name="email"
+                                                           value="{{ $order->user->phone }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-email">المدينه</label>
+                                                    <input type="email" id="input-email"
+                                                           class="form-control form-control-alternative" readonly name="email"
+                                                           value="{{ $order->user->city->name }}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-email">البريد
-                                                الالكتروني</label>
-                                            <input type="email" id="input-email"
-                                                   class="form-control form-control-alternative" name="email"
-                                                   value="{{ $worker->email }}">
+
+
+                                    <div class="col-lg-6 border-right">
+                                        <p class="title">معلومات العامله</p>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-username">اسم
+                                                        العامله</label>
+                                                    <input type="text" id="input-username"
+                                                           class="form-control form-control-alternative" readonly name="name"
+                                                           value="{{ $order->worker->name }}">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-email">رقم
+                                                        الجوال</label>
+                                                    <input type="email" id="input-email"
+                                                           class="form-control form-control-alternative" readonly name="email"
+                                                           value="{{ $order->worker->phone }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-email">المدينه</label>
+                                                    <input type="email" id="input-email"
+                                                           class="form-control form-control-alternative" readonly name="email"
+                                                           value="{{ $order->worker->city->name }}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
+
+                                <hr>
+
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-first-name">رقم الجوال</label>
-                                            <input type="text" id="input-first-name"
-                                                   class="form-control form-control-alternative"
-                                                   placeholder="First name" value="{{ $worker->phone }}">
-                                        </div>
+                                    <div class="col-lg-12">
+                                        <p class="title">متابعه الطلب عبر الخريطه</p>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-last-name">المدينه</label>
-                                            <select name="city_id" class="form-control form-control-alternative" id="">
-                                                @foreach($cities as $city)
-                                                    <option value="{{ $city->id }}" @if($city->id == $worker->city->id) selected @endif>{{ $city->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="col-lg-12">
+                                        {!! $map['html'] !!}
+                                        <div id="directionsDiv"></div>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <a href="#!" class="btn btn-sm btn-success">تحديث</a>
-                                </div>
-                            </div>
                         </form>
                     </div>
                 </div>

@@ -13,15 +13,7 @@
 
 Route::get('/', function () {
 
-//    $config['center'] = 'Sudan';
-//    $config['zoom'] = '18';
-//    $config['map_height'] = '600px';
-//
-//    GMaps::initialize($config);
-//
-//    $map = GMaps::create_map();
-
-    return view('welcome');
+    return redirect()->route('admin.login');
 
 });
 

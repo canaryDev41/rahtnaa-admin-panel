@@ -54,10 +54,10 @@
                                         {{ $order->total }} ج.س
                                     </td>
                                     <td>
-                                        {{ $order->status() }}
+                                        <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-default btn-sm">استعراض </a>
+                                        <a href="{{ route('orders.show', $order) }}" class="btn btn-default btn-sm">استعراض </a>
                                     </td>
                                 </tr>
                             @endforeach

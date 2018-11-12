@@ -18,6 +18,8 @@
     <!--Argon rtl CSS-->
 {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
+
+    @yield('map-section')
 </head>
 
 <body>

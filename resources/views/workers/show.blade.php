@@ -67,7 +67,7 @@
                                 <i class="ni business_briefcase-24 mr-2"></i>
                                 <ul class="list-group list-unstyled">
                                     @foreach($worker->jobs as $job)
-                                        <li >
+                                        <li>
                                             <span class="badge badge-pill badge-default">{{ $job->name }}</span>
                                         </li>
                                     @endforeach
@@ -115,10 +115,12 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-last-name">المدينه</label>
-                                            <select name="city_id" class="form-control form-control-alternative" id="">
+                                            <label class="form-control-label" for="cities">المدينه</label>
+                                            <select name="city_id" class="form-control form-control-alternative"
+                                                    id="cities">
                                                 @foreach($cities as $city)
-                                                    <option value="{{ $city->id }}" @if($city->id == $worker->city->id) selected @endif>{{ $city->name }}</option>
+                                                    <option value="{{ $city->id }}"
+                                                            @if($worker->city_id == $city->id) selected @endif >{{ $city->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

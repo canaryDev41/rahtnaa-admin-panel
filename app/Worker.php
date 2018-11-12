@@ -30,9 +30,6 @@ class Worker extends Model
         'national_id_image'
     ];
 
-    //TODO remove with property from the model!
-    protected $with = ['city'];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -52,18 +52,14 @@ class Order extends Model
 
     public function status()
     {
-        switch ($this->status) {
-            case 0:
-                return 'ملغي';
-                break;
-
-            case 1:
-                return 'تحت المعالجه';
-                break;
-
-            default :
-                return 'اكتمل الطلب';
-                break;
+        if ($this->status == 0){
+            return 'ملغي';
+        }elseif ($this->status == 1){
+            return 'جديد';
+        }elseif ($this->status == 1 and $this->worker_id != null){
+            return 'تحت المعالجه';
+        }else{
+            return 'اكتمل الطلب';
         }
     }
 

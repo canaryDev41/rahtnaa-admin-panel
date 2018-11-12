@@ -163,7 +163,7 @@
                         </div>
                         <div class="card-footer py-4">
                             <nav aria-label="...">
-                                {{ $workers->links() }}
+                                {{--{{ $workers->links() }}--}}
                             </nav>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{{asset('img/favicon.png')}}" type="image/png">
-    <title>BulkApp</title>
+    <title>راحتنا</title>
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 <body data-spy="scroll" data-target="#mainNav" data-offset="70">
@@ -31,29 +31,10 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#feature">FEATURES</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#video">VIDEO</a>
-                                <li class="nav-item"><a class="nav-link" href="#price">PRICING</a>
-                                <li class="nav-item"><a class="nav-link" href="#screen">SCREENS</a>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog
-                                                Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="#home">الرئيسية</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#feature">المميزات</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#video">فيديو تعريفي</a>
+                                <li class="nav-item"><a class="nav-link" href="#screen">شاشات التطبيق</a>
                             </ul>
                         </div>
                     </div>
@@ -68,10 +49,8 @@
                 <div class="container">
                     <div class="row banner_content">
                         <div class="col-lg-9">
-                            <h2>The Best App <br/>in the Universe</h2>
-                            <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher
-                                conduct
-                                standards especially in the workplace. That’s why it’s crucial that, as women.</p>
+                            <h2>راحتنا<br/>راحتك راحتنا</h2>
+                            <p>راحتنا تطبيق يهدف الى خلق </p>
                             <a class="banner_btn" href="#">Explore Now</a>
                         </div>
                         <div class="col-lg-3">
@@ -322,5 +301,6 @@
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/home.js')}}"></script>
 </body>
 </html>
