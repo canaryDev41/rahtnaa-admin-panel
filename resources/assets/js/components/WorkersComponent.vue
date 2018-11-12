@@ -13,7 +13,7 @@
 
         methods: {
             toggleActivation(worker){
-                let endpoint = worker.status ? 'inactivate' : 'activate'
+                let endpoint = worker.status ? 'inactivate' : 'activate';
 
                 axios.get(`/dashboard/workers/${worker.id}/${endpoint}`).then( response => {
                     this.$swal({
@@ -22,7 +22,7 @@
                         text: 'اكتملت عمليه التعطيل بنجاح',
                         timer: 1500,
                         showConfirmButton: false,
-                    })
+                    });
 
                     worker.status = !worker.status
                 });
