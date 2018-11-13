@@ -30,6 +30,7 @@ Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 Vue.component('profile', require('./components/ProfileComponent.vue'));
 Vue.component('workers', require('./components/WorkersComponent.vue'));
 Vue.component('jobs', require('./components/JobsComponent.vue'));
+Vue.component('categories', require('./components/CategoriesComponent.vue'));
 
 const app = new Vue({
     el: '#app',

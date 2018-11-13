@@ -37,6 +37,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
 
     //categories routes
     Route::resource('/categories', 'CategoriesController');
+    Route::get('/categories/{category}/activate', 'CategoriesController@activate');
+    Route::get('/categories/{category}/inactivate', 'CategoriesController@inactivate');
 
     //orders routes
     Route::resource('/orders', 'OrdersController');

@@ -88,8 +88,9 @@ class JobsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Job $job
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function destroy(Job $job)
     {

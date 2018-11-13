@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::with('jobs')->paginate(10);
 
         return view('categories.index')->with(['categories' => $categories]);
     }
@@ -74,14 +74,51 @@ class CategoriesController extends Controller
         //
     }
 
+    public function activate(Category $category){
+
+        $category->status = true;
+        $category->save();
+        
+//        $category->update([
+//            'status' => true
+//        ]);
+
+        if(\request()->expectsJson()){
+            return response(['message' =>$category],200);
+        }
+
+        return back();
+    }
+
+    public function inactivate(Category $category){
+
+        $category->status = false;
+        $category->save();
+
+        if(\request()->expectsJson()){
+            return response(['message' =>'updated successfully'],200);
+        }
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+
+        $category->delete();
+
+        if(\request()->expectsJson()){
+            return response(['message' =>'deleted successfully'],202);
+        }
+
+        return back();
+
     }
 }

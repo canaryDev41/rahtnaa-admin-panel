@@ -17,7 +17,8 @@
         </div>
     </div>
 
-    <div class="container-fluid mt--7">
+    <categories inline-template :initial-categories='{{$categories->toJson()}}'>
+        <div class="container-fluid mt--7">
         <!-- Table -->
         <div class="row">
             <div class="col">
@@ -35,28 +36,24 @@
                             </tr>
                             </thead>
                             <tbody>
+                                <tr v-for="(category,key) in categories">
+                                    <td scope="row" v-text="category.name"></td>
+                                    <td v-text="category.jobs.length"></td>
+                                    <td>
+                                        <a @click="toggleActivation(category)"
+                                           class="btn text-white btn-sm mr-0"
+                                           :class="category.status ? 'btn-warning' : 'btn-success' ">
 
-                            @foreach($categories as $category)
-                                <tr>
-                                    <td scope="row">
-                                        {{ $category->name }}
-                                    </td>
-                                    <td>
-                                        {{ $category->jobs->count() }}
-                                    </td>
-                                    <td>
-                                        @if($category->status)
-                                            <a href="" class="btn btn-warning btn-sm">تعطيل</a>
-                                        @else
-                                            <a href="" class="btn btn-warning btn-sm">تفعيل</a>
-                                        @endif
-                                        <a href="
-{{--{{ route('categories.destroy', $category->id) }}--}}
-                                                "
-                                           class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                            <i class="fa fa-ban" v-if="category.status"></i>
+                                            <i class="fa fa-check" v-else></i>
+                                            <span v-text="category.status ? 'تعطيل' : 'تفعيل' "></span>
+
+                                        </a>
+
+                                        <a @click="confirm(category)" class="btn btn-danger btn-sm text-white"> <i
+                                                    class="fa fa-trash"></i> </a>
                                     </td>
                                 </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -69,5 +66,6 @@
             </div>
         </div>
     </div>
+    </categories>
 
 @endsection

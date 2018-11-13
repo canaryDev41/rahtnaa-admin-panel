@@ -1,36 +1,48 @@
 <script>
     export default{
-        props: ['initialWorkers'],
+        props: ['initialCategories'],
 
 
         data() {
             return {
                 result: false,
-                workers: false,
-                cities: false
+
+                categories: false
             }
         },
+
 
         methods: {
             toggleActivation(worker){
                 let endpoint = worker.status ? 'inactivate' : 'activate';
 
-                axios.get(`/dashboard/workers/${worker.id}/${endpoint}`).then( response => {
-                    this.$swal({
-                        type: 'success',
-                        title: 'تمت العمليه!',
-                        text: 'اكتملت عمليه التعطيل بنجاح',
-                        timer: 1500,
-                        showConfirmButton: false,
-                    });
+                this.$swal({
+                    type: 'question',
+                    title: 'هل انت متأكد ؟',
+                    confirmButtonText: 'نعم, انا متأكد',
+                    cancelButtonText: 'لا',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    showCancelButton: true,
+                    showCloseButton: true,
+                }).then((result) => {
+                    if (result.value) {
+                        axios.get(`/dashboard/categories/${worker.id}/${endpoint}`).then(response => {
+                            worker.status = !worker.status
+                        });
 
-                    worker.status = !worker.status
+                        this.$swal({
+                            type: 'success',
+                            title: 'تمت العمليه!',
+                            text: 'اكتملت العمليه بنجاح',
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
+
+                    }
                 });
             },
-            show(worker){
-                window.location = "/dashboard/workers/" + worker.id
-            },
-            confirm(worker) {
+            confirm(category) {
                 // $swal function calls SweetAlert into the application with the specified configuration.
                 this.$swal({
                     type: 'question',
@@ -43,7 +55,7 @@
                     showCloseButton: true,
                 }).then((result) => {
                     if (result.value) {
-                        this.destroy(worker)
+                        this.destroy(category)
                     } else {
                         this.$swal({
                             type: 'error',
@@ -56,8 +68,8 @@
                 })
             },
 
-            destroy(worker){
-                axios.delete(`/dashboard/workers/${worker.id}`).then(respose => {
+            destroy(category){
+                axios.delete(`/dashboard/categories/${category.id}`).then(respose => {
                     this.$swal({
                         type: 'success',
                         title: 'تمت العمليه!',
@@ -66,17 +78,20 @@
                         showConfirmButton: false,
                     });
 
-                    this.workers.splice(this.workers.indexOf(worker), 1)
+                    this.categories.splice(this.categories.indexOf(category), 1)
                 })
             }
         },
 
         created(){
-            this.workers = this.initialWorkers.data
+            this.categories = this.initialCategories.data
         }
 
     }
 </script>
 <style lang="scss">
-
+    [v-cloak] {
+        visibility: none;
+        display: none;
+    }
 </style>
