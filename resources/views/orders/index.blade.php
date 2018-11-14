@@ -48,7 +48,7 @@
                                         {{ $order->user->name }}
                                     </td>
                                     <td>
-                                        {{ $order->worker->name }}
+                                        {{ $order->worker->name ? $order->worker->name : '-' }}
                                     </td>
                                     <td>
                                         {{ $order->total }} ج.س
