@@ -30,7 +30,7 @@ class OrdersController extends Controller
 
         GMapsFacade::initialize($config);
 
-        $marker['position'] = '15.565660,32.550490';
+        $marker['position'] = '0,0';
         $marker['infowindow_content'] = 'موقع صاحب الطلب';
         $marker['animation'] = 'BOUNCE';
 

@@ -44,7 +44,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/orders', 'OrdersController');
 
     Route::get('cities', function (){
-        return \App\City::all();
+        $cities = \App\City::all();
+
+        return view('cities.index')->with(['cities' => $cities]);
     });
 
 });

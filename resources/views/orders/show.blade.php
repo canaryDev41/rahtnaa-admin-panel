@@ -75,25 +75,25 @@
                                                     <label class="small" for="input-username">اسم
                                                         العميل</label>
                                                     <input type="text" id="input-username"
-                                                           class="form-control form-control-alternative" readonly name="name"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->user->name }}">
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small" for="input-email">رقم
+                                                    <label class="small">رقم
                                                         الجوال</label>
-                                                    <input type="email" id="input-email"
-                                                           class="form-control form-control-alternative" readonly name="email"
+                                                    <input type="text"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->user->phone }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small" for="input-email">المدينه</label>
-                                                    <input type="email" id="input-email"
-                                                           class="form-control form-control-alternative" readonly name="email"
+                                                    <label class="small">المدينه</label>
+                                                    <input type="text"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->user->city->name }}">
                                                 </div>
                                             </div>
@@ -110,25 +110,25 @@
                                                     <label class="small" for="input-username">اسم
                                                         العامله</label>
                                                     <input type="text" id="input-username"
-                                                           class="form-control form-control-alternative" readonly name="name"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->worker->name }}">
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small" for="input-email">رقم
+                                                    <label class="small">رقم
                                                         الجوال</label>
-                                                    <input type="email" id="input-email"
-                                                           class="form-control form-control-alternative" readonly name="email"
+                                                    <input type="text"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->worker->phone }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small" for="input-email">المدينه</label>
-                                                    <input type="email" id="input-email"
-                                                           class="form-control form-control-alternative" readonly name="email"
+                                                    <label class="small" for="">المدينه</label>
+                                                    <input type="text"
+                                                           class="form-control form-control-alternative" readonly
                                                            value="{{ $order->worker->city->name }}">
                                                 </div>
                                             </div>
