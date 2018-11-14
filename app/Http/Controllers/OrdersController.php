@@ -10,9 +10,7 @@ class OrdersController extends Controller
 {
     public function index(){
 
-        $orders = Order::paginate(10);
-
-//        dd($orders->toArray());
+        $orders = Order::with(['workers', 'users', 'jobs'])->paginate(10);
 
         return view('orders.index')->with([
             'orders' => $orders
