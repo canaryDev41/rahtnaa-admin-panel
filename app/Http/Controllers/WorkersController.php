@@ -18,7 +18,7 @@ class WorkersController extends Controller
      */
     public function index()
     {
-        $workers = Worker::with(['city'])->paginate(10);
+        $workers = Worker::with(['city'])->paginate(8);
 
         return view('workers.index', ['workers' => $workers]);
     }
