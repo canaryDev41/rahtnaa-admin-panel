@@ -133,7 +133,8 @@
                                     <td scope="row">
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle">
-                                                <img alt="" src="../assets/img/theme/react.jpg">
+                                                <img alt=""
+                                                 v-bind:src="'http://rahtnaa-sd.com:8000/uploads/' + worker.image">
                                             </a>
                                             <div class="media-body mr-2">
                                                 <span class="mb-0 text-sm" v-text="worker.name"></span>
