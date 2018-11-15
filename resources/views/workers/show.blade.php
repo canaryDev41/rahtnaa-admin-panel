@@ -25,7 +25,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="http://i.pravatar.cc/180" class="rounded-circle">
+                                    <img v-bind:src="http://rahtnaa-sd.com:8000/uploads/{{ $worker->image }}" class="rounded-circle">
                                 </a>
                             </div>
                         </div>
