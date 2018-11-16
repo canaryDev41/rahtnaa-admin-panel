@@ -15,6 +15,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h3 class="display-2 text-white"> تفاصيل الطلب: #{{ $order->id }}</h3>
+                    <p class="small">{{ $order->created_at }}</p>
                     <p class="text-white mt-0 mb-5"></p>
                 </div>
             </div>
@@ -76,7 +77,7 @@
                                                         العميل</label>
                                                     <input type="text" id="input-username"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->name }}">
+                                                           value="{{ $order->user->name ?? '---' }}">
                                                 </div>
                                             </div>
 
@@ -86,7 +87,7 @@
                                                         الجوال</label>
                                                     <input type="text"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->phone }}">
+                                                           value="{{ $order->user->phone ?? '---' }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -94,7 +95,7 @@
                                                     <label class="small">المدينه</label>
                                                     <input type="text"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->city->name }}">
+                                                           value="{{ $order->user->city->name ?? '---' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +112,7 @@
                                                         العامله</label>
                                                     <input type="text" id="input-username"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->name }}">
+                                                           value="{{ $order->worker->name ?? '---' }}">
                                                 </div>
                                             </div>
 
@@ -121,7 +122,7 @@
                                                         الجوال</label>
                                                     <input type="text"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->phone }}">
+                                                           value="{{ $order->worker->phone ?? '---' }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -129,7 +130,7 @@
                                                     <label class="small" for="">المدينه</label>
                                                     <input type="text"
                                                            class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->city->name }}">
+                                                           value="{{ $order->worker->city->name ?? '---'}}">
                                                 </div>
                                             </div>
                                         </div>

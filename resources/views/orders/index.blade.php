@@ -23,7 +23,33 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <h3 class="mb-0">إداره الطلبات</h3>
+                        <div class="row">
+
+                            <div class="col col-md-4">
+                                <h3 class="mb-0">إداره الطلبات</h3>
+                            </div>
+
+                            <div class="col col-md-8">
+                                <p class="">حالة الطلب</p>
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item"><i style="color: #333" class="fa fa-circle"></i>
+                                    <a href="orders">الكل</a>
+                                    </li>
+
+                                    <li class="list-inline-item"><i style="color: #00bcd4" class="fa fa-circle"></i>
+                                        <a href="?status=new">جديد</a>
+                                    </li>
+                                    <li class="list-inline-item"><i style="color: #f44336" class="fa fa-circle"></i>
+                                        <a href="?status=canceled"> ملغي</a>
+                                    </li>
+                                    <li class="list-inline-item"><i style="color: #4caf50" class="fa fa-circle"></i>
+                                        <a href="?status=done"> اكتمل</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -33,7 +59,7 @@
                                 <th scope="col">اسم العميل</th>
                                 <th scope="col">اسم العامله</th>
                                 <th scope="col">التكلفه</th>
-                                <th scope="col">الحاله</th>
+                                <th scope="col">التاريخ</th>
                                 <th scope="col">الضبط</th>
                             </tr>
                             </thead>
@@ -42,19 +68,20 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td scope="row">
-                                        {{ $order->job->name }}
+                                        <i style="color: {{ $order->statusColor() }}"
+                                           class="fa fa-circle"></i> {{ $order->job->name }}
                                     </td>
                                     <td>
-                                        {{ $order->user->name }}
+                                        {{ $order->user->name ?? '---' }}
                                     </td>
                                     <td>
-                                        {{--{{ $order->worker->name }}--}}
+                                        {{ $order->worker->name ?? '---' }}
                                     </td>
                                     <td>
                                         {{ $order->total }} ج.س
                                     </td>
                                     <td>
-                                        <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
+                                        {{ $order->created_at->diffForHumans() }}
                                     </td>
                                     <td>
                                         <a href="{{ route('orders.show', $order) }}" class="btn btn-default btn-sm">استعراض </a>
@@ -66,7 +93,7 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav aria-label="...">
-                            {{ $orders->links() }}
+                            {{ $orders->appends($_GET)->links() }}
                         </nav>
                     </div>
                 </div>

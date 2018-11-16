@@ -50,6 +50,19 @@ class Order extends Model
         return $this->belongsTo(Job::class);
     }
 
+    public function statusColor()
+    {
+        if ($this->status == 0){
+            return '#f44336';
+        }elseif ($this->status == 1){
+            return '#00bcd4';
+        }elseif ($this->status == 1 and $this->worker_id != null){
+            return '#ffc107';
+        }else{
+        return '#4caf50';
+    }
+    }
+
     public function status()
     {
         if ($this->status == 0){

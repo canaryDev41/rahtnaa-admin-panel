@@ -10,7 +10,23 @@ class OrdersController extends Controller
 {
     public function index(){
 
-        $orders = Order::orderBy('id', 'DESC')->paginate(10);
+        if (\request()->has('status')){
+            switch (\request('status')){
+                case 'new':
+                    $orders = Order::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
+                    break;
+
+                case 'done':
+                    $orders = Order::orderBy('id', 'DESC')->where('status', 2)->paginate(10);
+                    break;
+
+                case 'canceled':
+                    $orders = Order::orderBy('id', 'DESC')->where('status', 0)->paginate(10);
+                    break;
+            }
+        }else{
+            $orders = Order::orderBy('id', 'DESC')->paginate(10);
+        }
 
         return view('orders.index')->with([
             'orders' => $orders
@@ -22,13 +38,14 @@ class OrdersController extends Controller
 
         $order = $order->load('user', 'worker', 'job');
 
-        $config['center'] = '15.565660,32.550490';
+        $position = $order->lat .','. $order->lng;
+        $config['center'] = $position;
         $config['zoom'] = '16';
         $config['map_height'] = '400px';
 
         GMapsFacade::initialize($config);
 
-        $marker['position'] = '0,0';
+        $marker['position'] = $position;
         $marker['infowindow_content'] = 'موقع صاحب الطلب';
         $marker['animation'] = 'BOUNCE';
 
