@@ -124,7 +124,7 @@
                                     <th scope="col">الاسم</th>
                                     <th scope="col">رقم الجوال</th>
                                     <th scope="col">المدينه</th>
-                                    <th scope="col">التقييم</th>
+                                    <th scope="col">تاريخ التسجيل</th>
                                     <th scope="col">الضبط</th>
                                 </tr>
                                 </thead>
@@ -143,7 +143,7 @@
                                     </td>
                                     <td v-text="worker.phone"></td>
                                     <td v-text="worker.city.name"></td>
-                                    <td v-text="worker.created_at"></td>
+                                    <td v-text="moment(worker.created_at, "YYYY-MM-DD").format("ll")"></td>
                                     <td>
                                         <a @click="show(worker)"
                                            class="btn btn-default btn-sm text-white"><i
