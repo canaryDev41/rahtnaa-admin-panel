@@ -143,7 +143,7 @@
                                     </td>
                                     <td v-text="worker.phone"></td>
                                     <td v-text="worker.city.name"></td>
-                                    <td v-text="worker.created_at.format('ll')"></td>
+                                    <td v-text="worker.created_at"></td>
                                     <td>
                                         <a @click="show(worker)"
                                            class="btn btn-default btn-sm text-white"><i
