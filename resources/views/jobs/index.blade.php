@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <jobs inline-template :initial-jobs='{{$jobs->toJson()}}'>
+    <jobs inline-template :initial-jobs='{{ $jobs->toJson() }}'>
 
         <div class="container-fluid mt--7">
             <div class="row">

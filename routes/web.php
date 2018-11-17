@@ -47,6 +47,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
         $cities = \App\City::all();
 
         return view('cities.index')->with(['cities' => $cities]);
-    });
+    })->name('cities.index');
 
 });
