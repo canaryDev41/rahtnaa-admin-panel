@@ -134,7 +134,7 @@
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle">
                                                 <img alt=""
-                                                 v-bind:src="'http://rahtnaa-sd.com:8000/uploads/' + worker.image">
+                                                 v-bind:src="'http://rahtnaa-sd.com:8000/v2/uploads/' + worker.image">
                                             </a>
                                             <div class="media-body mr-2">
                                                 <span class="mb-0 text-sm" v-text="worker.name"></span>
@@ -143,7 +143,7 @@
                                     </td>
                                     <td v-text="worker.phone"></td>
                                     <td v-text="worker.city.name"></td>
-                                    <td v-text="worker.rating"></td>
+                                    <td v-text="worker.created_at"></td>
                                     <td>
                                         <a @click="show(worker)"
                                            class="btn btn-default btn-sm text-white"><i
