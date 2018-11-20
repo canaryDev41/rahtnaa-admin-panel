@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use function MongoDB\BSON\fromJSON;
+use function MongoDB\BSON\toJSON;
 
 /**
  * @property mixed status

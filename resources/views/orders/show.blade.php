@@ -142,6 +142,37 @@
 
                                 <div class="row">
                                     <div class="col-lg-12">
+                                        <p class="title">تفاصيل الطلب</p>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>المهمه</th>
+                                                    <th>الكميه</th>
+                                                    <th>السعر</th>
+                                                    <th>الوحده</th>
+                                                    <th>التكلفة الكليه</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $order->tasks[0]->job ?? '--' }}</td>
+                                                    <td>{{ $order->tasks[0]->quantity ?? '--' }}</td>
+                                                    <td>{{ $order->tasks[0]->price ?? '--' }}</td>
+                                                    <td>{{ $order->tasks[0]->measure ?? '--' }}</td>
+                                                    <td>{{ $order->total ?? '--' }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <p class="title">متابعه الطلب عبر الخريطه</p>
                                     </div>
                                     <div class="col-lg-12">
