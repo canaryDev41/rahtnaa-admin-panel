@@ -152,7 +152,7 @@
                                                     <th>الكميه</th>
                                                     <th>السعر</th>
                                                     <th>الوحده</th>
-                                                    <th>التكلفة الكليه</th>
+                                                    <th>الاسم</th>
                                                 </tr>
                                             </thead>
 
@@ -162,7 +162,7 @@
                                                     <td>{{ $order->tasks[0]->quantity ?? '--' }}</td>
                                                     <td>{{ $order->tasks[0]->price ?? '--' }}</td>
                                                     <td>{{ $order->tasks[0]->measure ?? '--' }}</td>
-                                                    <td>{{ $order->total ?? '--' }}</td>
+                                                    <td>{{ $order->tasks[0]->name ?? '--' }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
