@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "chart.js": "^2.7.3",
+        "ioredis": "^4.2.0",
+        "socket.io": "^2.1.1",
         "sweetalert": "^2.1.0",
         "vue-avatar": "^2.1.6",
         "vue-content-loader": "^0.2.1",

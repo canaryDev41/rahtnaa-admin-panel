@@ -1,7 +1,7 @@
 @extends('partials.master')
 
 @section('map-section')
-{!! $map['js'] !!}
+    {!! $map['js'] !!}
 @endsection
 
 @section('body')
@@ -147,23 +147,32 @@
                                     <div class="col-lg-12">
                                         <table class="table table-bordered">
                                             <thead>
-                                                <tr>
-                                                    <th>المهمه</th>
-                                                    <th>الكميه</th>
-                                                    <th>السعر</th>
-                                                    <th>الوحده</th>
-                                                    <th>الصنف</th>
-                                                </tr>
+                                            <tr>
+                                                <th>المهمه</th>
+                                                <th>الوحده</th>
+                                                <th>الكميه</th>
+                                                <th>الصنف</th>
+                                                <th>السعر</th>
+                                            </tr>
                                             </thead>
 
                                             <tbody>
+                                            @foreach($order->tasks as $task)
                                                 <tr>
-                                                    <td>{{ $order->tasks[0]->job ?? '--' }}</td>
-                                                    <td>{{ $order->tasks[0]->quantity ?? '--' }}</td>
-                                                    <td>{{ $order->tasks[0]->price ?? '--' }}</td>
-                                                    <td>{{ $order->tasks[0]->measure ?? '--' }}</td>
-                                                    <td>{{ $order->tasks[0]->name ?? '--' }}</td>
+                                                    <td>{{ $task->job ?? '--' }}</td>
+                                                    <td>{{ $task->quantity ?? '--' }}</td>
+                                                    <td>{{ $task->name ?? '--' }}</td>
+                                                    <td>{{ $task->measure ?? '--' }}</td>
+                                                    <td>{{ $task->price ?? '--' }}</td>
                                                 </tr>
+                                            @endforeach
+                                            <tr style="background-color: #eee">
+                                                <td class="border-0">المجموع</td>
+                                                <td class="border-0"></td>
+                                                <td class="border-0"></td>
+                                                <td class="border-0"></td>
+                                                <td>{{ $order->total }} ج.س</td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -177,7 +186,6 @@
                                     </div>
                                     <div class="col-lg-12">
                                         {!! $map['html'] !!}
-                                        <div id="directionsDiv"></div>
                                     </div>
                                 </div>
                         </form>

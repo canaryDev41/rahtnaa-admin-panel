@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,9 +12,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/socket', function (){
+    // 1. Publish event with Redis
+    $data = [
+        'event' => 'OrderCreated',
+        'data' => [
+            'total' => '125$',
 
-Route::get('/', function () {
+        ]
+    ];
 
+    Redis::publish('orders-channel', json_encode($data));
+
+    return 'done';
+
+    // 2. Node.js + Redis subscribes to the event
+
+
+    // 3. Use socket.io to emit to all clients.
+});
+
+Route::get('/', function (){
     return redirect()->route('admin.login');
 
 });
