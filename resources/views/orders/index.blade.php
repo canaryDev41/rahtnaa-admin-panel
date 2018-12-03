@@ -136,8 +136,6 @@
         </div>
     </div>
 
-    <script src="http://rahtnaa-sd.com/socket.io/socket.io.js"></script>
-
 </div>
 
 @endsection
