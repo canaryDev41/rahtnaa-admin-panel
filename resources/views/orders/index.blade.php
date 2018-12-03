@@ -9,6 +9,7 @@
     </style>
 @endsection
 @section('body')
+<div>
 
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
          style="min-height: 300px;">
@@ -101,7 +102,7 @@
                                             <a href="{{ route('orders.cancel', $order) }}"
                                                title="إلغاء الطلب"
                                                class="btn btn-outline-default btn-sm"><i class="fa fa-ban"></i></a>
-                                            @else
+                                        @else
                                             <span></span>
                                         @endif
                                     </td>
@@ -135,12 +136,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <script>
-        var socket = io('http://rahtnaa-sd.com:8000');
-        socket.on('orders.new.fetch', function (data) {
-            console.log(data);
-        });
-    </script>
+</div>
 
 @endsection
