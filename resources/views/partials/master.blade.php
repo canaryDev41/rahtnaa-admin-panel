@@ -18,7 +18,7 @@
     <!--Argon rtl CSS-->
 {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
-
+    @yield('head')
     @yield('map-section')
 </head>
 
@@ -30,8 +30,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
                     aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation"><span
                         class="navbar-toggler-icon"></span></button> <!-- Brand --> <a class="navbar-brand pt-0"
-                                                                                       href="{{ route('dashboard.index') }}"> <img
-                        src="" class="navbar-brand-img" alt="..."> </a> <!-- User -->
+                                                                                       href="{{ route('dashboard.index') }}">
+                {{--<img--}}
+                        {{--src="" class="navbar-brand-img" alt="..."> </a> <!-- User -->--}}
             <ul class="nav align-items-center d-md-none">
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -89,6 +90,11 @@
                             <i class="ni ni-planet text-blue"></i> العمال
                         </a>
                     </li>
+                    <li class="nav-item @if(Route::currentRouteNamed('users.index')) active @endif">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="ni ni-single-02 text-yellow"></i> المستخدمين
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('cities.index') }}">
                             <i class="ni ni-pin-3 text-orange"></i>  المدن
@@ -96,7 +102,7 @@
                     </li>
                     <li class="nav-item @if(Route::currentRouteNamed('categories.index')) active @endif">
                         <a class="nav-link" href="{{ route('categories.index') }}">
-                            <i class="ni ni-single-02 text-yellow"></i>  التصنيفات
+                            <i class="ni ni-basket text-yellow"></i>  التصنيفات
                         </a>
                     </li>
                     <li class="nav-item @if(Route::currentRouteNamed('jobs.index')) active @endif">
@@ -105,13 +111,13 @@
                         </a>
                     </li>
                     <li class="nav-item @if(Route::currentRouteNamed('tasks.index')) active @endif">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('tasks.index') }}">
                             <i class="ni ni-key-25 text-info"></i> المهام
                         </a>
                     </li>
                     <li class="nav-item @if(Route::currentRouteNamed('orders.index')) active @endif">
                         <a class="nav-link" href="{{ route('orders.index') }}">
-                            <i class="ni ni-circle-08 text-pink"></i> الطلبات
+                            <i class="ni ni-bag-17 text-pink"></i> الطلبات
                         </a>
                     </li>
                 </ul>

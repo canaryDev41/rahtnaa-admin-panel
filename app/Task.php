@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'id',
         'name',
@@ -16,7 +19,7 @@ class Task extends Model
     ];
 
     public function job(){
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Job::class, 'job_id');
     }
 
     public function getStatusAttribute($status){

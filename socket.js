@@ -1,17 +1,14 @@
-var server = require('http').Server();
-
-var io = require('socket.io')(server);
-
-var Redis = require('ioredis');
-var redis = new Redis();
-
-redis.subscribe('orders-channel');
-
-redis.on('message', function (channel, message) {
-    console.log('Message Received');
-    console.log(message);
+var express = require('express');
+var socket = require('socket.io');
+//app setup
+var app = express();
+var server = app.listen(3000, function () {
+    console.log('listening to requests on port 3000');
 });
 
-server.listen(3000, function () {
-    console.log('dev server is running');
+//Socket setup
+var io = socket(server);
+
+io.on('connection', function () {
+    console.log('made socket connection')
 });

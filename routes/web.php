@@ -17,17 +17,13 @@ Route::get('/socket', function (){
     $data = [
         'event' => 'OrderCreated',
         'data' => [
-            'total' => '125$',
-
+            'total' => '125$'
         ]
     ];
 
     Redis::publish('orders-channel', json_encode($data));
 
-    return 'done';
-
-    // 2. Node.js + Redis subscribes to the event
-
+    return view('socket');
 
     // 3. Use socket.io to emit to all clients.
 });
@@ -52,8 +48,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::get('/workers/{worker_id}/activate', 'WorkersController@activate');
     Route::get('/workers/{worker_id}/inactivate', 'WorkersController@inactivate');
 
+    //users routes
+    Route::resource('/users', 'UsersController');
+    Route::get('/users/{user_id}/activate', 'UsersController@activate');
+    Route::get('/users/{user_id}/inactivate', 'UsersController@inactivate');
+
     //jobs routes
     Route::resource('/jobs', 'JobsController');
+
+    //tasks routes
+    Route::resource('/tasks', 'TasksController');
 
     //categories routes
     Route::resource('/categories', 'CategoriesController');
@@ -62,6 +66,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
 
     //orders routes
     Route::resource('/orders', 'OrdersController');
+    Route::get('/orders/{order}/cancel', 'OrdersController@cancelOrder')->name('orders.cancel');
 
     Route::get('cities', function (){
         $cities = \App\City::all();

@@ -8,17 +8,23 @@ require('./bootstrap');
 require('chart.js');
 window.Vue = require('vue');
 
-
-/*Vue Modal component
- *
+/*
+ * ue toaster component
  */
 
-import VModal from 'vue-js-modal'
+import CxltToastr from 'cxlt-vue2-toastr';
+
+const toastrConfigs = {
+    position: 'top left',
+    showDuration: 1000,
+    timeOut: 5000
+};
+Vue.use(CxltToastr, toastrConfigs);
+
+import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css';
 
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
-
-Vue.use(VModal);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,7 +35,9 @@ Vue.use(VModal);
 Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 Vue.component('profile', require('./components/ProfileComponent.vue'));
 Vue.component('workers', require('./components/WorkersComponent.vue'));
+Vue.component('users', require('./components/UsersComponent.vue'));
 Vue.component('jobs', require('./components/JobsComponent.vue'));
+Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('categories', require('./components/CategoriesComponent.vue'));
 
 const app = new Vue({

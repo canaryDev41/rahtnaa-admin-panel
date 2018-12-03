@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use function MongoDB\BSON\fromJSON;
 use function MongoDB\BSON\toJSON;
@@ -76,6 +77,14 @@ class Order extends Model
         }else{
             return 'اكتمل الطلب';
         }
+    }
+
+    public function scopeToday($qurey){
+        return $qurey->whereDate('created_at', Carbon::today());
+    }
+
+    public function scopeYesterday($qurey){
+        return $qurey->whereDate('created_at', Carbon::yesterday());
     }
 
 }

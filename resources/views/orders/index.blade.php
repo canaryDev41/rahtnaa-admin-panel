@@ -1,5 +1,13 @@
 @extends('partials.master')
-
+@section('head')
+    <style>
+        .flexed-td {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+@endsection
 @section('body')
 
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
@@ -29,22 +37,39 @@
                                 <h3 class="mb-0">إداره الطلبات</h3>
                             </div>
 
-                            <div class="col col-md-8">
+                            <div class="col col-md-4">
                                 <p class="">حالة الطلب</p>
                                 <ul class="list-inline small">
                                     <li class="list-inline-item"><i style="color: #333" class="fa fa-circle"></i>
-                                    <a href="orders">الكل</a>
+                                        <a href="orders">الكل</a>
                                     </li>
 
                                     <li class="list-inline-item"><i style="color: #00bcd4" class="fa fa-circle"></i>
-                                        <a href="?status=new">جديد</a>
+                                        <a href="{{ route('orders.index', ['status' => 'new']) }}">جديد</a>
                                     </li>
                                     <li class="list-inline-item"><i style="color: #f44336" class="fa fa-circle"></i>
-                                        <a href="?status=canceled"> ملغي</a>
+                                        <a href="{{ route('orders.index', ['status' => 'cancelled']) }}"> ملغي</a>
                                     </li>
                                     <li class="list-inline-item"><i style="color: #4caf50" class="fa fa-circle"></i>
-                                        <a href="?status=done"> اكتمل</a>
+                                        <a href="{{ route('orders.index', ['status' => 'done']) }}"> اكتمل</a>
 
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col col-md-4">
+                                <p class="">زمن الطلب</p>
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item"><i style="color: #333" class="fa fa-circle"></i>
+                                        <a href="orders">الكل</a>
+                                    </li>
+
+                                    <li class="list-inline-item"><i style="color: #00bcd4" class="fa fa-check"></i>
+                                        <a href="{{ route('orders.index', ['date' => 'today']) }}">اليوم</a>
+                                    </li>
+                                    <li class="list-inline-item"><i style="color: #f44336" class="fa fa-arrow-left"></i>
+
+                                        <a href="{{ route('orders.index', ['date' => 'yesterday']) }}">الامس</a>
                                     </li>
                                 </ul>
                             </div>
@@ -67,9 +92,18 @@
 
                             @foreach($orders as $order)
                                 <tr>
-                                    <td scope="row">
+                                    <td scope="row" class="flexed-td">
+
                                         <i style="color: {{ $order->statusColor() }}"
                                            class="fa fa-circle"></i> {{ $order->job->name }}
+
+                                        @if($order->status == 1)
+                                            <a href="{{ route('orders.cancel', $order) }}"
+                                               title="إلغاء الطلب"
+                                               class="btn btn-outline-default btn-sm"><i class="fa fa-ban"></i></a>
+                                            @else
+                                            <span></span>
+                                        @endif
                                     </td>
                                     <td>
                                         {{ $order->user->name ?? '---' }}
@@ -100,5 +134,13 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        var socket = io('http://rahtnaa-sd.com:8000');
+        socket.on('orders.new.fetch', function (data) {
+            console.log(data);
+        });
+    </script>
 
 @endsection
