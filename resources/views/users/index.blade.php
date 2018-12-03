@@ -2,7 +2,7 @@
 
 @section('body')
 
-    <users inline-template :initial-users='{{$users->toJson()}}'>
+    <users inline-template :initial-users='{{ $users->toJson() }}'>
 
         <div>
             <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
@@ -24,93 +24,6 @@
             </div>
 
             <div class="container-fluid mt--7">
-
-            {{-- TODO --}}
-            {{--add new worker modal--}}
-            {{--<div class="row">--}}
-            {{--<div class="col-md-4">--}}
-
-            {{--<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"--}}
-            {{--aria-hidden="true">--}}
-            {{--<div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">--}}
-            {{--<div class="modal-content">--}}
-
-            {{--<div class="modal-body p-0">--}}
-
-
-            {{--<div class="card bg-secondary shadow border-0">--}}
-            {{--<div class="card-header bg-white pb-5">--}}
-            {{--<div class="text-muted text-center mb-3">--}}
-            {{--<small>إضافة عامله جديده</small>--}}
-            {{--</div>--}}
-            {{--<div class="btn-wrapper text-center">--}}
-            {{--<small>الصوره الشخصيه:--}}
-            {{--<input type="file" class="btn btn-neutral btn-icon"--}}
-            {{--placeholder="الصوره الشخصيه">--}}
-            {{--</small>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="card-body px-lg-5 py-lg-5">--}}
-            {{--<div class="text-center text-muted mb-4">--}}
-            {{--<small>البيانات الأساسيه</small>--}}
-            {{--</div>--}}
-            {{--<form role="form">--}}
-            {{--<div class="form-group mb-3">--}}
-            {{--<div class="input-group input-group-alternative">--}}
-            {{--<div class="input-group-prepend">--}}
-            {{--<span class="input-group-text"><i class="fa fa-user-alt"></i></span>--}}
-            {{--</div>--}}
-            {{--<input class="form-control" placeholder="الأسم الكامل" type="text" required>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="form-group">--}}
-            {{--<div class="input-group input-group-alternative">--}}
-            {{--<div class="input-group-prepend">--}}
-            {{--<span class="input-group-text"><i--}}
-            {{--class="fa fa-phone"></i></span>--}}
-            {{--</div>--}}
-            {{--<input class="form-control" placeholder="رقم الجوال" type="number" required>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="form-group">--}}
-            {{--<div class="input-group input-group-alternative">--}}
-            {{--<div class="input-group-prepend">--}}
-            {{--<span class="input-group-text"><i--}}
-            {{--class="ni ni-email-83"></i></span>--}}
-            {{--</div>--}}
-            {{--<select class="form-control form-control-alternative" name="city_id" id="">--}}
-            {{--<option value="">المدينه ...</option>--}}
-            {{--<option value="">الخرطوم</option>--}}
-            {{--<option value="">بحري</option>--}}
-            {{--<option value="">امدرمان</option>--}}
-            {{--</select>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="form-group">--}}
-            {{--<div class="input-group input-group-alternative">--}}
-            {{--<div class="input-group-prepend">--}}
-            {{--<span class="input-group-text"><i--}}
-            {{--class="ni ni-email-83"></i></span>--}}
-            {{--</div>--}}
-            {{--<input class="form-control" placeholder="البريد الإلكتروني" type="email" required>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="text-center">--}}
-            {{--<button type="button" class="btn btn-success my-4">حفظ !</button>--}}
-            {{--</div>--}}
-            {{--</form>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
-
-            {{--</div>--}}
-
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
 
             <!-- Table -->
                 <div class="row">
@@ -181,5 +94,6 @@
                 </div>
             </div>
         </div>
+
     </users>
 @endsection
