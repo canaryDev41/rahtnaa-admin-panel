@@ -41,15 +41,11 @@
                             <div class="col">
                                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                     <div>
-                                        <span class="heading">{{ $worker->jobs->count() }}</span>
+                                        <span class="heading text-center">{{ $worker->jobs->count() }}</span>
                                         <span class="description">الوظائف</span>
                                     </div>
                                     <div>
-                                        <span class="heading">6</span>
-                                        <span class="description">المهام</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">7</span>
+                                        <span class="heading text-center">{{ $worker->orders->count() }}</span>
                                         <span class="description">الطلبات</span>
                                     </div>
                                 </div>

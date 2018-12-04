@@ -68,8 +68,15 @@
 
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="title">معلومات العميل</p>
+                                        <div class="mb-4">
+                                            <span class="title pull-right">معلومات العميل</span>
 
+                                            <span class="pull-left" style="float: left;">
+                                                <a class="btn btn-outline-default btn-sm"
+                                                   href="{{ route('users.show', $order->user->id) }}">استعراض</a>
+                                        </span>
+
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
@@ -103,7 +110,18 @@
 
 
                                     <div class="col-lg-6 border-right">
-                                        <p class="title">معلومات العامله</p>
+                                        <div class="mb-4">
+                                            <span class="title pull-right">معلومات العامله</span>
+
+                                            @if($order->worker)
+                                                <span class="pull-left" style="float: left;">
+                                                <a class="btn btn-outline-default btn-sm"
+                                                   href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
+                                            @endif
+
+                                        </span>
+
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-lg-6">
