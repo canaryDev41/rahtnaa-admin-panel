@@ -193,8 +193,10 @@
 <script src="{{asset('js/argon.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="http://rahtnaa-sd.com:8000/socket.io/socket.io.js"></script>
+
 <script>
-    const socket = io.connect('http://rahtnaa-sd.com');
+    const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function (data) {
         alert('your data is: ' + data)
