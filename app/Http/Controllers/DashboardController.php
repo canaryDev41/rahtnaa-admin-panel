@@ -17,7 +17,6 @@ class DashboardController extends Controller
         $users = User::count();
         $jobs = Job::count();
         $orders = Order::count();
-        $cities = City::count();
 
         $config['center'] = '15.565660,32.550490';
         $config['zoom'] = 'auto';
@@ -50,7 +49,6 @@ class DashboardController extends Controller
             'users' => $users,
             'jobs' => $jobs,
             'orders' => $orders,
-            'cities' => $cities,
             'map' => $map,
         ]);
     }
