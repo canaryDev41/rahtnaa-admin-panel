@@ -56,9 +56,9 @@ if (token) {
 //     encrypted: true
 // });
 
-// import io from 'socket.io-client'
-// let socket = window.socket =  io('http://rahtnaa-sd.com:8000');
-//
-// socket.on('orders.new.fetch', function (data) {
-//     console.log(data);
-// });
+import io from 'socket.io-client'
+let socket = window.socket = io('http://rahtnaa-sd.com');
+
+socket.on('orders.new.fetch', function (data) {
+    alert('your data is: ' + data)
+});
