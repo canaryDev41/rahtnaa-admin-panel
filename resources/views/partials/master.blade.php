@@ -199,7 +199,7 @@
     const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function (data) {
-        alert('your data is: ' + data)
+        alert('your data is: ' + data.order_id)
     });
 </script>
 
