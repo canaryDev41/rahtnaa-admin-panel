@@ -191,6 +191,16 @@
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script>
+    let socket = io('http://rahtnaa-sd.com');
+
+    socket.on('orders.new.fetch', function (data) {
+        alert('your data is: ' + data)
+    });
+</script>
+
 </body>
 
 </html>
