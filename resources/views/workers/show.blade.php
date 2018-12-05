@@ -133,8 +133,8 @@
             <div class="col-xl-4 order-xl-2 offset-8 mt-3">
                 <div class="card bg-secondary shadow">
                     <div class="card-body">
-                        <p class="title">اثبات الشخصيه</p>
-
+                        <span class="title">اثبات الشخصيه</span>
+                        <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
                         <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" alt="">
 
                     </div>
