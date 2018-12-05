@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                         <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-info mr-4">رقم الجوال</a>
+                            <a href="" class="btn btn-sm btn-info mr-4">اثبات الهويه</a>
                             <a href="#" class="btn btn-sm btn-default float-right">رسالة</a>
                         </div>
                     </div>
@@ -127,6 +127,16 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 order-xl-2 offset-8 mt-3">
+                <div class="card bg-secondary shadow">
+                    <div class="card-body">
+                        <p class="title">اثبات الشخصيه</p>
+
+                        <img src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" alt="">
+
                     </div>
                 </div>
             </div>
