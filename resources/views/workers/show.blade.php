@@ -135,7 +135,7 @@
                     <div class="card-body">
                         <p class="title">اثبات الشخصيه</p>
 
-                        <img src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" alt="">
+                        <img width="100" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" alt="">
 
                     </div>
                 </div>
