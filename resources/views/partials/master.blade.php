@@ -203,10 +203,10 @@
 
     const socket = io.connect('http://rahtnaa-sd.com:8000');
 
-    socket.on('orders.new.fetch', function (data) {
-        let order = data;
-        flash(`new order ID #`, 'danger', function (order) {
-            window.location = "/dashboard/orders/" + order.order_id
+    socket.on('orders.new.fetch', function ({order_id}) {
+
+        flash(`طلب جديد رقم #${order_id}`, 'danger', function () {
+            window.location = "/dashboard/orders/" + order_id
         });
     });
 
