@@ -138,7 +138,7 @@
                             <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
                             <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" class="img-thumbnail mt-3" alt="">
                         @else
-                            <p class="alert alert-danger">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
+                            <p class="alert alert-info">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
                         @endif
                     </div>
                 </div>
