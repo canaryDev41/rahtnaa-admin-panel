@@ -219,8 +219,8 @@
         flash(`طلب جديد رقم #${order_id}`, 'danger', function () {
             window.location = "/dashboard/orders/" + order_id
         });
-    })
-    ;
+
+    });
 
 </script>
 
