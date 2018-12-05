@@ -190,14 +190,14 @@
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="http://rahtnaa-sd.com:8000/socket.io/socket.io.js"></script>
 
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js')}}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-<script src="http://rahtnaa-sd.com:8000/socket.io/socket.io.js"></script>
 
 <script>
 
@@ -205,10 +205,22 @@
 
     socket.on('orders.new.fetch', function ({order_id}) {
 
+        Notification.requestPermission(permission => {
+            let notification = new Notification('طلب جديد!', {
+                body: `طلب بالرقم ${order_id}`, // content for the alert
+                icon:'https://freeiconshop.com/wp-content/uploads/edd/notification-flat.png'
+            });
+            // link to page on clicking the notification
+            notification.onclick = () => {
+                window.open(window.location = "/dashboard/orders/" + order_id);
+            };
+        });
+
         flash(`طلب جديد رقم #${order_id}`, 'danger', function () {
             window.location = "/dashboard/orders/" + order_id
         });
-    });
+    })
+    ;
 
 </script>
 
