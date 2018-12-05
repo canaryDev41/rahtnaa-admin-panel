@@ -204,8 +204,9 @@
     const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function (data) {
-        flash(`new order ID #`, 'danger', function (data) {
-            window.location = "/dashboard/orders/" + data.order_id
+        let order = data;
+        flash(`new order ID #`, 'danger', function (order) {
+            window.location = "/dashboard/orders/" + order.order_id
         });
     });
 
