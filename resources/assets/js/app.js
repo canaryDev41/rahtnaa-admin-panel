@@ -6,8 +6,6 @@
 
 require('./bootstrap');
 require('chart.js');
-window.Vue = require('vue');
-
 /*
  * ue toaster component
  */
@@ -39,6 +37,7 @@ Vue.component('users', require('./components/UsersComponent.vue'));
 Vue.component('jobs', require('./components/JobsComponent.vue'));
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('categories', require('./components/CategoriesComponent.vue'));
+Vue.component('flash', require('./components/FlashComponent.vue'));
 
 const app = new Vue({
     el: '#app',

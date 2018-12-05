@@ -1,6 +1,7 @@
 window.Swal = require('sweetalert');
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
+window.Vue = require('vue');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -24,6 +25,17 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// window.io = require('socket.io-client');
+// window.socket = io.connect('http://rahtnaa-sd.com:8000');
+
+/* Attach vue instance to window object so
+ * we can use it as an event bus */
+window.events = new Vue();
+
+window.flash = (message, type ='success', clouser = function(){}, time) => {
+    window.events.$emit('flash', {message, type, clouser, time})
+};
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -54,11 +66,4 @@ if (token) {
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
-// });
-
-// import io from 'socket.io-client'
-// let socket = io('http://rahtnaa-sd.com');
-//
-// socket.on('orders.new.fetch', function (data) {
-//     alert('your data is: ' + data)
 // });

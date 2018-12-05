@@ -16,7 +16,7 @@
     <!-- Argon CSS -->
     <!--<link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
     <!--Argon rtl CSS-->
-{{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
+    {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
     @yield('head')
     @yield('map-section')
@@ -32,96 +32,96 @@
                         class="navbar-toggler-icon"></span></button> <!-- Brand --> <a class="navbar-brand pt-0"
                                                                                        href="{{ route('dashboard.index') }}">
                 {{--<img--}}
-                        {{--src="" class="navbar-brand-img" alt="..."> </a> <!-- User -->--}}
-            <ul class="nav align-items-center d-md-none">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        <div class="media align-items-center">
+                {{--src="" class="navbar-brand-img" alt="..."> </a> <!-- User -->--}}
+                <ul class="nav align-items-center d-md-none">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <div class="media align-items-center">
                           <span class="avatar avatar-sm rounded-circle">
                             <img alt="" src="https://image.flaticon.com/icons/png/512/236/236832.png">
                           </span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <!-- Collapse -->
-            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                <!-- Collapse header -->
-                <div class="navbar-collapse-header d-md-none">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="{{ route('dashboard.index') }}">
-                                <img src="">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse"
-                                    data-target="#sidenav-collapse-main" aria-controls="sidenav-main"
-                                    aria-expanded="false"
-                                    aria-label="Toggle sidenav">
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Form -->
-                <form class="mt-4 mb-3 d-md-none">
-                    <div class="input-group input-group-rounded input-group-merge">
-                        <input type="search" class="form-control form-control-rounded form-control-prepended"
-                               placeholder="ابحث" aria-label="Search">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <span class="fa fa-search"></span>
                             </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- Navigation -->
-                <ul class="navbar-nav">
-                    <li class="nav-item @if(Route::currentRouteNamed('dashboard.index')) active @endif">
-                        <a class="nav-link" href="{{ route('dashboard.index') }}">
-                            <i class="ni ni-tv-2 text-primary"></i> اللوحة الرئسية
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('workers.index')) active @endif">
-                        <a class="nav-link" href="{{ route('workers.index') }}">
-                            <i class="ni ni-planet text-blue"></i> العمال
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('users.index')) active @endif">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                            <i class="ni ni-single-02 text-yellow"></i> المستخدمين
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cities.index') }}">
-                            <i class="ni ni-pin-3 text-orange"></i>  المدن
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('categories.index')) active @endif">
-                        <a class="nav-link" href="{{ route('categories.index') }}">
-                            <i class="ni ni-basket text-yellow"></i>  التصنيفات
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('jobs.index')) active @endif">
-                        <a class="nav-link" href="{{ route('jobs.index') }}">
-                            <i class="ni ni-bullet-list-67 text-red"></i>  الأعمال
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('tasks.index')) active @endif">
-                        <a class="nav-link" href="{{ route('tasks.index') }}">
-                            <i class="ni ni-key-25 text-info"></i> المهام
-                        </a>
-                    </li>
-                    <li class="nav-item @if(Route::currentRouteNamed('orders.index')) active @endif">
-                        <a class="nav-link" href="{{ route('orders.index') }}">
-                            <i class="ni ni-bag-17 text-pink"></i> الطلبات
                         </a>
                     </li>
                 </ul>
-            </div>
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Collapse header -->
+                    <div class="navbar-collapse-header d-md-none">
+                        <div class="row">
+                            <div class="col-6 collapse-brand">
+                                <a href="{{ route('dashboard.index') }}">
+                                    <img src="">
+                                </a>
+                            </div>
+                            <div class="col-6 collapse-close">
+                                <button type="button" class="navbar-toggler" data-toggle="collapse"
+                                        data-target="#sidenav-collapse-main" aria-controls="sidenav-main"
+                                        aria-expanded="false"
+                                        aria-label="Toggle sidenav">
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form -->
+                    <form class="mt-4 mb-3 d-md-none">
+                        <div class="input-group input-group-rounded input-group-merge">
+                            <input type="search" class="form-control form-control-rounded form-control-prepended"
+                                   placeholder="ابحث" aria-label="Search">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <span class="fa fa-search"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Navigation -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item @if(Route::currentRouteNamed('dashboard.index')) active @endif">
+                            <a class="nav-link" href="{{ route('dashboard.index') }}">
+                                <i class="ni ni-tv-2 text-primary"></i> اللوحة الرئسية
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('workers.index')) active @endif">
+                            <a class="nav-link" href="{{ route('workers.index') }}">
+                                <i class="ni ni-planet text-blue"></i> العمال
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('users.index')) active @endif">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="ni ni-single-02 text-yellow"></i> المستخدمين
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities.index') }}">
+                                <i class="ni ni-pin-3 text-orange"></i> المدن
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('categories.index')) active @endif">
+                            <a class="nav-link" href="{{ route('categories.index') }}">
+                                <i class="ni ni-basket text-yellow"></i> التصنيفات
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('jobs.index')) active @endif">
+                            <a class="nav-link" href="{{ route('jobs.index') }}">
+                                <i class="ni ni-bullet-list-67 text-red"></i> الأعمال
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('tasks.index')) active @endif">
+                            <a class="nav-link" href="{{ route('tasks.index') }}">
+                                <i class="ni ni-key-25 text-info"></i> المهام
+                            </a>
+                        </li>
+                        <li class="nav-item @if(Route::currentRouteNamed('orders.index')) active @endif">
+                            <a class="nav-link" href="{{ route('orders.index') }}">
+                                <i class="ni ni-bag-17 text-pink"></i> الطلبات
+                            </a>
+                        </li>
+                    </ul>
+                </div>
         </div>
     </nav>
     <!-- Main content -->
@@ -130,7 +130,8 @@
         <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
             <div class="container-fluid">
                 <!-- Brand -->
-                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('dashboard.index') }}">اللوحه
+                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+                   href="{{ route('dashboard.index') }}">اللوحه
                     الرئسية</a>
                 <!-- Form -->
                 <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
@@ -183,6 +184,9 @@
         @yield('body')
 
     </div>
+
+    <flash message=""></flash>
+
 </div>
 <!-- Argon Scripts -->
 <!-- Core -->
@@ -196,14 +200,15 @@
 <script src="http://rahtnaa-sd.com:8000/socket.io/socket.io.js"></script>
 
 <script>
+
     const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function (data) {
-        this.$toast.success({
-            title:'طلب جديد!',
-            message: '! هنالك طلب جديد برقم #' + data.order_id
+        flash(`new order ID #`, 'danger', function (data) {
+            window.location = "/dashboard/orders/" + data.order_id
         });
     });
+
 </script>
 
 </body>
