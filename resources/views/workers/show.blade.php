@@ -31,10 +31,10 @@
                         </div>
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <a href="" class="btn btn-sm btn-info mr-4">اثبات الهويه</a>
-                            <a href="#" class="btn btn-sm btn-default float-right">رسالة</a>
-                        </div>
+                        {{--<div class="d-flex justify-content-between">--}}
+                            {{--<a href="" class="btn btn-sm btn-info mr-4">اثبات الهويه</a>--}}
+                            {{--<a href="#" class="btn btn-sm btn-default float-right">رسالة</a>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="card-body pt-0 pt-md-4">
                         <div class="row">
@@ -134,9 +134,12 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-body">
                         <span class="title">اثبات الشخصيه</span>
-                        <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
-                        <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" class="img-thumbnail mt-3" alt="">
-
+                        @if($worker->national_id_image)
+                            <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
+                            <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" class="img-thumbnail mt-3" alt="">
+                        @else
+                            <p class="alert alert-danger">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
+                        @endif
                     </div>
                 </div>
             </div>
