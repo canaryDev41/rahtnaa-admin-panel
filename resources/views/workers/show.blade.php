@@ -135,7 +135,7 @@
                     <div class="card-body">
                         <span class="title">اثبات الشخصيه</span>
                         <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
-                        <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" alt="">
+                        <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" class="img-thumbnail mt-3" alt="">
 
                     </div>
                 </div>
