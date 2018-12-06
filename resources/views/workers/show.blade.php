@@ -1,5 +1,78 @@
 @extends('partials.master')
+<style type="text/css">
+    .gallery {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+        -webkit-column-width: 33%;
+        -moz-column-width: 33%;
+        column-width: 33%;
+    }
 
+    .gallery .pics {
+        -webkit-transition: all 350ms ease;
+        transition: all 350ms ease;
+    }
+
+    .gallery .animation {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    @media (max-width: 450px) {
+        .gallery {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+            -webkit-column-width: 100%;
+            -moz-column-width: 100%;
+            column-width: 100%;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .btn.filter {
+            padding-left: 1.1rem;
+            padding-right: 1.1rem;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        position: relative;
+        width: 50%;
+        max-width: 300px;
+    }
+
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+        width: 88%;
+        transition: .5s ease;
+        opacity: 0;
+        color: white;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container:hover .overlay {
+        opacity: 1;
+    }
+
+</style>
 @section('body')
 
     <!-- Header -->
@@ -25,15 +98,16 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->image }}" class="rounded-circle">
+                                    <img src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->image }}"
+                                         class="rounded-circle">
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                         {{--<div class="d-flex justify-content-between">--}}
-                            {{--<a href="" class="btn btn-sm btn-info mr-4">اثبات الهويه</a>--}}
-                            {{--<a href="#" class="btn btn-sm btn-default float-right">رسالة</a>--}}
+                        {{--<a href="" class="btn btn-sm btn-info mr-4">اثبات الهويه</a>--}}
+                        {{--<a href="#" class="btn btn-sm btn-default float-right">رسالة</a>--}}
                         {{--</div>--}}
                     </div>
                     <div class="card-body pt-0 pt-md-4">
@@ -73,6 +147,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-8 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
@@ -130,21 +205,54 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 order-xl-2 offset-8 mt-3">
+        </div>
+
+        <div class="row">
+            <div class="col-xl-8 mt-3">
+                <div class="card bg-secondary shadow">
+                    <div class="card-body">
+                        <span class="title">معرض الأعمال</span>
+
+                        <!-- Grid row -->
+                        <div class="gallery mt-3" id="gallery">
+                        @foreach($galleries as $key => $gallery)
+                            <!-- Grid column -->
+                                <div class="container">
+                                    <img class="image"
+                                         src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $gallery->image }}"
+                                         alt="...">
+                                    <div class="overlay">{{ $gallery->job->name }}</div>
+                                </div>
+                                <!-- Grid column -->
+                            @endforeach
+
+                        </div>
+                        <!-- Grid row -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 mt-3">
                 <div class="card bg-secondary shadow">
                     <div class="card-body">
                         <span class="title">اثبات الشخصيه</span>
                         @if($worker->national_id_image)
-                            <a class="btn btn-outline-default btn-sm float-left" href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" target="_blank">استعراض</a>
-                            <img style="width: 100%" src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}" class="img-thumbnail mt-3" alt="">
+                            <a class="btn btn-outline-default btn-sm float-left"
+                               href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
+                               target="_blank">استعراض</a>
+                            <img style="width: 100%"
+                                 src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
+                                 class="img-thumbnail mt-3" alt="">
                         @else
-                            <p class="alert alert-info">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
+                            <p class="alert alert-info mt-3">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
                         @endif
                     </div>
                 </div>
             </div>
+
         </div>
-        <!-- Footer -->
+
     </div>
+    <!-- Footer -->
 
 @endsection

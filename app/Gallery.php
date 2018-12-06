@@ -17,4 +17,12 @@ class Gallery extends Model
         'status'
     ];
 
+    public function worker(){
+        return $this->belongsTo(Worker::class);
+    }
+    
+    public function job(){
+        return $this->belongsTo(Job::class);
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Gallery;
 use App\Http\Requests\WorkersRequest;
 use App\Worker;
 use foo\bar;
@@ -75,14 +76,17 @@ class WorkersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Worker $worker
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function show(Worker $worker)
     {
         $cities = City::all();
 
-        return view('workers.show', ['worker' => $worker, 'cities' => $cities]);
+        $galleries = $worker->galleries;
+
+        return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries]);
     }
 
     /**

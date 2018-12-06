@@ -61,4 +61,8 @@ class Worker extends Model
         return $this->belongsToMany(Job::class, 'worker_job');
     }
 
+    public function galleries(){
+        return $this->hasMany(Gallery::class);
+    }
+
 }
