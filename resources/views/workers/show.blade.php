@@ -125,22 +125,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <h3>
-                                {{ $worker->name }}
-                            </h3>
-                            <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ $worker->city->name }}
+
+                        <div class="row">
+                            <div class="center">
+                                <div>
+                                    <i class="fa fa-calendar"></i>
+                                    <span class="">تاريخ الانضمام</span> :
+                                    <span class=""> {{ $worker->created_at }}</span>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="text-center">
                             <div class="h5 mt-4">
                                 <h3>الوظائف</h3>
                                 <i class="ni business_briefcase-24 mr-2"></i>
                                 <ul class="list-group list-unstyled">
-                                    @foreach($worker->jobs as $job)
+                                    @forelse($worker->jobs as $job)
                                         <li>
-                                            <span class="badge badge-pill badge-default">{{ $job->name }}</span>
+                                            <span class="badge badge-default">{{ $job->category->name }} <i class="fa fa-arrow-left"></i> {{ $job->name }}</span>
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> ليس لديها اي وظيفه حاليا! </p>
+                                    @endforelse
                                 </ul>
                             </div>
                         </div>

@@ -31,10 +31,10 @@
                         </div>
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-info mr-4">رقم الجوال</a>
-                            <a href="#" class="btn btn-sm btn-default float-right">رسالة</a>
-                        </div>
+                        {{--<div class="d-flex justify-content-between">--}}
+                            {{--<a href="#" class="btn btn-sm btn-info mr-4">رقم الجوال</a>--}}
+                            {{--<a href="#" class="btn btn-sm btn-default float-right">رسالة</a>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="card-body pt-0 pt-md-4">
                         <div class="row">
@@ -47,6 +47,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="center">
+                                <div>
+                                    <i class="fa fa-calendar"></i>
+                                    <span class="title text-center">تاريخ الانضمام</span> :
+                                    <span class="text-muted text-center"> {{ $user->created_at }}</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
