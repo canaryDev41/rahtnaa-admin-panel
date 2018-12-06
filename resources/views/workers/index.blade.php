@@ -115,7 +115,26 @@
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            <h3 class="mb-0">إداره العاملات</h3>
+                            <div class="row">
+                                <div class="col col-md-8">
+                                    <span class="title">إداره العاملات</span>
+                                </div>
+
+                                <div class="col col-md-4">
+                                    <ul class="list-inline small">
+                                        <li class="list-inline-item"><i style="color: #333" class="fa fa-circle"></i>
+                                            <a href="{{ route('workers.index') }}">الكل</a>
+                                        </li>
+
+                                        <li class="list-inline-item"><i style="color: #057841" class="fa fa-chart-line"></i>
+                                            <a href="{{ route('workers.index', ['orders' => 'max']) }}">صاحبة اكثر طلبات</a>
+                                        </li>
+                                        <li class="list-inline-item"><i style="color: #dbb43a" class="fa fa-chart-line"></i>
+                                            <a href="{{ route('workers.index', ['orders' => 'min']) }}"> صاحبة اقل طلبات</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -124,6 +143,7 @@
                                     <th scope="col">الاسم</th>
                                     <th scope="col">رقم الجوال</th>
                                     <th scope="col">المدينه</th>
+                                    <th scope="col">الطلبات</th>
                                     <th scope="col">تاريخ التسجيل</th>
                                     <th scope="col">الضبط</th>
                                 </tr>
@@ -134,7 +154,7 @@
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle">
                                                 <img alt=""
-                                                 v-bind:src="'http://rahtnaa-sd.com:8000/v2/uploads/' + worker.image">
+                                                     v-bind:src="'http://rahtnaa-sd.com:8000/v2/uploads/' + worker.image">
                                             </a>
                                             <div class="media-body mr-2">
                                                 <span class="mb-0 text-sm" v-text="worker.name"></span>
@@ -143,6 +163,7 @@
                                     </td>
                                     <td v-text="worker.phone"></td>
                                     <td v-text="worker.city.name"></td>
+                                    <td v-text="worker.orders.length"></td>
                                     <td v-text="worker.created_at"></td>
                                     <td>
                                         <a @click="show(worker)"

@@ -19,7 +19,19 @@ class WorkersController extends Controller
      */
     public function index()
     {
-        $workers = Worker::with(['city'])->orderBy('id', 'DESC')->paginate(8);
+        $workers = Worker::with(['city', 'orders'])->orderBy('id', 'DESC')->paginate(10);
+
+        if (\request()->has('orders')){
+            switch (\request('orders')){
+                case 'max':
+                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'DESC')->paginate(10);
+                    break;
+
+                case 'min':
+                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'ASC')->paginate(10);
+                    break;
+            }
+        }
 
         return view('workers.index', ['workers' => $workers]);
     }
