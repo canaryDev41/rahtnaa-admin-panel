@@ -215,7 +215,8 @@
 
                         <!-- Grid row -->
                         <div class="gallery mt-3" id="gallery">
-                        @foreach($galleries as $key => $gallery)
+
+                        @forelse($galleries as $key => $gallery)
                             <!-- Grid column -->
                                 <div class="container">
                                     <img class="image"
@@ -224,7 +225,12 @@
                                     <div class="overlay">{{ $gallery->job->name }}</div>
                                 </div>
                                 <!-- Grid column -->
-                            @endforeach
+                            @empty
+                                <script>
+                                    document.getElementById("gallery").classList.remove("gallery");
+                                </script>
+                                <p class="alert alert-default mt-3"> <i class="fa fa-exclamation"></i> عفوا هذه العامله لم تضف شيء الى اعمالها بعد!</p>
+                            @endforelse
 
                         </div>
                         <!-- Grid row -->
@@ -244,7 +250,7 @@
                                  src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
                                  class="img-thumbnail mt-3" alt="">
                         @else
-                            <p class="alert alert-info mt-3">عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
+                            <p class="alert alert-default mt-3"> <i class="fa fa-exclamation"></i> عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
                         @endif
                     </div>
                 </div>
