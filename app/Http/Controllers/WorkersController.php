@@ -19,7 +19,7 @@ class WorkersController extends Controller
      */
     public function index()
     {
-        $workers = Worker::with(['city', 'orders'])->orderBy('id', 'DESC')->paginate(10);
+        $workers = Worker::with(['city', 'orders'])->orderBy('id', 'DESC')->paginate(8);
 
         if (\request()->has('orders')){
             switch (\request('orders')){
