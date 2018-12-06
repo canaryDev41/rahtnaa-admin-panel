@@ -12,6 +12,9 @@
                 <div class="col-lg-12 col-md-10">
                     <h1 class="text-white">إدراه المهام</h1>
                     <p class="text-white mt-0 mb-5">من هنا يمكنك إداره جميع المهام</p>
+                    <a class="btn btn-block btn-info" href="{{ route('tasks.create') }}">
+                    إضافة مهمة جديده
+                    </a>
                 </div>
             </div>
         </div>
