@@ -24,11 +24,11 @@ class WorkersController extends Controller
         if (\request()->has('orders')){
             switch (\request('orders')){
                 case 'max':
-                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'DESC')->paginate(10);
+                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'DESC')->paginate(8);
                     break;
 
                 case 'min':
-                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'ASC')->paginate(10);
+                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'ASC')->paginate(8);
                     break;
             }
         }
