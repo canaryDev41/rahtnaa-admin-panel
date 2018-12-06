@@ -1,13 +1,8 @@
 @extends('partials.master')
+
 @section('head')
-    <style>
-        .flexed-td {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-    </style>
 @endsection
+
 @section('body')
 
 <div>
@@ -79,10 +74,14 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
+                        <table class="table table-hover align-items-center">
                             <thead class="thead-light">
                             <tr>
-                                <th scope="col">الوظيفه</th>
+                                <th scope="col" class="flexed-td">
+                                    التصنيف
+                                    <i class="fa fa-arrow-left"></i>
+                                    الباقة
+                                </th>
                                 <th scope="col">اسم العميل</th>
                                 <th scope="col">اسم العامله</th>
                                 <th scope="col">التكلفه</th>
@@ -97,7 +96,7 @@
                                     <td scope="row" class="flexed-td">
 
                                         <i style="color: {{ $order->statusColor() }}"
-                                           class="fa fa-circle"></i> {{ $order->job->name }}
+                                           class="fa fa-circle"></i> {{ $order->job->category->name }} <i class="fa fa-arrow-left"></i> {{ $order->job->name }}
 
                                         @if($order->status == 1)
                                             <a href="{{ route('orders.cancel', $order) }}"

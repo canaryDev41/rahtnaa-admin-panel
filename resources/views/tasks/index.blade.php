@@ -31,8 +31,11 @@
                                 <th>الاسم</th>
                                 <th>السعر</th>
                                 <th>المقياس</th>
-                                <th>الباقة</th>
-                                <th>التصنيف</th>
+                                <th class="flexed-td">
+التصنيف
+                                    <i class="fa fa-arrow-left"></i>
+الباقة
+                                </th>
                                 <th>الضبط</th>
                             </tr>
                             </thead>
@@ -43,8 +46,11 @@
                                     <td>{{ $task->name }}</td>
                                     <td>{{ $task->price }}</td>
                                     <td>{{ $task->measure }}</td>
-                                    <td>{{ $task->job->name }}</td>
-                                    <td>{{ $task->job->category->name }}</td>
+                                    <td class="flexed-td">
+                                        {{ $task->job->category->name }}
+                                        <i class="fa fa-arrow-left"></i>
+                                        {{ $task->job->name }}
+                                    </td>
                                     <td>
                                         <a href="{{ route('tasks.edit', $task) }}" class="btn btn-default btn-sm">
                                             <span class="icon-btn"><i class="fa fa-edit"></i></span>

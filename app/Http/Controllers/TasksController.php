@@ -29,7 +29,9 @@ class TasksController extends Controller
     public function create()
     {
 
-        return view('tasks.create');
+        $jobs = Job::all();
+
+        return view('tasks.create', ['jobs' => $jobs]);
     }
 
     /**

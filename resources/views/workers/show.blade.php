@@ -229,7 +229,8 @@
                                 <script>
                                     document.getElementById("gallery").classList.remove("gallery");
                                 </script>
-                                <p class="alert alert-default mt-3"> <i class="fa fa-exclamation"></i> عفوا هذه العامله لم تضف شيء الى اعمالها بعد!</p>
+                                <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> عفوا هذه العامله
+                                    لم تضف شيء الى اعمالها بعد!</p>
                             @endforelse
 
                         </div>
@@ -250,7 +251,8 @@
                                  src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
                                  class="img-thumbnail mt-3" alt="">
                         @else
-                            <p class="alert alert-default mt-3"> <i class="fa fa-exclamation"></i> عفوا هذه العامله لم تضف اثبات الشخصيه بعد!</p>
+                            <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> عفوا هذه العامله لم
+                                تضف اثبات الشخصيه بعد!</p>
                         @endif
                     </div>
                 </div>
@@ -260,5 +262,4 @@
 
     </div>
     <!-- Footer -->
-
 @endsection
