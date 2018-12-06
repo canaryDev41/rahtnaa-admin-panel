@@ -192,7 +192,7 @@
                         </div>
                         <div class="card-footer py-4">
                             <nav aria-label="...">
-                                {{ $workers->links() }}
+                                {{  $workers->appends($_GET)->links() }}
                             </nav>
                         </div>
                     </div>
