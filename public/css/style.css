@@ -50,11 +50,6 @@ Table of Content:
   padding: 0px;
 }
 
-.flexed-td {
-  display: flex;
-  justify-content: space-between;
-}
-
 a {
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;

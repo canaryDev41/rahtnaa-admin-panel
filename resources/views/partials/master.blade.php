@@ -18,7 +18,12 @@
     <!--Argon rtl CSS-->
     {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
-    <link type="text/css" href="{{asset('css/style.css')}}" rel="stylesheet">
+    <style type="text/css">
+        .flexed-td {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
     @yield('head')
     @yield('map-section')
 </head>
