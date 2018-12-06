@@ -86,8 +86,6 @@ class WorkersController extends Controller
 
         $galleries = $worker->galleries;
 
-        $galleries = [];
-
         return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries]);
     }
 

@@ -98,7 +98,7 @@ class TasksController extends Controller
     public function destroy(Task $task)
     {
 
-        $task->delete();
+        $task->forceDelete();
 
         if(\request()->expectsJson()){
             return response(['message' =>'deleted successfully'],202);
