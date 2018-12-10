@@ -181,7 +181,6 @@
 
                                         </a>
 
-
                                         <a @click="confirm(worker)" class="btn btn-danger btn-sm text-white"> <i
                                                     class="fa fa-trash"></i> </a>
                                     </td>

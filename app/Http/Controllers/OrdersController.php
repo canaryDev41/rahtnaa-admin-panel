@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Worker;
 use FarhanWazir\GoogleMaps\Facades\GMapsFacade;
 use Illuminate\Http\Request;
 
@@ -63,7 +64,7 @@ class OrdersController extends Controller
 
         $map = GMapsFacade::create_map();
 
-        return view('orders.show')->with(['map' => $map, 'order' => $order]);
+        return view('orders.show')->with(['map' => $map, 'order' => $order, 'workers' => $this->prepareAssociating($order)]);
 
     }
 
@@ -73,5 +74,25 @@ class OrdersController extends Controller
         $order->update();
 
         return back();
+    }
+
+    public function associate(Order $order){
+
+        return $this->prepareAssociating($order);
+
+//        return view('orders.associate', $order);
+
+    }
+
+    public function prepareAssociating(Order $order){
+
+            $workers = Worker::with('jobs')->whereHas('jobs', function ($query) use ($order) {
+
+                $query->where('job_id', $order->job_id);
+
+            })->where('city_id', $order->user->city_id)->get();
+
+            return $workers;
+
     }
 }

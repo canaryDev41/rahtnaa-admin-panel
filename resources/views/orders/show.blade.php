@@ -117,8 +117,11 @@
                                                 <span class="pull-left" style="float: left;">
                                                 <a class="btn btn-outline-default btn-sm"
                                                    href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
-                                            @endif
-
+                                                    @else
+                                                        <span class="pull-left" style="float: left;">
+                                                <a class="btn btn-outline-default btn-sm"
+                                                   href="{{ route('orders.associate', $order->id) }}">ربط الطلب بعامله</a>
+                                                            @endif
                                         </span>
 
                                         </div>
@@ -151,6 +154,11 @@
                                                            value="{{ $order->worker->city->name ?? '---'}}">
                                                 </div>
                                             </div>
+                                            <ul>
+                                                @foreach($workers as $worker)
+                                                    <li>{{ $worker->name }} > {{ $worker->city->name }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </div>
 
