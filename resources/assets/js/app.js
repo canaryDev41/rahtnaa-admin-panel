@@ -38,6 +38,7 @@ Vue.component('jobs', require('./components/JobsComponent.vue'));
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('categories', require('./components/CategoriesComponent.vue'));
 Vue.component('flash', require('./components/FlashComponent.vue'));
+Vue.component('show-order', require('./components/ShowOrderComponent.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -78,9 +78,11 @@ class OrdersController extends Controller
 
     public function associate(Order $order){
 
-        return $this->prepareAssociating($order);
+        dd($order);
 
-//        return view('orders.associate', $order);
+//        $workers = $this->prepareAssociating($order);
+
+//        return view('orders.associate', compact('workers', 'order'));
 
     }
 
