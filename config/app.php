@@ -152,8 +152,6 @@ return [
          * Package Service Providers...
          */
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
