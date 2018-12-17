@@ -42,7 +42,7 @@
                                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                     <div>
                                         <span class="heading text-center">{{ $user->orders->count() }}</span>
-                                        <span class="description">الطلبات</span>
+                                        <a class="" href="{{ route('orders.index', ['userID' => $user->id]) }}">الطلبات</a>
                                     </div>
                                 </div>
                             </div>

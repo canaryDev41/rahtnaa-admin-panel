@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 /**
  * @property mixed image
@@ -15,11 +16,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed national_id_image
  * @property mixed status
  * @property mixed password
+ * @property mixed id
  */
 class Worker extends Model
 {
 
     use SoftDeletes;
+
+    use Searchable;
+
+    protected $with = ['city', 'orders'];
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'workers_index';
+    }
 
     protected $fillable = [
         'name',

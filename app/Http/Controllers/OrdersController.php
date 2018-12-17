@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use App\Worker;
 use FarhanWazir\GoogleMaps\Facades\GMapsFacade;
 use Illuminate\Http\Request;
@@ -11,10 +12,14 @@ class OrdersController extends Controller
 {
     public function index(){
 
-        $orders = Order::orderBy('id', 'DESC')->paginate(10);
+        $orders = request('search') ? Order::search(request('search'))->orderBy('id', 'DESC')->paginate(10) : Order::orderBy('id', 'DESC')->paginate(10);
+        
+        if (request()->has('search')){
+            
+        }
 
-        if (\request()->has('status')){
-            switch (\request('status')){
+        if (request()->has('status')){
+            switch (request('status')){
                 case 'new':
                     $orders = Order::orderBy('id', 'DESC')->where('status', 1)->paginate(10);
                     break;
@@ -27,8 +32,8 @@ class OrdersController extends Controller
                     $orders = Order::orderBy('id', 'DESC')->where('status', 0)->paginate(10);
                     break;
             }
-        }elseif (\request()->has('date')) {
-            switch (\request('date')) {
+        }elseif (request()->has('date')) {
+            switch (request('date')) {
                 case 'today':
                     $orders = Order::today()->orderBy('id', 'DESC')->paginate(10);
                     break;
@@ -36,6 +41,18 @@ class OrdersController extends Controller
                 case 'yesterday':
                     $orders = Order::yesterday()->orderBy('id', 'DESC')->paginate(10);
                     break;
+            }
+        }elseif(request()->has('userID')){
+
+            $user = User::find(request('userID'));
+            if ($user){
+                $orders = Order::where('user_id', $user->id)->orderBy('id', 'DESC')->paginate(10);
+            }
+
+        }elseif (request()->has('workerID')){
+            $worker = Worker::find(request('workerID'));
+            if ($worker){
+                $orders = Order::where('worker_id', $worker->id)->orderBy('id', 'DESC')->paginate(10);
             }
         }
 
@@ -54,6 +71,11 @@ class OrdersController extends Controller
         $config['zoom'] = '16';
         $config['map_height'] = '400px';
 
+//        $config['directions'] = false;
+//        $config['directionsStart'] = '15.565760, 32.517937';
+//        $config['directionsEnd'] = '15.579741, 32.535823';
+//        $config['directionsDivID'] = 'directionsDiv';
+
         GMapsFacade::initialize($config);
 
         $marker['position'] = $position;
@@ -64,7 +86,7 @@ class OrdersController extends Controller
 
         $map = GMapsFacade::create_map();
 
-        return view('orders.show')->with(['map' => $map, 'order' => $order, 'workers' => $this->prepareAssociating($order)]);
+        return view('orders.show')->with(['map' => $map, 'order' => $order]);
 
     }
 
@@ -78,23 +100,15 @@ class OrdersController extends Controller
 
     public function associate(Order $order){
 
-        dd($order);
+//        dd($order->user->city_id);
 
-//        $workers = $this->prepareAssociating($order);
+        //get all workers that work in the same job of order
+        $worker = Worker::where('city_id', $order->user->city_id)->get();
+        dd($worker->each(function (){
+                return $worker->id;
+        }));
 
-//        return view('orders.associate', compact('workers', 'order'));
-
-    }
-
-    public function prepareAssociating(Order $order){
-
-            $workers = Worker::with('jobs')->whereHas('jobs', function ($query) use ($order) {
-
-                $query->where('job_id', $order->job_id);
-
-            })->where('city_id', $order->user->city_id)->get();
-
-            return $workers;
+        return view('orders.associate', compact('order'));
 
     }
 }

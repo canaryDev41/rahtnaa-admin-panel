@@ -1,154 +1,126 @@
 @extends('partials.master')
 
-@section('header')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var readURL = function (input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('.avatar').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-
-            $(".file-upload").on('change', function () {
-                readURL(this);
-            });
-        });
-    </script>
-@endsection
-
 @section('body')
 
-    <div class="container bootstrap snippet">
-        <div class="row">
-            <h3>
-                إضافة عامل جديد
-            </h3>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h3 class="display-2 text-white">إضافة عامله جديده</h3>
+                    <p class="text-white mt-0 mb-5"></p>
+                </div>
+            </div>
         </div>
-        <hr>
-        <div class="row">
-            <form action="{{ route('workers.store') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
 
-                <div class="col col-md-3">
-                    <div class="text-center">
-                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail"
-                             alt="avatar">
-                        <h6>اضافة صورة شخصيه ...</h6>
-                        <input type="file" name="image" class="text-center center-block file-upload">
+        <div class="col-xl-12 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">الملف الشخصي</h3>
+                        </div>
                     </div>
                 </div>
+                <div class="card-body">
 
-                <div class="col-sm-9">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">البيانات الأساسية</a></li>
-                    </ul>
+                    @if (isset($errors) && $errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="home">
-                            <hr>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="name"><h4>الاسم</h4></label>
-                                    <input type="text" class="form-control" name="name" id="name" required
-                                           placeholder="اسم العامل هنا ...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password"><h4>كلمة المرور</h4></label>
-                                    <input disabled type="password" class="form-control" name="password" id="password"
-                                           placeholder="كلمة المرور هنا ...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="city">
-                                        <h4>المدينة</h4>
-                                    </label>
-                                    <select class="form-control" required name="city_id" id="city">
-                                        <option value="">الرجاء اختيار المدينه ...</option>
-                                        @foreach($cities as $city)
-                                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>رقم الجوال</h4></label>
-                                    <input type="number" class="form-control" name="phone" id="phone"
-                                           placeholder="رقم الجوال هنا ...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>البريد الإلكتروني</h4></label>
-                                    <input type="text" class="form-control" name="email" id="email"
-                                           placeholder="البريد الإلكتروني هنا ..."
-                                           title="enter your mobile number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>صورة من إثبات الشخصيه</h4></label>
-                                    <input type="file" class="form-control" name="national_id_image"
-                                           id="national_id_image">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>حاله التسجيل</h4></label>
+                    <form action="{{ route('workers.store') }}" method="post">
+                        @csrf
+                        <h6 class="heading-small text-muted mb-4"></h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <div>
-                                            <input type="radio" id="active"
-                                                   name="status" value="1" checked/>
-                                            <label for="active">فعال</label>
-                                        </div>
+                                        <label class="form-control-label" for="input-username">الاسم</label>
+                                        <input type="text" id="input-username"
+                                               required
+                                               class="form-control form-control-alternative" name="name">
+                                    </div>
+                                </div>
 
-                                        <div>
-                                            <input type="radio" id="inactive"
-                                                   name="status" value="0"/>
-                                            <label for="inactive">غير فعال</label>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">رقم الجوال</label>
+                                        <input type="text" maxlength="10" id="input-first-name"
+                                               name="phone"
+                                               required
+                                               class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-primary" type="submit">
-                                        حفظ!
-                                        <i class="fa fa-save"></i>
-                                    </button>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="cities">المدينه</label>
+                                        <select name="city_id" required class="form-control form-control-alternative"
+                                                id="cities">
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="cities">حالة الحساب</label>
+                                        <div class="form-check">
+                                            <label for="active">
+                                                <input type="radio" checked id="active" name="status" value="1">
+                                                فعال
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <label for="inactive">
+                                                <input type="radio" id="inactive" name="status" value="0">
+                                                غير فعال
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <hr>
-
-                        </div><!--/tab-pane-->
-
-                    </div><!--/tab-pane-->
-                </div><!--/tab-content-->
-            </form>
-        </div><!--/row-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="cities">الوظائف</label>
+                                        @foreach($jobs as $key => $job)
+                                            <div class="form-check">
+                                                <label for="{{ $job->id }}">
+                                                    <input class="inline" type="checkbox" id="{{ $job->id }}" name="jobs[]" value="{{ $job->id }}">
+                                                    {{ $job->category->name }} > {{ $job->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <input type="submit" value="حفظ" class="btn btn-success">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Footer -->
 @endsection

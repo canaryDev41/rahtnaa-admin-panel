@@ -59,52 +59,9 @@
                                     </div>
                                 </div>
 
-
                                 <hr>
 
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <span class="title pull-right">معلومات العميل</span>
-
-                                            <span class="pull-left" style="float: left;">
-                                                <a class="btn btn-outline-default btn-sm"
-                                                   href="{{ route('users.show', $order->user->id) }}">استعراض</a>
-                                        </span>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="small" for="input-username">اسم
-                                                        العميل</label>
-                                                    <input type="text" id="input-username"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->name ?? '---' }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="small">رقم
-                                                        الجوال</label>
-                                                    <input type="text"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->phone ?? '---' }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="small">المدينه</label>
-                                                    <input type="text"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->user->city->name ?? '---' }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     <div class="col-lg-6 border-right">
                                         <div class="mb-4">
                                             <span class="title pull-right">معلومات العامله</span>
@@ -127,9 +84,11 @@
                                                 <div class="form-group">
                                                     <label class="small" for="input-username">اسم
                                                         العامله</label>
-                                                    <input type="text" id="input-username"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->name ?? '---' }}">
+                                                    <select name="worker_id" id="">
+                                                        @foreach($workers as $worker)
+                                                            <option value="{{ $worker->id }}">{{ $worker->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
 

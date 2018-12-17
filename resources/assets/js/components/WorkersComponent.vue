@@ -19,7 +19,7 @@
                     this.$swal({
                         type: 'success',
                         title: 'تمت العمليه!',
-                        text: 'اكتملت عمليه التعطيل بنجاح',
+                        text: 'اكتملت العمليه بنجاح',
                         timer: 1500,
                         showConfirmButton: false,
                     });
@@ -68,7 +68,7 @@
 
                     this.workers.splice(this.workers.indexOf(worker), 1)
                 })
-            }
+            },
         },
 
         created(){

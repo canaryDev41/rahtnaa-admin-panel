@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\Gallery;
-use App\Http\Requests\WorkersRequest;
+use App\Job;
 use App\Worker;
-use foo\bar;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class WorkersController extends Controller
@@ -15,25 +12,29 @@ class WorkersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * * @return \Illuminate\Http\Response
+     * *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $workers = Worker::with(['city', 'orders'])->orderBy('id', 'DESC')->paginate(8);
+        //workers search!
+        $workers = $request->search ? Worker::search($request->search)->orderBy('id', 'DESC')->paginate(10) : Worker::orderBy('id', 'DESC')->paginate(10);
 
-        if (\request()->has('orders')){
-            switch (\request('orders')){
+        if ($request->orders) {
+            switch ($request->orders) {
                 case 'max':
-                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'DESC')->paginate(8);
+                    $workers = Worker::withCount('orders')->orderBy('orders_count', 'DESC')->paginate(10);
                     break;
 
                 case 'min':
-                    $workers = Worker::with(['city', 'orders'])->withCount('orders')->orderBy('orders_count', 'ASC')->paginate(8);
+                    $workers = Worker::withCount('orders')->orderBy('orders_count', 'ASC')->paginate(10);
                     break;
             }
         }
 
-        return view('workers.index', ['workers' => $workers]);
+        return view('workers.index', compact('workers'));
+
     }
 
     /**
@@ -44,8 +45,12 @@ class WorkersController extends Controller
     public function create()
     {
         $cities = City::all();
+        $jobs = Job::all();
 
-        return view('workers.create', ['cities' => $cities]);
+        return view('workers.create', [
+            'cities' => $cities,
+            'jobs' => $jobs,
+        ]);
     }
 
     /**
@@ -57,29 +62,26 @@ class WorkersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "image" => 'mimes:jpeg,jpg,png',
             "name" => 'required|min:2',
             "city_id" => 'required|integer',
-            "phone" => 'required|regex:/(0)[0-9]{9}/|unique:workers',
-            "national_id_image" => 'required|mimes:jpeg,jpg,png',
+            "phone" => 'required|unique:workers',
             "status" => 'required',
         ]);
 
-        $imagePath = $request->file('image')->store('workersImages') ?: null;
-
-        $nationalIdPath = $request->file('national_id_image')->store('nationalsIDS');
-
         $worker = new Worker();
-
-        $worker->image = $imagePath;
-        $worker->name = $request->get('name');
-        //$worker->password = bcrypt($request->get('password'));
-        $worker->city_id = $request->get('city_id');
-        $worker->phone = $request->get('phone');
-        $worker->national_id_image = $nationalIdPath;
-        $worker->status = $request->get('status');
+        $worker->name = $request->name;
+        $worker->city()->associate($request->city_id);
+        $worker->phone = $request->phone;
+        $worker->status = (bool)$request->status;
+        $worker->national_id_image = '';
 
         $worker->save();
+
+        foreach ($request->jobs as $job) {
+
+            $worker->jobs()->attach($job);
+
+        }
 
         return redirect()->route('workers.index');
 
@@ -152,28 +154,30 @@ class WorkersController extends Controller
     {
         $worker->delete();
 
-        if(\request()->expectsJson()){
-            return response(['message' =>'deleted successfully'],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => 'deleted successfully'], 202);
         }
 
         return back();
     }
 
-    public function activate($worker_id){
+    public function activate($worker_id)
+    {
         $worker = Worker::where('id', $worker_id)->first();
 
         $worker->update([
             'status' => true
         ]);
 
-        if(\request()->expectsJson()){
-            return response(['message' =>$worker],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => $worker], 202);
         }
 
         return back();
     }
 
-    public function inactivate($worker_id){
+    public function inactivate($worker_id)
+    {
 
         $worker = Worker::where('id', $worker_id)->first();
 
@@ -181,8 +185,8 @@ class WorkersController extends Controller
             'status' => false
         ]);
 
-        if(\request()->expectsJson()){
-            return response(['message' =>'updated successfully'],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => 'updated successfully'], 202);
         }
 
         return back();

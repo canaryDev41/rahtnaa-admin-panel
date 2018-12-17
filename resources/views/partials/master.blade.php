@@ -18,6 +18,7 @@
     <!--Argon rtl CSS-->
     {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
+
     <style type="text/css">
         .flexed-td {
             display: flex;
@@ -72,18 +73,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Form -->
-                    <form class="mt-4 mb-3 d-md-none">
-                        <div class="input-group input-group-rounded input-group-merge">
-                            <input type="search" class="form-control form-control-rounded form-control-prepended"
-                                   placeholder="ابحث" aria-label="Search">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <span class="fa fa-search"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <!-- Form mobile search -->
+
+                    @yield('search-mobile')
+
                     <!-- Navigation -->
                     <ul class="navbar-nav">
                         <li class="nav-item @if(Route::currentRouteNamed('dashboard.index')) active @endif">
@@ -98,7 +91,7 @@
                         </li>
                         <li class="nav-item @if(Route::currentRouteNamed('users.index')) active @endif">
                             <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="ni ni-single-02 text-yellow"></i> المستخدمين
+                                <i class="ni ni-single-02 text-yellow"></i> المستخدمات
                             </a>
                         </li>
                         <li class="nav-item">
@@ -140,16 +133,9 @@
                    href="{{ route('dashboard.index') }}">اللوحه
                     الرئسية</a>
                 <!-- Form -->
-                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                    <div class="form-group mb-0">
-                        <div class="input-group input-group-alternative">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="ابحث" type="text">
-                        </div>
-                    </div>
-                </form>
+
+                @yield('search-form')
+
                 <!-- User -->
                 <ul class="navbar-nav align-items-center d-none d-md-flex">
                     <li class="nav-item dropdown">
@@ -199,14 +185,15 @@
 <!-- Core -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 <script src="http://rahtnaa-sd.com:8000/socket.io/socket.io.js"></script>
-
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{asset('js/argon.js')}}"></script>
 
+@yield('js-section')
 
 <script>
+
     const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function ({order_id}) {

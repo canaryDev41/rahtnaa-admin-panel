@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use function MongoDB\BSON\fromJSON;
 use function MongoDB\BSON\toJSON;
 
@@ -21,6 +22,9 @@ use function MongoDB\BSON\toJSON;
  */
 class Order extends Model
 {
+
+    use Searchable;
+
     protected $fillable = [
         'worker_id',
         'user_id',
@@ -37,6 +41,17 @@ class Order extends Model
     protected $casts = [
         'tasks' => 'object'
     ];
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'orders_index';
+    }
+
 
     public function worker()
     {
@@ -86,5 +101,4 @@ class Order extends Model
     public function scopeYesterday($qurey){
         return $qurey->whereDate('created_at', Carbon::yesterday());
     }
-
 }

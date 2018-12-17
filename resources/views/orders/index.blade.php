@@ -1,7 +1,33 @@
 @extends('partials.master')
 
-@section('head')
-@endsection
+@section('search-mobile')
+    <form class="mt-4 mb-3 d-md-none" action="{{ route('orders.index')  }}" method="GET">
+        <div class="input-group input-group-rounded input-group-merge">
+            <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                   name="search">
+            <div class="input-group-prepend">
+                <div class="btn btn-sm">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+@stop
+
+@section('search-form')
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+          action="{{ route('orders.index')  }}" method="GET">
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+                <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                       name="search">
+            </div>
+        </div>
+    </form>
+@stop
 
 @section('body')
 

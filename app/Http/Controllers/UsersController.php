@@ -11,11 +11,13 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * * @return \Illuminate\Http\Response
+     * *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with(['city'])->orderBy('id', 'DESC')->paginate(8);
+        $users = $request->search ? User::search($request->search)->orderBy('id', 'DESC')->paginate(10) : User::orderBy('id', 'DESC')->paginate(10);
 
         return view('users.index', ['users' => $users]);
     }
@@ -41,27 +43,17 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "image" => 'mimes:jpeg,jpg,png',
             "name" => 'required|min:2',
             "city_id" => 'required|integer',
-            "phone" => 'required|regex:/(0)[0-9]{9}/|unique:users',
-            "national_id_image" => 'required|mimes:jpeg,jpg,png',
+            "phone" => 'required|unique:users',
             "status" => 'required',
         ]);
 
-        $imagePath = $request->file('image')->store('usersImages') ?: null;
-
-        $nationalIdPath = $request->file('national_id_image')->store('nationalsIDS');
-
         $user = new User();
-
-        $user->image = $imagePath;
-        $user->name = $request->get('name');
-        //$user->password = bcrypt($request->get('password'));
-        $user->city_id = $request->get('city_id');
-        $user->phone = $request->get('phone');
-        $user->national_id_image = $nationalIdPath;
-        $user->status = $request->get('status');
+        $user->name = $request->name;
+        $user->city()->associate($request->city_id);
+        $user->phone = $request->phone;
+        $user->status = (bool)$request->status;
 
         $user->save();
 

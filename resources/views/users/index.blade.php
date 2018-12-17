@@ -1,5 +1,34 @@
 @extends('partials.master')
 
+@section('search-mobile')
+    <form class="mt-4 mb-3 d-md-none" action="{{ route('users.index')  }}" method="GET">
+        <div class="input-group input-group-rounded input-group-merge">
+            <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                   name="search">
+            <div class="input-group-prepend">
+                <div class="btn btn-sm">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+@stop
+
+@section('search-form')
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+          action="{{ route('users.index')  }}" method="GET">
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+                <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                       name="search">
+            </div>
+        </div>
+    </form>
+@stop
+
 @section('body')
 
     <users inline-template :initial-users='{{ $users->toJson() }}'>
@@ -13,11 +42,11 @@
                 <div class="container-fluid d-flex align-items-center">
                     <div class="row">
                         <div class="col-lg-12 col-md-10">
-                            <h1 class="text-white">واجهة إدراه المستخدمين</h1>
-                            <p class="text-white mt-0 mb-5">من هذه الواجهة يمكنك إدراه جميع المستخدمين</p>
-                            {{--<a class="btn btn-block btn-info">--}}
-                                {{--إضافة مستخدمه جديدة--}}
-                            {{--</a>--}}
+                            <h1 class="text-white">واجهة إدراه المستخدمات</h1>
+                            <p class="text-white mt-0 mb-5">من هذه الواجهة يمكنك إدراه جميع المستخدمات</p>
+                            <a type="button" class="btn btn-block btn-info" href="{{ route('users.create') }}">
+                                إضافة مستخدمة جديدة
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +54,7 @@
 
             <div class="container-fluid mt--7">
 
-            <!-- Table -->
+                <!-- Table -->
                 <div class="row">
                     <div class="col">
                         <div class="card shadow">
@@ -40,6 +69,7 @@
                                         <th scope="col">رقم الجوال</th>
                                         <th scope="col">المدينه</th>
                                         <th scope="col">تاريخ التسجيل</th>
+                                        <th scope="col">عدد الطلبات</th>
                                         <th scope="col">الضبط</th>
                                     </tr>
                                     </thead>
@@ -59,6 +89,7 @@
                                         <td v-text="user.phone"></td>
                                         <td v-text="user.city.name"></td>
                                         <td v-text="user.created_at"></td>
+                                        <td v-text="user.orders.length"></td>
                                         <td>
                                             <a @click="show(user)"
                                                class="btn btn-default btn-sm text-white"><i
@@ -79,14 +110,13 @@
                                             <a @click="confirm(user)" class="btn btn-danger btn-sm text-white"> <i
                                                         class="fa fa-trash"></i> </a>
                                         </td>
-
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
-                                    {{ $users->links() }}
+                                    {{ $users->appends($_GET)->links() }}
                                 </nav>
                             </div>
                         </div>

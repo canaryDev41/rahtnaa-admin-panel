@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * @property mixed status
@@ -11,7 +12,22 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
 
+    use Searchable;
+
     protected $table = 'users';
+
+    protected $with = ['city', 'orders'];
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
+
     /**
      * The attributes that are mass assignable.
      *

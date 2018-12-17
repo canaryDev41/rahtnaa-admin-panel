@@ -120,13 +120,13 @@
                                                         <span class="pull-left" style="float: left;">
                                                         <a class="btn btn-outline-default btn-sm"
                                                    href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
+                                                        </span>
                                                     @else
-                                         <span class="pull-left" style="float: left;">
-                                                    <a class="btn btn-outline-default btn-sm" @click.prevent="associate=true">ربط الطلب بعامله</a>
-
-                                                    <a class="btn btn-outline-default btn-sm" @click.prevent="submitForm()">ربط !</a>
+                                                        {{--<span class="pull-left" style="float: left;">--}}
+                                                        {{--<a class="btn btn-outline-default btn-sm"--}}
+                                                           {{--href="{{ route('orders.associate', $order) }}">ربط الطلب بعامله</a>--}}
+                                                        {{--</span>--}}
                                                     @endif
-                                        </span>
 
                                                 </div>
 
@@ -139,18 +139,6 @@
                                                                    class="form-control form-control-alternative"
                                                                    readonly
                                                                    value="{{ $order->worker->name ?? '---' }}">
-                                                            <form ref="form"
-                                                                  v-if="associate"
-                                                                  action="{{ route('orders.associate', $order) }}"
-                                                                  method="post">
-                                                                {{ csrf_field() }}
-                                                                <select name="worker_id" id="" class="form-control">
-                                                                    @foreach($workers as $worker)
-                                                                        <option value="{{ $worker->id }}">{{ $worker->name }}
-                                                                            > {{ $worker->phone }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </form>
                                                         </div>
                                                     </div>
 
@@ -226,6 +214,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 {!! $map['html'] !!}
+                                                <div id="directionsDiv"></div>
                                             </div>
                                         </div>
                                 </form>

@@ -120,7 +120,7 @@
                                     </div>
                                     <div>
                                         <span class="heading text-center">{{ $worker->orders->count() }}</span>
-                                        <span class="description">الطلبات</span>
+                                        <a class="" href="{{ route('orders.index', ['workerID' => $worker->id]) }}">الطلبات</a>
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                             <input type="text" id="input-first-name"
                                                    name="phone"
                                                    class="form-control form-control-alternative"
-                                                   placeholder="First name" value="{{ $worker->phone }}">
+                                                   value="{{ $worker->phone }}">
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 mt-3">
+            <div class="col-xl-4 mt-3" style="float: left;">
                 <div class="card bg-secondary shadow">
                     <div class="card-body">
                         <span class="title">اثبات الشخصيه</span>

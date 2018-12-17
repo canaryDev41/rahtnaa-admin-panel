@@ -1,5 +1,34 @@
 @extends('partials.master')
 
+@section('search-mobile')
+    <form class="mt-4 mb-3 d-md-none" action="{{ route('workers.index')  }}" method="GET">
+        <div class="input-group input-group-rounded input-group-merge">
+            <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                   name="search">
+            <div class="input-group-prepend">
+                <div class="btn btn-sm">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+@stop
+
+@section('search-form')
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+          action="{{ route('workers.index')  }}" method="GET">
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                </div>
+                <input class="form-control" placeholder="ابحث" type="text" value="{{ request('search') }}"
+                       name="search">
+            </div>
+        </div>
+    </form>
+@stop
+
 @section('body')
 
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
@@ -12,9 +41,9 @@
                 <div class="col-lg-12 col-md-10">
                     <h1 class="text-white">واجهة إدراه العاملات</h1>
                     <p class="text-white mt-0 mb-5">من هذه الواجهة يمكنك إدراه جميع العاملات</p>
-                    <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-form">
+                    <a type="button" class="btn btn-block btn-info" href="{{ route('workers.create') }}">
                         إضافة عامله جديدة
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -22,93 +51,6 @@
 
     <workers inline-template :initial-workers='{{$workers->toJson()}}'>
         <div class="container-fluid mt--7">
-
-        {{-- TODO --}}
-        {{--add new worker modal--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-md-4">--}}
-
-        {{--<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"--}}
-        {{--aria-hidden="true">--}}
-        {{--<div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">--}}
-        {{--<div class="modal-content">--}}
-
-        {{--<div class="modal-body p-0">--}}
-
-
-        {{--<div class="card bg-secondary shadow border-0">--}}
-        {{--<div class="card-header bg-white pb-5">--}}
-        {{--<div class="text-muted text-center mb-3">--}}
-        {{--<small>إضافة عامله جديده</small>--}}
-        {{--</div>--}}
-        {{--<div class="btn-wrapper text-center">--}}
-        {{--<small>الصوره الشخصيه:--}}
-        {{--<input type="file" class="btn btn-neutral btn-icon"--}}
-        {{--placeholder="الصوره الشخصيه">--}}
-        {{--</small>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="card-body px-lg-5 py-lg-5">--}}
-        {{--<div class="text-center text-muted mb-4">--}}
-        {{--<small>البيانات الأساسيه</small>--}}
-        {{--</div>--}}
-        {{--<form role="form">--}}
-        {{--<div class="form-group mb-3">--}}
-        {{--<div class="input-group input-group-alternative">--}}
-        {{--<div class="input-group-prepend">--}}
-        {{--<span class="input-group-text"><i class="fa fa-user-alt"></i></span>--}}
-        {{--</div>--}}
-        {{--<input class="form-control" placeholder="الأسم الكامل" type="text" v-model="name" required>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<div class="input-group input-group-alternative">--}}
-        {{--<div class="input-group-prepend">--}}
-        {{--<span class="input-group-text"><i--}}
-        {{--class="fa fa-phone"></i></span>--}}
-        {{--</div>--}}
-        {{--<input class="form-control" placeholder="رقم الجوال" v-model="phone" type="number" required>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<div class="input-group input-group-alternative">--}}
-        {{--<div class="input-group-prepend">--}}
-        {{--<span class="input-group-text"><i--}}
-        {{--class="ni ni-email-83"></i></span>--}}
-        {{--</div>--}}
-        {{--<select class="form-control form-control-alternative" name="city_id" id="">--}}
-        {{--<option value="">المدينه ...</option>--}}
-        {{--<option value="">الخرطوم</option>--}}
-        {{--<option value="">بحري</option>--}}
-        {{--<option value="">امدرمان</option>--}}
-        {{--</select>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<div class="input-group input-group-alternative">--}}
-        {{--<div class="input-group-prepend">--}}
-        {{--<span class="input-group-text"><i--}}
-        {{--class="ni ni-email-83"></i></span>--}}
-        {{--</div>--}}
-        {{--<input class="form-control" placeholder="البريد الإلكتروني" v-model="email" type="email" required>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="text-center">--}}
-        {{--<button type="button" class="btn btn-success my-4">حفظ !</button>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-
-
-        {{--</div>--}}
-
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-
 
         <!-- Table -->
             <div class="row">
