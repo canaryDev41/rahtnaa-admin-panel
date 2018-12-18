@@ -152,6 +152,8 @@ return [
          * Package Service Providers...
          */
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -19,16 +19,6 @@ class User extends Model
     protected $with = ['city', 'orders'];
 
     /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'users_index';
-    }
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array

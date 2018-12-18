@@ -19,11 +19,16 @@ use function MongoDB\BSON\toJSON;
  * @property mixed start_date
  * @property mixed end_date
  * @property mixed tasks
+ * @property mixed job
+ * @property mixed user
+ * @property mixed worker
  */
 class Order extends Model
 {
 
     use Searchable;
+
+    public $asYouType = true;
 
     protected $fillable = [
         'worker_id',
@@ -43,15 +48,35 @@ class Order extends Model
     ];
 
     /**
-     * Get the index name for the model.
+     * Get the indexable data array for the model.
      *
-     * @return string
+     * @return array
      */
-    public function searchableAs()
+    public function toSearchableArray()
     {
-        return 'orders_index';
-    }
+        $array = $this->toArray();
 
+        $worker = $this->worker()->get(['name'])->map( function ($worker) {
+            return $worker['name'];
+        });
+
+        $array['worker'] = implode(' ', $worker->toArray());
+
+        $user = $this->user()->get(['name'])->map( function ($user) {
+            return $user['name'];
+        });
+
+        $array['user'] = implode(' ', $user->toArray());
+
+        $job = $this->job()->get(['name'])->map( function ($job) {
+            return $job['name'];
+        });
+
+        $array['job'] = implode(' ', $job->toArray());
+
+        return $array;
+
+    }
 
     public function worker()
     {
@@ -70,35 +95,37 @@ class Order extends Model
 
     public function statusColor()
     {
-        if ($this->status == 0){
+        if ($this->status == 0) {
             return '#f44336';
-        }elseif ($this->status == 1){
+        } elseif ($this->status == 1) {
             return '#00bcd4';
-        }elseif ($this->status == 1 and $this->worker_id != null){
+        } elseif ($this->status == 1 and $this->worker_id != null) {
             return '#ffc107';
-        }else{
-        return '#4caf50';
-    }
+        } else {
+            return '#4caf50';
+        }
     }
 
     public function status()
     {
-        if ($this->status == 0){
+        if ($this->status == 0) {
             return 'ملغي';
-        }elseif ($this->status == 1){
+        } elseif ($this->status == 1) {
             return 'جديد';
-        }elseif ($this->status == 1 and $this->worker_id != null){
+        } elseif ($this->status == 1 and $this->worker_id != null) {
             return 'تحت المعالجه';
-        }else{
+        } else {
             return 'اكتمل الطلب';
         }
     }
 
-    public function scopeToday($qurey){
+    public function scopeToday($qurey)
+    {
         return $qurey->whereDate('created_at', Carbon::today());
     }
 
-    public function scopeYesterday($qurey){
+    public function scopeYesterday($qurey)
+    {
         return $qurey->whereDate('created_at', Carbon::yesterday());
     }
 }

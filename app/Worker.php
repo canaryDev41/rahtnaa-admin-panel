@@ -25,17 +25,9 @@ class Worker extends Model
 
     use Searchable;
 
-    protected $with = ['city', 'orders'];
+    public $asYouType = true;
 
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'workers_index';
-    }
+    protected $with = ['city', 'orders'];
 
     protected $fillable = [
         'name',
@@ -46,6 +38,20 @@ class Worker extends Model
         'status',
         'national_id_image'
     ];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // Customize array...
+
+        return $array;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
