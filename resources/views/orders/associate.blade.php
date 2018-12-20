@@ -1,5 +1,9 @@
 @extends('partials.master')
 
+@section('head')
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css"/>
+@endsection
 @section('body')
 
     <!-- Header -->
@@ -32,61 +36,92 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <h6 class="heading-small text-muted mb-4"></h6>
-                            <div class="pl-lg-4">
+                        <h6 class="heading-small text-muted mb-4"></h6>
+                        <div class="pl-lg-4">
 
-                                <div class="row">
-                                    <div class="col-3">
-                                        <p class="title">الوظيفة</p>
-                                        <span class="text-muted">{{ $order->job->name }}</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="title">التكلفة</p>
-                                        <span class="text-muted">{{ $order->total }} ج.س</span>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="title">تاريخ البدايه</p>
-                                        <span class="text-muted">{{ $order->start_date }}</span>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="title">تاريخ النهايه</p>
-                                        <span class="text-muted">{{ $order->end_date }}</span>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="title">الحاله</p>
-                                        <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
-                                    </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <p class="title">الوظيفة</p>
+                                    <span class="text-muted">{{ $order->job->category->name }}
+                                        > {{ $order->job->name }}</span>
                                 </div>
+                                <div class="col-3">
+                                    <p class="title">التكلفة</p>
+                                    <span class="text-muted">{{ $order->total }} ج.س</span>
+                                </div>
+                                <div class="col-2">
+                                    <p class="title">تاريخ البدايه</p>
+                                    <span class="text-muted">{{ $order->start_date }}</span>
+                                </div>
+                                <div class="col-2">
+                                    <p class="title">تاريخ النهايه</p>
+                                    <span class="text-muted">{{ $order->end_date }}</span>
+                                </div>
+                                <div class="col-2">
+                                    <p class="title">الحاله</p>
+                                    <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
+                                </div>
+                            </div>
 
-                                <hr>
+                            <hr>
 
-                                <div class="row">
-                                    <div class="col-lg-6 border-right">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="title">تفاصيل الطلب</p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>المهمه</th>
+                                            <th>الكميه</th>
+                                            <th>الصنف</th>
+                                            <th>الوحده</th>
+                                            <th>السعر</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($order->tasks as $task)
+                                            <tr>
+                                                <td>{{ $task->job ?? '--' }}</td>
+                                                <td>{{ $task->quantity ?? '--' }}</td>
+                                                <td>{{ $task->name ?? '--' }}</td>
+                                                <td>{{ $task->measure ?? '--' }}</td>
+                                                <td>{{ $task->price ?? '--' }}</td>
+                                            </tr>
+                                        @endforeach
+                                        <tr style="background-color: #eee">
+                                            <td class="border-0">المجموع</td>
+                                            <td class="border-0"></td>
+                                            <td class="border-0"></td>
+                                            <td class="border-0"></td>
+                                            <td>{{ $order->total }} ج.س</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-lg-12 border-right">
+                                    <form action="{{ route('orders.associate', $order) }}" method="post">
+                                        {{ csrf_field() }}
                                         <div class="mb-4">
                                             <span class="title pull-right">معلومات العامله</span>
-
-                                            @if($order->worker)
-                                                <span class="pull-left" style="float: left;">
-                                                <a class="btn btn-outline-default btn-sm"
-                                                   href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
-                                                    @else
-                                                        <span class="pull-left" style="float: left;">
-                                                <a class="btn btn-outline-default btn-sm"
-                                                   href="{{ route('orders.associate', $order->id) }}">ربط الطلب بعامله</a>
-                                                            @endif
-                                        </span>
-
                                         </div>
 
                                         <div class="row">
+
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small" for="input-username">اسم
-                                                        العامله</label>
-                                                    <select name="worker_id" id="">
-                                                        @foreach($workers as $worker)
-                                                            <option value="{{ $worker->id }}">{{ $worker->name }}</option>
+                                                    <label class="small" for="">المدينه</label>
+                                                    <select name="city_id" id="city_id" class="form-control"
+                                                            onchange="city_changed()">
+                                                        @foreach($cities as $city)
+                                                            <option id="{{ $city->id }}">{{ $city->name  }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -94,68 +129,44 @@
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="small">رقم
-                                                        الجوال</label>
-                                                    <input type="text"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->phone ?? '---' }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="small" for="">المدينه</label>
-                                                    <input type="text"
-                                                           class="form-control form-control-alternative" readonly
-                                                           value="{{ $order->worker->city->name ?? '---'}}">
+                                                    <label class="small" for="">الوظيفة</label>
+                                                    <select name="job_id" id="job_id" class="form-control"
+                                                            onchange="job_changed()">
+                                                        @foreach($jobs as $job)
+                                                            <option id="{{ $job->id }}">{{ $job->category->name }}
+                                                                > {{ $job->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="small" for="input-username">اسم
+                                                        العامله</label>
+                                                    <select name="worker_id" id="select2" class="form-control">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="submit" value="ربط الطلب" class="btn btn-primary">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
 
-                                <hr>
+                            </div>
+                        </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <p class="title">تفاصيل الطلب</p>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>المهمه</th>
-                                                <th>الكميه</th>
-                                                <th>الصنف</th>
-                                                <th>الوحده</th>
-                                                <th>السعر</th>
-                                            </tr>
-                                            </thead>
+                        <hr>
 
-                                            <tbody>
-                                            @foreach($order->tasks as $task)
-                                                <tr>
-                                                    <td>{{ $task->job ?? '--' }}</td>
-                                                    <td>{{ $task->quantity ?? '--' }}</td>
-                                                    <td>{{ $task->name ?? '--' }}</td>
-                                                    <td>{{ $task->measure ?? '--' }}</td>
-                                                    <td>{{ $task->price ?? '--' }}</td>
-                                                </tr>
-                                            @endforeach
-                                            <tr style="background-color: #eee">
-                                                <td class="border-0">المجموع</td>
-                                                <td class="border-0"></td>
-                                                <td class="border-0"></td>
-                                                <td class="border-0"></td>
-                                                <td>{{ $order->total }} ج.س</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <hr>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -163,4 +174,39 @@
         <!-- Footer -->
     </div>
 
+@endsection
+
+@section('js-section')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+
+        $('input[type=radio]').on('change', function () {
+            $(this).closest("form").submit();
+        });
+
+        $('#select2').select2();
+
+        function city_changed() {
+            $("#select2 option").remove();
+            let city_id = $('#city_id').find('option:selected').attr('id');
+//            console.log(city_id);
+            $.get('/dashboard/city_changed/' + city_id, function (data) {
+                console.log(data);
+            })
+        }
+
+        function job_changed() {
+            $("#select2 option").remove();
+            let job_id = $('#job_id').find('option:selected').attr('id');
+            console.log(job_id);
+            $.get('/dashboard/job_changed/' + job_id, function (data) {
+                // Parse the returned json data
+                $.each(data, function (i, d) {
+                    // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                    $('#select2').append('<option value="' + d.id + '">' + d.phone + ' < ' + d.name + '</option>');
+                });
+            })
+        }
+
+    </script>
 @endsection

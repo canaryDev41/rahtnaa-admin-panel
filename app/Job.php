@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $fillable = [
         'name',

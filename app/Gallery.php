@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Gallery extends Model
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $fillable = [
         'image',

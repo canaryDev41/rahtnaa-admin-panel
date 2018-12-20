@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\Job;
 use App\Order;
 use App\User;
 use App\Worker;
@@ -71,6 +73,10 @@ class OrdersController extends Controller
         $config['zoom'] = '16';
         $config['map_height'] = '400px';
 
+        $config['places'] = TRUE;
+        $config['placesLocation'] = $order->lat .','. $order->lng;
+        $config['placesRadius'] = 200;
+
 //        $config['directions'] = false;
 //        $config['directionsStart'] = '15.565760, 32.517937';
 //        $config['directionsEnd'] = '15.579741, 32.535823';
@@ -98,17 +104,30 @@ class OrdersController extends Controller
         return back();
     }
 
-    public function associate(Order $order){
+    public function prepareAssociate(Order $order){
 
-//        dd($order->user->city_id);
+        $workers = Worker::all();
+        $cities = City::all();
+        $jobs = Job::all();
 
-        //get all workers that work in the same job of order
-        $worker = Worker::where('city_id', $order->user->city_id)->get();
-        dd($worker->each(function (){
-                return $worker->id;
-        }));
+        return view('orders.associate')->with([
+            'workers' => $workers,
+            'cities' => $cities,
+            'jobs' => $jobs,
+            'order' => $order,
+        ]);
 
-        return view('orders.associate', compact('order'));
+    }
 
+    public function associate(Request $request, Order $order){
+
+        $orderID = $order->id;
+        $worker = Worker::find($request->get('worker_id'));
+
+        $order->update([
+            'worker_id' => $worker->id
+        ]);
+
+        return redirect()->route('orders.show', $orderID);
     }
 }

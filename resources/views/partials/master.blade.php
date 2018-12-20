@@ -16,7 +16,7 @@
     <!-- Argon CSS -->
     <!--<link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
     <!--Argon rtl CSS-->
-    {{--    <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
+{{--        <link type="text/css" href="{{asset('css/argon.css')}}" rel="stylesheet">--}}
     <link type="text/css" href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <style type="text/css">
@@ -194,7 +194,7 @@
 
 <script>
 
-    const socket = io.connect('http://rahtnaa-sd.com:8000');
+//    const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function ({order_id}) {
 

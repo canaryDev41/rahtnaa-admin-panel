@@ -21,7 +21,7 @@ use Laravel\Scout\Searchable;
 class Worker extends Model
 {
 
-    use SoftDeletes;
+//    use SoftDeletes;
 
     use Searchable;
 
@@ -30,12 +30,14 @@ class Worker extends Model
     protected $with = ['city', 'orders'];
 
     protected $fillable = [
+        'id',
         'name',
         'city_id',
         'phone',
         'image',
         'rating',
         'status',
+        'work_status',
         'national_id_image'
     ];
 
@@ -81,7 +83,7 @@ class Worker extends Model
     }
 
     public function jobs(){
-        return $this->belongsToMany(Job::class, 'worker_job');
+        return $this->belongsToMany(Job::class, 'worker_job', 'worker_id');
     }
 
     public function galleries(){

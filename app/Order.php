@@ -10,6 +10,7 @@ use function MongoDB\BSON\toJSON;
 
 /**
  * @property mixed status
+ * @property mixed id
  * @property mixed worker_id
  * @property mixed user_id
  * @property mixed job_id
@@ -26,9 +27,9 @@ use function MongoDB\BSON\toJSON;
 class Order extends Model
 {
 
-    use Searchable;
+//    use Searchable;
 
-    public $asYouType = true;
+//    public $asYouType = false;
 
     protected $fillable = [
         'worker_id',
@@ -47,36 +48,36 @@ class Order extends Model
         'tasks' => 'object'
     ];
 
-    /**
-     * Get the indexable data array for the model.
-     *
-     * @return array
-     */
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        $worker = $this->worker()->get(['name'])->map( function ($worker) {
-            return $worker['name'];
-        });
-
-        $array['worker'] = implode(' ', $worker->toArray());
-
-        $user = $this->user()->get(['name'])->map( function ($user) {
-            return $user['name'];
-        });
-
-        $array['user'] = implode(' ', $user->toArray());
-
-        $job = $this->job()->get(['name'])->map( function ($job) {
-            return $job['name'];
-        });
-
-        $array['job'] = implode(' ', $job->toArray());
-
-        return $array;
-
-    }
+//    /**
+//     * Get the indexable data array for the model.
+//     *
+//     * @return array
+//     */
+//    public function toSearchableArray()
+//    {
+//        $array = $this->toArray();
+//
+//        $worker = $this->worker()->get(['name'])->map( function ($worker) {
+//            return $worker['name'];
+//        });
+//
+//        $array['worker'] = implode(' ', $worker->toArray());
+//
+//        $user = $this->user()->get(['name'])->map( function ($user) {
+//            return $user['name'];
+//        });
+//
+//        $array['user'] = implode(' ', $user->toArray());
+//
+//        $job = $this->job()->get(['name'])->map( function ($job) {
+//            return $job['name'];
+//        });
+//
+//        $array['job'] = implode(' ', $job->toArray());
+//
+//        return $array;
+//
+//    }
 
     public function worker()
     {

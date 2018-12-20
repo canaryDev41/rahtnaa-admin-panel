@@ -5,7 +5,6 @@
 @endsection
 
 @section('body')
-    <show-order inline-template>
         <div>    <!-- Header -->
             <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
                 <!-- Mask -->
@@ -122,10 +121,10 @@
                                                    href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
                                                         </span>
                                                     @else
-                                                        {{--<span class="pull-left" style="float: left;">--}}
-                                                        {{--<a class="btn btn-outline-default btn-sm"--}}
-                                                           {{--href="{{ route('orders.associate', $order) }}">ربط الطلب بعامله</a>--}}
-                                                        {{--</span>--}}
+                                                        <span class="pull-left" style="float: left;">
+                                                        <a class="btn btn-outline-default btn-sm"
+                                                           href="{{ route('orders.prepareAssociate', $order) }}">ربط الطلب بعامله</a>
+                                                        </span>
                                                     @endif
 
                                                 </div>
@@ -217,6 +216,7 @@
                                                 <div id="directionsDiv"></div>
                                             </div>
                                         </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -225,5 +225,4 @@
                 <!-- Footer -->
             </div>
         </div>
-    </show-order>
 @stop

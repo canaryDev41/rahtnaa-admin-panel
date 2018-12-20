@@ -13,21 +13,6 @@ use Yajra\Datatables\Datatables;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/socket', function (){
-    // 1. Publish event with Redis
-    $data = [
-        'event' => 'OrderCreated',
-        'data' => [
-            'total' => '125$'
-        ]
-    ];
-
-    Redis::publish('orders-channel', json_encode($data));
-
-    return view('socket');
-
-    // 3. Use socket.io to emit to all clients.
-});
 
 Route::get('/', function (){
     return redirect()->route('admin.login');
@@ -68,13 +53,30 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     //orders routes
     Route::resource('/orders', 'OrdersController');
     Route::get('/orders/{order}/cancel', 'OrdersController@cancelOrder')->name('orders.cancel');
-//    Route::get('/orders/{order}/associate', 'OrdersController@associate')->name('orders.associate');
-//    Route::post('/orders/{order}/associate', 'OrdersController@associate')->name('orders.associate');
+    Route::get('/orders/{order}/associate', 'OrdersController@prepareAssociate')->name('orders.prepareAssociate');
+    Route::post('/orders/{order}/associate', 'OrdersController@associate')->name('orders.associate');
 
     Route::get('cities', function (){
         $cities = \App\City::all();
 
         return view('cities.index')->with(['cities' => $cities]);
     })->name('cities.index');
+
+    Route::get('city_changed/{city_id}', function ($cityID){
+
+        session(['city_id' => $cityID]);
+        return;
+
+    })->name('city.changed');
+
+    Route::get('job_changed/{job_id}', function ($jobID){
+
+        $workers = \App\Worker::where('city_id', session()->get('city_id'))->whereHas('jobs', function ($query) use ($jobID) {
+            $query->where('job_id', $jobID);
+       })->get();
+
+        return $workers;
+
+    });
 
 });

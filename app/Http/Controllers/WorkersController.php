@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Job;
 use App\Worker;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WorkersController extends Controller
@@ -57,6 +58,7 @@ class WorkersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param static $test
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -166,7 +168,8 @@ class WorkersController extends Controller
         $worker = Worker::where('id', $worker_id)->first();
 
         $worker->update([
-            'status' => true
+            'status' => true,
+            'work_status' => 'online'
         ]);
 
         if (\request()->expectsJson()) {
@@ -182,7 +185,8 @@ class WorkersController extends Controller
         $worker = Worker::where('id', $worker_id)->first();
 
         $worker->update([
-            'status' => false
+            'status' => false,
+            'work_status' => 'offline'
         ]);
 
         if (\request()->expectsJson()) {
