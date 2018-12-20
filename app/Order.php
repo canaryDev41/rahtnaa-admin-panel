@@ -98,7 +98,7 @@ class Order extends Model
     {
         if ($this->status == 0) {
             return '#f44336';
-        } elseif ($this->status == 1) {
+        } elseif ($this->status == 1 and $this->worker_id == null) {
             return '#00bcd4';
         } elseif ($this->status == 1 and $this->worker_id != null) {
             return '#ffc107';
@@ -111,9 +111,9 @@ class Order extends Model
     {
         if ($this->status == 0) {
             return 'ملغي';
-        } elseif ($this->status == 1) {
+        } elseif ($this->status == 1 and $this->worker_id == null) {
             return 'جديد';
-        } elseif ($this->status == 1 and $this->worker_id != null) {
+        } elseif ($this->status == 1 && $this->worker_id != null) {
             return 'تحت المعالجه';
         } else {
             return 'اكتمل الطلب';

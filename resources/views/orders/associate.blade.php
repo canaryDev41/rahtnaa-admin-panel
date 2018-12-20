@@ -118,8 +118,9 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="small" for="">المدينه</label>
-                                                    <select name="city_id" id="city_id" class="form-control"
+                                                    <select name="city_id" id="city_id" class="form-control" required
                                                             onchange="city_changed()">
+                                                        <option id="0">غير محدد</option>
                                                         @foreach($cities as $city)
                                                             <option id="{{ $city->id }}">{{ $city->name  }}</option>
                                                         @endforeach
@@ -130,9 +131,10 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="small" for="">الوظيفة</label>
-                                                    <select name="job_id" id="job_id" class="form-control"
+                                                    <select name="job_id" id="job_id" class="form-control" required
                                                             onchange="job_changed()">
-                                                        @foreach($jobs as $job)
+                                                        <option id="0">غير محدد</option>
+                                                    @foreach($jobs as $job)
                                                             <option id="{{ $job->id }}">{{ $job->category->name }}
                                                                 > {{ $job->name }}</option>
                                                         @endforeach
@@ -147,12 +149,32 @@
                                                 <div class="form-group">
                                                     <label class="small" for="input-username">اسم
                                                         العامله</label>
-                                                    <select name="worker_id" id="select2" class="form-control">
+                                                    <select name="worker_id" id="select2" class="form-control" required>
                                                         <option value=""></option>
                                                     </select>
                                                 </div>
                                             </div>
 
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <label for="new">
+                                                            <input class="inline" type="radio" id="new" name="status" value="1" checked>
+                                                            جديد
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-check">
+                                                        <label for="canceled">
+                                                            <input class="inline" type="radio" id="canceled" name="status" value="0">
+                                                            ملغي
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <input type="submit" value="ربط الطلب" class="btn btn-primary">
@@ -180,9 +202,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript">
 
-        $('input[type=radio]').on('change', function () {
-            $(this).closest("form").submit();
-        });
+//        $('input[type=radio]').on('change', function () {
+//            $(this).closest("form").submit();
+//        });
 
         $('#select2').select2();
 

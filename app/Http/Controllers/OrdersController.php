@@ -125,7 +125,8 @@ class OrdersController extends Controller
         $worker = Worker::find($request->get('worker_id'));
 
         $order->update([
-            'worker_id' => $worker->id
+            'worker_id' => $worker->id,
+            'status' => $request->get('status')
         ]);
 
         return redirect()->route('orders.show', $orderID);

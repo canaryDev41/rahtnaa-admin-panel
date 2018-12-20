@@ -64,16 +64,32 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
 
     Route::get('city_changed/{city_id}', function ($cityID){
 
-        session(['city_id' => $cityID]);
+        if ($cityID != 0){
+            session(['city_id' => $cityID]);
+        }
         return;
 
     })->name('city.changed');
 
     Route::get('job_changed/{job_id}', function ($jobID){
 
-        $workers = \App\Worker::where('city_id', session()->get('city_id'))->whereHas('jobs', function ($query) use ($jobID) {
-            $query->where('job_id', $jobID);
-       })->get();
+        if (!session('city_id') && $jobID == 0){
+
+            $workers = \App\Worker::all();
+
+        }elseif (session('city_id') && $jobID != 0){
+
+            $workers = \App\Worker::where('city_id', session()->get('city_id'))->whereHas('jobs', function ($query) use ($jobID) {
+                $query->where('job_id', $jobID);
+            })->get();
+
+        }elseif($jobID != 0){
+            $workers = \App\Worker::whereHas('jobs', function ($query) use ($jobID) {
+                $query->where('job_id', $jobID);
+            })->get();
+        }else{
+            $workers = \App\Worker::where('city_id', session()->get('city_id'))->get();
+        }
 
         return $workers;
 

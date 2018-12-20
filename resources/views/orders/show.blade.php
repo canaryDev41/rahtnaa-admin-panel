@@ -120,13 +120,11 @@
                                                         <a class="btn btn-outline-default btn-sm"
                                                    href="{{ route('workers.show', $order->worker->id) }}">استعراض</a>
                                                         </span>
-                                                    @else
+                                                    @endif
                                                         <span class="pull-left" style="float: left;">
-                                                        <a class="btn btn-outline-default btn-sm"
+                                                        <a class="btn btn-outline-default btn-sm ml-3"
                                                            href="{{ route('orders.prepareAssociate', $order) }}">ربط الطلب بعامله</a>
                                                         </span>
-                                                    @endif
-
                                                 </div>
 
                                                 <div class="row">
