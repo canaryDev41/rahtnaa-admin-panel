@@ -52,7 +52,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
 
     //orders routes
     Route::resource('/orders', 'OrdersController');
-    Route::get('/orders/{order}/cancel', 'OrdersController@cancelOrder')->name('orders.cancel');
+    Route::get('/orders/{order}/toggleStatus/{status}', 'OrdersController@orderStatus')->name('orders.status');
     Route::get('/orders/{order}/associate', 'OrdersController@prepareAssociate')->name('orders.prepareAssociate');
     Route::post('/orders/{order}/associate', 'OrdersController@associate')->name('orders.associate');
 

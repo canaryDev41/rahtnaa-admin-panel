@@ -125,11 +125,14 @@
                                            class="fa fa-circle"></i> {{ $order->job->category->name }} <i class="fa fa-arrow-left"></i> {{ $order->job->name }}
 
                                         @if($order->status == 1)
-                                            <a href="{{ route('orders.cancel', $order) }}"
+                                            <a href="{{ route('orders.status', [$order, 0]) }}"
                                                title="إلغاء الطلب"
                                                class="btn btn-outline-default btn-sm"><i class="fa fa-ban"></i></a>
-                                        @else
-                                            <span></span>
+                                        {{--@elseif($order->status == 0 and $order->worker_id == null)--}}
+                                            {{--<a href="{{ route('orders.status', [$order, 1]) }}"--}}
+                                               {{--title="اعادة إرسال"--}}
+                                               {{--class="btn btn-outline-default btn-sm"><i class="fa fa-sync"></i></a>--}}
+                                            {{--<span></span>--}}
                                         @endif
                                     </td>
                                     <td>

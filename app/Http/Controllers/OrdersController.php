@@ -96,10 +96,11 @@ class OrdersController extends Controller
 
     }
 
-    public function cancelOrder(Order $order){
+    public function orderStatus(Order $order, $status){
 
-        $order->status = 0;
-        $order->update();
+        $order->update([
+            'status' => $status
+        ]);
 
         return back();
     }
