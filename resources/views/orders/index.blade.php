@@ -128,11 +128,11 @@
                                             <a href="{{ route('orders.status', [$order, 0]) }}"
                                                title="إلغاء الطلب"
                                                class="btn btn-outline-default btn-sm"><i class="fa fa-ban"></i></a>
-                                        {{--@elseif($order->status == 0 and $order->worker_id == null)--}}
-                                            {{--<a href="{{ route('orders.status', [$order, 1]) }}"--}}
-                                               {{--title="اعادة إرسال"--}}
-                                               {{--class="btn btn-outline-default btn-sm"><i class="fa fa-sync"></i></a>--}}
-                                            {{--<span></span>--}}
+                                        @elseif($order->status == 0 and $order->worker_id == null)
+                                            <a href="{{ route('orders.status', [$order, 1]) }}"
+                                               title="اعادة إرسال"
+                                               class="btn btn-outline-default btn-sm"><i class="fa fa-sync"></i></a>
+                                            <span></span>
                                         @endif
                                     </td>
                                     <td>
