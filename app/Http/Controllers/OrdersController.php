@@ -105,6 +105,15 @@ class OrdersController extends Controller
         return back();
     }
 
+    public function dissociateWorker(Order $order){
+
+//        dd($order);
+
+        $order->worker()->dissociate()->save();
+        return back();
+
+    }
+
     public function prepareAssociate(Order $order){
 
         $workers = Worker::all();

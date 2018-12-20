@@ -125,6 +125,13 @@
                                                         <a class="btn btn-outline-default btn-sm ml-3"
                                                            href="{{ route('orders.prepareAssociate', $order) }}">ربط الطلب بعامله</a>
                                                         </span>
+
+                                                    @if($order->worker_id != null)
+                                                        <span class="pull-left" style="float: left;">
+                                                        <a class="btn btn-outline-default btn-sm ml-3"
+                                                           href="{{ route('orders.dissociateWorker', $order) }}">فك إرتباط الطلب بالعاملة</a>
+                                                        </span>
+                                                        @endif
                                                 </div>
 
                                                 <div class="row">
