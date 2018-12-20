@@ -12,7 +12,7 @@ use Laravel\Scout\Searchable;
 class User extends Model
 {
 
-    use Searchable;
+//    use Searchable;
 
     protected $table = 'users';
 

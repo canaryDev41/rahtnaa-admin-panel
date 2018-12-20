@@ -23,7 +23,7 @@ class Worker extends Model
 
 //    use SoftDeletes;
 
-    use Searchable;
+//    use Searchable;
 
     public $asYouType = true;
 
