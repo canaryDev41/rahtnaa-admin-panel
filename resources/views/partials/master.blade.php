@@ -194,7 +194,7 @@
 
 <script>
 
-//    const socket = io.connect('http://rahtnaa-sd.com:8000');
+    const socket = io.connect('http://rahtnaa-sd.com:8000');
 
     socket.on('orders.new.fetch', function ({order_id}) {
 
