@@ -13,6 +13,8 @@ class Category extends Model
 {
 //    use SoftDeletes;
 
+    protected $with = ['jobs'];
+
     protected $fillable = [
         'name'
     ];

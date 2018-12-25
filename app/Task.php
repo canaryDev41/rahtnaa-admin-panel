@@ -9,6 +9,10 @@ class Task extends Model
 {
 //    use SoftDeletes;
 
+//    protected $with = ['job'];
+
+    protected $hidden = ['deleted_at', 'created_at', 'updated_at', 'status', 'job_id'];
+
     protected $fillable = [
         'id',
         'name',
@@ -18,11 +22,13 @@ class Task extends Model
         'status',
     ];
 
-    public function job(){
+    public function job()
+    {
         return $this->belongsTo(Job::class, 'job_id');
     }
 
-    public function getStatusAttribute($status){
-        return (boolean) $status;
+    public function getStatusAttribute($status)
+    {
+        return (boolean)$status;
     }
 }

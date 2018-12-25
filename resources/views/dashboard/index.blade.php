@@ -1,8 +1,8 @@
 @extends('partials.master')
 
-@section('map-section')
-    {!! $map['js'] !!}
-@endsection
+{{--@section('map-section')--}}
+    {{--{!! $map['js'] !!}--}}
+{{--@endsection--}}
 
 @section('body')
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
@@ -99,25 +99,25 @@
         </div>
     </div>
 
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">متابعه</h6>
-                                <h2 class="mb-0">متابعه أخر الطلبات</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
+    {{--<div class="container-fluid mt--7">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-xl-12">--}}
+                {{--<div class="card shadow">--}}
+                    {{--<div class="card-header bg-transparent">--}}
+                        {{--<div class="row align-items-center">--}}
+                            {{--<div class="col">--}}
+                                {{--<h6 class="text-uppercase text-muted ls-1 mb-1">متابعه</h6>--}}
+                                {{--<h2 class="mb-0">متابعه أخر الطلبات</h2>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="card-body">--}}
 
-                        {!! $map['html'] !!}
+                        {{--{!! $map['html'] !!}--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection

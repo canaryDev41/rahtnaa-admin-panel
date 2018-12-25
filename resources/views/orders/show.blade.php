@@ -178,7 +178,6 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <table class="table table-bordered">
-                                                    <thead>
                                                     <tr>
                                                         <th>المهمه</th>
                                                         <th>الكميه</th>
@@ -186,7 +185,6 @@
                                                         <th>الوحده</th>
                                                         <th>السعر</th>
                                                     </tr>
-                                                    </thead>
 
                                                     <tbody>
                                                     @foreach($order->tasks as $task)

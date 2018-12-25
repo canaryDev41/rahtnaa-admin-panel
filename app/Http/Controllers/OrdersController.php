@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\City;
 use App\Job;
 use App\Order;
@@ -93,6 +94,15 @@ class OrdersController extends Controller
         $map = GMapsFacade::create_map();
 
         return view('orders.show')->with(['map' => $map, 'order' => $order]);
+
+    }
+
+    public function create(){
+
+        $categories = Category::get(['id', 'name']);
+        $cities = City::get(['id', 'name']);
+
+        return view('orders.create', ['categories' => $categories, 'cities' => $cities]);
 
     }
 

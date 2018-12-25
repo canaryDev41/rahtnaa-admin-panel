@@ -202,10 +202,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript">
 
-//        $('input[type=radio]').on('change', function () {
-//            $(this).closest("form").submit();
-//        });
-
         $('#select2').select2();
 
         function city_changed() {

@@ -30,6 +30,9 @@ Vue.use(VueSweetalert2);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect);
+
 Vue.component('exampleComponent', require('./components/ExampleComponent.vue'));
 Vue.component('profile', require('./components/ProfileComponent.vue'));
 Vue.component('workers', require('./components/WorkersComponent.vue'));
@@ -38,7 +41,7 @@ Vue.component('jobs', require('./components/JobsComponent.vue'));
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('categories', require('./components/CategoriesComponent.vue'));
 Vue.component('flash', require('./components/FlashComponent.vue'));
-Vue.component('show-order', require('./components/ShowOrderComponent.vue'));
+Vue.component('new-order', require('./components/NewOrderComponent.vue'));
 
 const app = new Vue({
     el: '#app',

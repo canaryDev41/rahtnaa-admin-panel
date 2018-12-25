@@ -16,7 +16,9 @@ class Job extends Model
         'status'
     ];
 
-    protected $with = ['category','tasks','workers'];
+//    protected $with = ['category','tasks','workers'];
+
+//    protected $with = ['tasks'];
 
     public function category(){
         return $this->belongsTo(Category::class);

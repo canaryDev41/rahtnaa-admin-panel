@@ -2,7 +2,6 @@
     export default{
         props: ['initialUsers'],
 
-
         data() {
             return {
                 result: false,

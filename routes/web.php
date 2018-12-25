@@ -49,6 +49,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/categories', 'CategoriesController');
     Route::get('/categories/{category}/activate', 'CategoriesController@activate');
     Route::get('/categories/{category}/inactivate', 'CategoriesController@inactivate');
+    Route::get('/category_changed/{category_id}', function ($category_id){
+        $jobs = \App\Job::where('category_id', $category_id)->get();
+        return $jobs;
+    });
 
     //orders routes
     Route::resource('/orders', 'OrdersController');

@@ -32319,3 +32319,12 @@ canvas {
           align-items: center;
 }
 
+.v-select .dropdown-toggle {
+  border: none !important;
+  margin-top: -15px;
+}
+
+.v-select .dropdown-toggle:after {
+  display: none;
+}
+

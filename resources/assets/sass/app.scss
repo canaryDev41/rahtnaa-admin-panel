@@ -48,3 +48,12 @@
   justify-content: center;
   align-items: center;
 }
+.v-select{
+  .dropdown-toggle{
+    border: none !important;
+    margin-top: -15px;
+    &:after{
+      display: none;
+    }  
+  }
+}

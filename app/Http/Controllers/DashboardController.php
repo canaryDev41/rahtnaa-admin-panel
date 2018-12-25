@@ -18,6 +18,22 @@ class DashboardController extends Controller
         $jobs = Job::count();
         $orders = Order::count();
 
+//        $map = $this->prepareMap();
+
+        return view('dashboard.index')->with([
+            'workers' => $workers,
+            'users' => $users,
+            'jobs' => $jobs,
+            'orders' => $orders,
+//            'map' => $map,
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function prepareMap(){
+
         $config['center'] = '15.565660,32.550490';
         $config['zoom'] = 'auto';
         $config['map_height'] = '400px';
@@ -42,21 +58,7 @@ class DashboardController extends Controller
         $marker['animation'] = 'BOUNCE';
         $gmap->add_marker($marker);
 
-        $map = $gmap->create_map();
-
-        return view('dashboard.index')->with([
-            'workers' => $workers,
-            'users' => $users,
-            'jobs' => $jobs,
-            'orders' => $orders,
-            'map' => $map,
-        ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function prepareMap(){
+        return $gmap->create_map();
 
     }
 }
