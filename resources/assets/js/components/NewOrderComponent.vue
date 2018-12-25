@@ -104,8 +104,6 @@
                     'lng': 0.00,
                     'status': 1
                 }, {headers: headers}).then(res => {
-
-                    console.log(res.data);
                     res.data.status == 201 ? flash(`تم انشاء الطلب بنجاح !`, 'info') : flash(`عذرا لم يتم انشاء الطلب !`, 'warning');
                 })
             }
