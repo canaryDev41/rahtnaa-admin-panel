@@ -38,7 +38,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/users', 'UsersController');
     Route::get('/users/{user_id}/activate', 'UsersController@activate');
     Route::get('/users/{user_id}/inactivate', 'UsersController@inactivate');
-    Route::get('/users/{id}/test', 'UsersController@upload');
 
     //jobs routes
     Route::resource('/jobs', 'JobsController');

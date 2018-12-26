@@ -6,6 +6,7 @@ use App\City;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -21,12 +22,6 @@ class UsersController extends Controller
         $users = $request->search ? User::search($request->search)->orderBy('id', 'DESC')->paginate(10) : User::orderBy('id', 'DESC')->paginate(10);
 
         return view('users.index', ['users' => $users]);
-    }
-
-    public function upload(){
-
-        Storage::disk('rahtnaa')->put('file.txt', 'Contents');
-
     }
 
     /**
@@ -49,20 +44,22 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = Validator::make($request->all(), [
             "name" => 'required|min:2',
             "city_id" => 'required|integer',
             "phone" => 'required|unique:users',
             "status" => 'required',
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->city()->associate($request->city_id);
-        $user->phone = $request->phone;
-        $user->status = (bool)$request->status;
+        if ($validatedData->fails() != true){
+            $user = new User();
+            $user->name = $request->name;
+            $user->city()->associate($request->city_id);
+            $user->phone = $request->phone;
+            $user->status = (bool)$request->status;
 
-        $user->save();
+            $user->save();
+        }
 
         return redirect()->route('users.index');
 
@@ -133,28 +130,30 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        if(\request()->expectsJson()){
-            return response(['message' =>'deleted successfully'],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => 'deleted successfully'], 202);
         }
 
         return back();
     }
 
-    public function activate($user_id){
+    public function activate($user_id)
+    {
         $user = User::where('id', $user_id)->first();
 
         $user->update([
             'status' => true
         ]);
 
-        if(\request()->expectsJson()){
-            return response(['message' =>$user],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => $user], 202);
         }
 
         return back();
     }
 
-    public function inactivate($user_id){
+    public function inactivate($user_id)
+    {
 
         $user = User::where('id', $user_id)->first();
 
@@ -162,8 +161,8 @@ class UsersController extends Controller
             'status' => false
         ]);
 
-        if(\request()->expectsJson()){
-            return response(['message' =>'updated successfully'],202);
+        if (\request()->expectsJson()) {
+            return response(['message' => 'updated successfully'], 202);
         }
 
         return back();
