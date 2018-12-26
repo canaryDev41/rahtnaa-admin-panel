@@ -25,7 +25,9 @@ class UsersController extends Controller
 
     public function upload(){
 
-        Storage::disk('rahtnaa')->put('file.txt', 'Contents');
+//        Storage::disk('rahtnaa')->put('file.txt', 'Contents');
+
+        return env('APP_URL') . '/home/code/public/v2/';
 
     }
 
