@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -20,6 +21,12 @@ class UsersController extends Controller
         $users = $request->search ? User::search($request->search)->orderBy('id', 'DESC')->paginate(10) : User::orderBy('id', 'DESC')->paginate(10);
 
         return view('users.index', ['users' => $users]);
+    }
+
+    public function upload(Request $request){
+
+        Storage::disk('rahtnaa')->put('file.txt', 'Contents');
+
     }
 
     /**

@@ -39,7 +39,82 @@
                                         </div>
                                     </div>
 
-                                    <!-- Modal -->
+                                    {{--create new user modal--}}
+                                        <div class="col-md-4">
+                                            <div class="modal fade" id="modal-create-user" tabindex="-1" role="dialog"
+                                                 aria-labelledby="modal-form" aria-hidden="true">
+                                                <div class="modal-dialog modal- modal-dialog-centered modal-sm"
+                                                     role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-body p-0">
+
+                                                            <div class="card bg-secondary shadow border-0">
+                                                                <div class="card-header bg-white pb-1">
+                                                                    <div class="text-muted text-center mb-3">
+                                                                        <small>تسجيل مستخدمة جديده</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body px-lg-5 py-lg-5">
+                                                                    <form role="form">
+                                                                        <div class="form-group mb-3">
+                                                                            <div class="input-group input-group-alternative">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                                class="fa fa-user"></i></span>
+                                                                                </div>
+                                                                                <input class="form-control"
+                                                                                       placeholder="الاسم" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group mb-3">
+                                                                            <div class="input-group input-group-alternative">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                                class="fa fa-phone-square"></i></span>
+                                                                                </div>
+                                                                                <input class="form-control"
+                                                                                       placeholder="رقم الجوال"
+                                                                                       type="text" maxlength="10">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="input-group input-group-alternative">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                                class="fa fa-city"></i></span>
+                                                                                </div>
+                                                                                <select class="form-control">
+                                                                                    <option :value="city.id"
+                                                                                            v-for="(city, index) in cities">@{{ city.name }}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="custom-control custom-control-alternative custom-checkbox">
+                                                                            <input class="custom-control-input"
+                                                                                   id=" customCheckLogin"
+                                                                                   type="checkbox">
+                                                                            <label class="custom-control-label"
+                                                                                   for=" customCheckLogin"><span>Remember me</span></label>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit"
+                                                                                    class="btn btn-primary my-4">Sign in
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                {{--end create new user modal--}}
+
+                                <!-- Modal -->
                                     <div class="modal fade" id="cartModel" tabindex="-1" role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -85,13 +160,13 @@
                                                         <span class="alert-inner--text"><strong> عفوا ! </strong>  سلة التسوق فارغة</span>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" v-if="cart.length"
+                                                <div class="modal-footer" v-if="cart.length">
+                                                    <button type="button" class="btn btn-secondary"
                                                             @click="cart=[]">
                                                         تفريغ السلة !
                                                     </button>
                                                     <button type="button" @click="submitOrder" class="btn btn-primary"
-                                                            v-if="cart.length" data-dismiss="modal">
+                                                            data-dismiss="modal">
                                                         تأكيد الطلب!
                                                     </button>
                                                 </div>
@@ -110,28 +185,36 @@
                                             </div>
                                         </div>
 
-                                            <div class="col-3" v-if="city">
-                                                <div class="form-group">
-                                                    <label for="">المستخدمة : الاسم</label>
-                                                    <v-select class="form-control"
-                                                              dir="rtl"
-                                                              v-model="user"
-                                                              label="name"
-                                                              :options="users"></v-select>
-                                                </div>
-                                            </div>
-                                            <div class="col-3" v-if="city">
-                                                <div class="form-group">
-                                                    <label for="">المستخدمه : رقم الهاتف</label>
-                                                    <v-select class="form-control"
-                                                              dir="rtl"
-                                                              v-model="user"
-                                                              label="phone"
-                                                              :options="users"></v-select>
-                                                </div>
-                                            </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
 
-                                        <div class="col-3" v-if="city">
+                                                <button
+                                                        type="button"
+                                                        class="btn btn-outline-success btn-sm mr-0"
+                                                        @click="show">
+                                                    <i class="fa fa-plus-square"></i>
+                                                </button>
+
+                                                <label for="">المستخدمة : الاسم</label>
+                                                <v-select class="form-control"
+                                                          dir="rtl"
+                                                          v-model="user"
+                                                          label="name"
+                                                          :options="users"></v-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="">المستخدمه : رقم الهاتف</label>
+                                                <v-select class="form-control"
+                                                          dir="rtl"
+                                                          v-model="user"
+                                                          label="phone"
+                                                          :options="users"></v-select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3">
                                             <div class="form-group">
                                                 <label for="">العامله : الاسم</label>
                                                 <v-select class="form-control"
@@ -141,7 +224,7 @@
                                                           :options="workers"></v-select>
                                             </div>
                                         </div>
-                                        <div class="col-3" v-if="city">
+                                        <div class="col-3">
                                             <div class="form-group">
                                                 <label for="">العامه : رقم الهاتف</label>
                                                 <v-select class="form-control"
@@ -186,10 +269,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-6" v-if="job">
                                             <div class="form-group">
                                                 <input type="text" v-model="query" class="form-control"
-                                                       v-if="job" placeholder="بحث ..."></div>
+                                                       placeholder="بحث ..."></div>
                                         </div>
 
                                     </div>

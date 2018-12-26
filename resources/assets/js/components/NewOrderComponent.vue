@@ -1,24 +1,28 @@
 <!--suppress ALL -->
 <script>
+    import createUser from '../components/CreateUserComponent.vue';
     export default{
+        components: {
+            createUser,
+        },
         props: ['initialCities', 'initialCategories'],
         data() {
             return {
                 cities: [],
-                city: null,
+                city: '',
                 users: [],
                 workers: [],
-                user: null,
-                worker: null,
-                category: null,
+                user: '',
+                worker: '',
+                category: '',
                 categories: [],
-                job: null,
+                job: '',
                 total: 0,
                 jobs: [],
                 tasks: [],
                 total: 0,
                 query: "",
-                start_date: null,
+                start_date: '',
                 cart: [],
             }
         },
@@ -39,10 +43,8 @@
 
         methods: {
             getUsers(city){
-                this.workers = [];
-                this.worker = [];
-                this.users = [];
-                this.user = [];
+
+                this.initUsers()
 
                 axios.get(`/api/getWorkers/${city}`).then(res => {
                     this.workers = res.data
@@ -51,6 +53,13 @@
                 axios.get(`/api/getUsers/${city}`).then(res => {
                     this.users = res.data
                 })
+            },
+
+            initUsers(){
+                this.workers = [];
+                this.worker = [];
+                this.users = [];
+                this.user = [];
             },
 
             getTasks(job){
@@ -106,6 +115,13 @@
                 }, {headers: headers}).then(res => {
                     res.data.status == 201 ? flash(`تم انشاء الطلب بنجاح !`, 'info') : flash(`عذرا لم يتم انشاء الطلب !`, 'warning');
                 })
+            },
+
+            show () {
+                this.$modal.show('create-user');
+            },
+            hide () {
+                this.$modal.hide('create-user');
             }
         },
 

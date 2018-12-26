@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'rahtnaa' => [
+            'driver' => 'local',
+            'root' => 'uploads',
+            'url' => 'http://159.65.204.7:8000/home/code/public/v2',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
