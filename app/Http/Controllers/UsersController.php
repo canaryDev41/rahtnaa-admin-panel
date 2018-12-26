@@ -23,7 +23,7 @@ class UsersController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
-    public function upload(Request $request){
+    public function upload(){
 
         Storage::disk('rahtnaa')->put('file.txt', 'Contents');
 
