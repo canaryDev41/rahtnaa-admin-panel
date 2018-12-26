@@ -57,7 +57,7 @@ return [
 
         'rahtnaa' => [
             'driver' => 'local',
-            'root'   => '/home/code/public/v2/',
+            'root'   => '/v2/uploads',
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],
