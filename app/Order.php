@@ -82,7 +82,7 @@ class Order extends Model
             return 'ملغي';
         } elseif ($this->status == 1 and $this->worker_id == null) {
             return 'جديد';
-        } elseif ($this->status == 1 && $this->worker_id != null) {
+        } elseif ($this->status == 1 and $this->worker_id != null) {
             return 'تحت المعالجه';
         } else {
             return 'اكتمل الطلب';
