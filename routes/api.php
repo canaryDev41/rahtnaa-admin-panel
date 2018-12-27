@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 
 /*
@@ -15,6 +16,38 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('users', function (Request $request){
+    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            "name" => 'required|min:2',
+            "city_id" => 'required|integer',
+            "phone" => 'required|regex:/(0)[0-9]{9}/|unique:users',
+            "status" => 'required',
+        ]);
+
+    if ($validator->fails()){
+        return response()->json([
+            'errors' => $validator->errors()->messages(),
+            'status' => 400
+        ]);
+    }else{
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->city()->associate($request->city_id);
+        $user->phone = $request->phone;
+        $user->status = (bool)$request->status;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'user created successfully',
+            'status' => 201
+        ]);
+    }
+
+
 });
 
 Route::post('order', function (Request $request) {

@@ -8,6 +8,8 @@ use Laravel\Scout\Searchable;
 
 /**
  * @property mixed status
+ * @property mixed name
+ * @property mixed phone
  */
 class User extends Model
 {

@@ -44,22 +44,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             "name" => 'required|min:2',
             "city_id" => 'required|integer',
             "phone" => 'required|unique:users',
             "status" => 'required',
         ]);
 
-        if ($validatedData->fails() != true){
-            $user = new User();
-            $user->name = $request->name;
-            $user->city()->associate($request->city_id);
-            $user->phone = $request->phone;
-            $user->status = (bool)$request->status;
+        $user = new User();
+        $user->name = $request->name;
+        $user->city()->associate($request->city_id);
+        $user->phone = $request->phone;
+        $user->status = (bool)$request->status;
 
-            $user->save();
-        }
+        $user->save();
 
         return redirect()->route('users.index');
 

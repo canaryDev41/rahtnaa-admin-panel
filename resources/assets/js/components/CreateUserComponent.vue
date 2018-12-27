@@ -22,6 +22,9 @@
                                        v-model="name"
                                        placeholder="الاسم" type="text">
                             </div>
+                            <div class="has-error">
+                                <span class="text-danger has-text-danger" style="font-size:14px" v-if="errors.name">حقل الاسم مطلوب !</span>
+                            </div>
                         </div>
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
@@ -35,6 +38,9 @@
                                        placeholder="رقم الجوال"
                                        type="text" maxlength="10">
                             </div>
+                            <div class="has-error">
+                                <span class="text-danger has-text-danger" style="font-size:14px" v-if="errors.phone">رقم الجوال غير صحيح !</span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
@@ -47,8 +53,10 @@
                                             v-for="city in cities" v-text="city.name"></option>
                                 </select>
                             </div>
+                            <div class="has-error">
+                                <span class="text-danger has-text-danger" style="font-size:14px" v-if="errors.city_id">عليك اختيار المدينه اولا !</span>
+                            </div>
                         </div>
-
                         <div class="text-center">
                             <button @click.prevent="submitForm"
                                     class="btn btn-primary my-4">حفظ
@@ -74,6 +82,7 @@
                 phone: '',
                 city: '',
                 status: 1,
+                errors: []
             }
         },
 
@@ -98,13 +107,19 @@
                 this.$v.phone.$touch()
             },
             submitForm(){
-                axios.post('/dashboard/users/', {
+                axios.post('/api/users/', {
                     name: this.name,
                     phone: this.phone,
                     city_id: this.city.id,
                     status: this.status
                 }).then(res => {
-                    console.log(res.data);
+                   if(res.data.status === 400){
+                        this.errors = res.data.errors;
+                       flash(`عذرا لم يتم انشاء المستخدم !`, 'warning');
+                   }else{
+                       flash(`تم انشاء المستخدم بنجاح !`, 'info');
+                       this.$modal.hide('create-user');
+                   }
                 });
             }
         },

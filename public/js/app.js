@@ -81314,6 +81314,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -81326,7 +81334,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: '',
             phone: '',
             city: '',
-            status: 1
+            status: 1,
+            errors: []
         };
     },
 
@@ -81352,13 +81361,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$v.phone.$touch();
         },
         submitForm: function submitForm() {
-            axios.post('/dashboard/users/', {
+            var _this = this;
+
+            axios.post('/api/users/', {
                 name: this.name,
                 phone: this.phone,
                 city_id: this.city.id,
                 status: this.status
             }).then(function (res) {
-                console.log(res.data);
+                if (res.data.status === 400) {
+                    _this.errors = res.data.errors;
+                    flash('\u0639\u0630\u0631\u0627 \u0644\u0645 \u064A\u062A\u0645 \u0627\u0646\u0634\u0627\u0621 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 !', 'warning');
+                } else {
+                    flash('\u062A\u0645 \u0627\u0646\u0634\u0627\u0621 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0628\u0646\u062C\u0627\u062D !', 'info');
+                    _this.$modal.hide('create-user');
+                }
             });
         }
     },
@@ -81409,7 +81426,20 @@ var render = function() {
                     }
                   })
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "has-error" }, [
+                _vm.errors.name
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "text-danger has-text-danger",
+                        staticStyle: { "font-size": "14px" }
+                      },
+                      [_vm._v("حقل الاسم مطلوب !")]
+                    )
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group mb-3" }, [
@@ -81446,7 +81476,20 @@ var render = function() {
                     }
                   })
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "has-error" }, [
+                _vm.errors.phone
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "text-danger has-text-danger",
+                        staticStyle: { "font-size": "14px" }
+                      },
+                      [_vm._v("رقم الجوال غير صحيح !")]
+                    )
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -81495,7 +81538,20 @@ var render = function() {
                     })
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "has-error" }, [
+                _vm.errors.city_id
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "text-danger has-text-danger",
+                        staticStyle: { "font-size": "14px" }
+                      },
+                      [_vm._v("عليك اختيار المدينه اولا !")]
+                    )
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "text-center" }, [
