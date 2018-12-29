@@ -31,7 +31,6 @@
                                 <thead>
                                 <tr>
                                     <th>الاسم</th>
-                                    <th>التصنيف</th>
                                     <th>المهام</th>
                                     <th>العمال</th>
                                     <th>الضبط</th>
@@ -40,8 +39,7 @@
                                 <tbody v-if="jobs" >
 
                                     <tr v-for="(job,key) in jobs" :key="key">
-                                        <td v-text="job.name"></td>
-                                        <td v-text="job.category.name"></td>
+                                        <td>@{{ job.category.name }} > @{{ job.name }}</td>
                                         <td v-text="job.tasks.length"></td>
                                         <td v-text="job.workers.length"></td>
                                         <td>

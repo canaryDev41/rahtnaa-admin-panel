@@ -15,7 +15,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::paginate(10);
+        $jobs = Job::with(['category', 'tasks', 'workers'])->paginate(10);
 
         return view('jobs.index', ['jobs' => $jobs]);
     }
