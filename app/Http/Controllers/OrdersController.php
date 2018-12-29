@@ -10,6 +10,8 @@ use App\User;
 use App\Worker;
 use FarhanWazir\GoogleMaps\Facades\GMapsFacade;
 use Illuminate\Http\Request;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\Printer;
 
 class OrdersController extends Controller
 {

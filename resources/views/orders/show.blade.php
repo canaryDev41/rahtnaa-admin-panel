@@ -40,11 +40,11 @@
                                     <div class="pl-lg-4">
 
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <p class="title">الوظيفة</p>
                                                 <span class="text-muted">{{ $order->job->name }}</span>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <p class="title">التكلفة</p>
                                                 <span class="text-muted">{{ $order->total }} ج.س</span>
                                             </div>
@@ -56,9 +56,24 @@
                                                 <p class="title">تاريخ النهايه</p>
                                                 <span class="text-muted">{{ $order->end_date }}</span>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-4">
                                                 <p class="title">الحاله</p>
-                                                <span class="text-muted badge badge-info badge-pill text-black-50">{{ $order->status() }}</span>
+
+                                                <!-- Small button groups (default and split) -->
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default btn-sm" type="button">
+                                                        {{ $order->status() }}
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('orders.status', [$order, 1]) }}" class="dropdown-item small">جديد / تحت المعالجه </a>
+                                                        <a href="{{ route('orders.status', [$order, 0]) }}" class="dropdown-item small">ملغي</a>
+                                                        <a href="{{ route('orders.status', [$order, 2]) }}" class="dropdown-item small">اكتمل</a>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
 
