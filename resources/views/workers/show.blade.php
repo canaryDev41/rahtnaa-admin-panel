@@ -143,16 +143,53 @@
                                 <ul class="list-group list-unstyled">
                                     @forelse($worker->jobs as $job)
                                         <li>
-                                            <span class="badge badge-default">{{ $job->category->name }} <i class="fa fa-arrow-left"></i> {{ $job->name }}</span>
+                                            <span class="badge badge-default">{{ $job->category->name }} <i
+                                                        class="fa fa-arrow-left"></i> {{ $job->name }}</span>
                                         </li>
                                     @empty
-                                        <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> ليس لديها اي وظيفه حاليا! </p>
+                                        <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> ليس لديها
+                                            اي وظيفه حاليا! </p>
                                     @endforelse
                                 </ul>
+                                <a href="" class="btn btn-default btn-sm" data-toggle="modal"
+                                   data-target="#associateJob">توظيف</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal fade" id="associateJob" tabindex="-1" role="dialog" aria-labelledby="uploadIdModal"
+                 aria-hidden="true">
+                <form action="{{ route('workers.associateJob', $worker) }}" method="post">
+                    {{ csrf_field() }}
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadIdModal">توظيف العامله!</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="cities">الوظائف</label>
+                                        @foreach($jobs as $key => $job)
+                                            <div class="form-check">
+                                                <label for="{{ $job->id }}">
+                                                    <input class="inline" type="checkbox" id="{{ $job->id }}" name="jobs[]" value="{{ $job->id }}">
+                                                    {{ $job->category->name }} > {{ $job->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                <button type="submit" class="btn btn-primary">حفظ !</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <div class="col-xl-8 order-xl-1">
@@ -250,12 +287,12 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-body">
                         <span class="title">اثبات الشخصيه</span>
+                        <a class="btn btn-default btn-sm float-left text-white" data-toggle="modal"
+                           data-target="#uploadIdModal">إضافة اثبات شخصيه</a>
                         @if($worker->national_id_image)
                             <a class="btn btn-outline-default btn-sm float-left"
-                               href="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
                                target="_blank">استعراض</a>
                             <img style="width: 100%"
-                                 src="http://rahtnaa-sd.com:8000/v2/uploads/{{ $worker->national_id_image }}"
                                  class="img-thumbnail mt-3" alt="">
                         @else
                             <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> عفوا هذه العامله لم
@@ -265,8 +302,31 @@
                 </div>
             </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="uploadIdModal" tabindex="-1" role="dialog" aria-labelledby="uploadIdModal"
+                 aria-hidden="true">
+                <form action="{{ route('workers.upload', $worker) }}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadIdModal">اضافة اثبات شخصية</h5>
+                            </div>
+                            <div class="modal-body">
+                                <label for="">
+                                    اختر الصورة المطلوب رفعها
+                                    <input type="file" required name="national_id_image" class="form-control form-control-alternative mt-1">
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                                <button type="submit" class="btn btn-primary">حفظ !</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
     <!-- Footer -->
 @endsection

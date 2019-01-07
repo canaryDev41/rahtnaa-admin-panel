@@ -7,6 +7,7 @@ use App\Job;
 use App\Worker;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WorkersController extends Controller
 {
@@ -20,7 +21,7 @@ class WorkersController extends Controller
     public function index(Request $request)
     {
         //workers search!
-        $workers = $request->search ? Worker::search($request->search)->orderBy('id', 'DESC')->paginate(10) : Worker::orderBy('id', 'DESC')->paginate(10);
+        $workers = $request->search ? Worker::where('name', 'like', '%' . $request->search . '%')->orderBy('id', 'DESC')->paginate(10) : Worker::orderBy('id', 'DESC')->paginate(10);
 
         if ($request->orders) {
             switch ($request->orders) {
@@ -58,8 +59,8 @@ class WorkersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param static $test
      * @return \Illuminate\Http\Response
+     * @internal param static $test
      */
     public function store(Request $request)
     {
@@ -102,7 +103,11 @@ class WorkersController extends Controller
 
         $galleries = $worker->galleries;
 
-        return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries]);
+        $nationalImage = Storage::disk('public')->get($worker->national_id_image);
+
+        $jobs = Job::all();
+
+        return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries, 'nationalImage' => $nationalImage, 'jobs' => $jobs]);
     }
 
     /**

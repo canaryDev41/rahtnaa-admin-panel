@@ -33,6 +33,29 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/workers', 'WorkersController');
     Route::get('/workers/{worker_id}/activate', 'WorkersController@activate');
     Route::get('/workers/{worker_id}/inactivate', 'WorkersController@inactivate');
+    Route::post('/workers/{worker}/upload', function (\Illuminate\Http\Request $request, \App\Worker $worker){
+
+        $path = $request->file('national_id_image')->store('nationalIDs');
+
+        $worker->update([
+            'national_id_image' => $path
+        ]);
+
+        return back();
+
+    })->name('workers.upload');
+
+    Route::post('/workers/{worker}/associateJob', function (\Illuminate\Http\Request $request, \App\Worker $worker){
+
+        if ($request->jobs){
+            foreach ($request->jobs as $job) {
+                $worker->jobs()->attach($job);
+            }
+        }
+
+        return back();
+
+    })->name('workers.associateJob');
 
     //users routes
     Route::resource('/users', 'UsersController');
