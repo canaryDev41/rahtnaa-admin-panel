@@ -103,11 +103,9 @@ class WorkersController extends Controller
 
         $galleries = $worker->galleries;
 
-        $nationalImage = Storage::disk('public')->get($worker->national_id_image);
-
         $jobs = Job::all();
 
-        return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries, 'nationalImage' => $nationalImage, 'jobs' => $jobs]);
+        return view('workers.show', ['worker' => $worker, 'cities' => $cities, 'galleries' => $galleries, 'jobs' => $jobs]);
     }
 
     /**

@@ -35,14 +35,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::get('/workers/{worker_id}/inactivate', 'WorkersController@inactivate');
     Route::post('/workers/{worker}/upload', function (\Illuminate\Http\Request $request, \App\Worker $worker){
 
-        $path = $request->file('national_id_image')->store('nationalIDs');
-
-        $worker->update([
-            'national_id_image' => $path
-        ]);
-
-        return back();
-
     })->name('workers.upload');
 
     Route::post('/workers/{worker}/associateJob', function (\Illuminate\Http\Request $request, \App\Worker $worker){
