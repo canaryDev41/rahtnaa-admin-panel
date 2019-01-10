@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Job;
 use App\Worker;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class WorkersController extends Controller
 {

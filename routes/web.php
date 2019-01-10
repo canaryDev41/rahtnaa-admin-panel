@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
 
 /*
@@ -14,7 +15,7 @@ use Yajra\Datatables\Datatables;
 |
 */
 
-Route::get('/', function (){
+Route::get('/', function () {
     return redirect()->route('admin.login');
 
 });
@@ -24,7 +25,7 @@ Route::get('/login', 'AdminController@login')->name('admin.login');
 Route::post('/login', 'AdminController@submit')->name('admin.submit');
 Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
+Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
 
     //dashboard routes
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
@@ -33,13 +34,22 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/workers', 'WorkersController');
     Route::get('/workers/{worker_id}/activate', 'WorkersController@activate');
     Route::get('/workers/{worker_id}/inactivate', 'WorkersController@inactivate');
-    Route::post('/workers/{worker}/upload', function (\Illuminate\Http\Request $request, \App\Worker $worker){
+    Route::post('/workers/{worker}/upload', function (\App\Worker $worker) {
+
+        $imageName = $worker->id.'_nationalID'.time().'.'.request()->national_id_image->getClientOriginalExtension();
+
+        request()->national_id_image->storeAs('nationalID',$imageName);
+
+        $worker->national_id_image = $imageName;
+        $worker->update();
+
+       return $worker;
 
     })->name('workers.upload');
 
-    Route::post('/workers/{worker}/associateJob', function (\Illuminate\Http\Request $request, \App\Worker $worker){
+    Route::post('/workers/{worker}/associateJob', function (\Illuminate\Http\Request $request, \App\Worker $worker) {
 
-        if ($request->jobs){
+        if ($request->jobs) {
             foreach ($request->jobs as $job) {
                 $worker->jobs()->attach($job);
             }
@@ -64,7 +74,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::resource('/categories', 'CategoriesController');
     Route::get('/categories/{category}/activate', 'CategoriesController@activate');
     Route::get('/categories/{category}/inactivate', 'CategoriesController@inactivate');
-    Route::get('/category_changed/{category_id}', function ($category_id){
+    Route::get('/category_changed/{category_id}', function ($category_id) {
         $jobs = \App\Job::where('category_id', $category_id)->get();
         return $jobs;
     });
@@ -76,38 +86,38 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function(){
     Route::post('/orders/{order}/associate', 'OrdersController@associate')->name('orders.associate');
     Route::get('/orders/{order}/dissociateWorker', 'OrdersController@dissociateWorker')->name('orders.dissociateWorker');
 
-    Route::get('cities', function (){
+    Route::get('cities', function () {
         $cities = \App\City::all();
 
         return view('cities.index')->with(['cities' => $cities]);
     })->name('cities.index');
 
-    Route::get('city_changed/{city_id}', function ($cityID){
+    Route::get('city_changed/{city_id}', function ($cityID) {
 
-        if ($cityID != 0){
+        if ($cityID != 0) {
             session(['city_id' => $cityID]);
         }
         return;
 
     })->name('city.changed');
 
-    Route::get('job_changed/{job_id}', function ($jobID){
+    Route::get('job_changed/{job_id}', function ($jobID) {
 
-        if (!session('city_id') && $jobID == 0){
+        if (!session('city_id') && $jobID == 0) {
 
             $workers = \App\Worker::all();
 
-        }elseif (session('city_id') && $jobID != 0){
+        } elseif (session('city_id') && $jobID != 0) {
 
             $workers = \App\Worker::where('city_id', session()->get('city_id'))->whereHas('jobs', function ($query) use ($jobID) {
                 $query->where('job_id', $jobID);
             })->get();
 
-        }elseif($jobID != 0){
+        } elseif ($jobID != 0) {
             $workers = \App\Worker::whereHas('jobs', function ($query) use ($jobID) {
                 $query->where('job_id', $jobID);
             })->get();
-        }else{
+        } else {
             $workers = \App\Worker::where('city_id', session()->get('city_id'))->get();
         }
 

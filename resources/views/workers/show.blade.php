@@ -159,14 +159,14 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="associateJob" tabindex="-1" role="dialog" aria-labelledby="uploadIdModal"
+            <div class="modal fade" id="associateJob" tabindex="-1" role="dialog" aria-labelledby="associateJob"
                  aria-hidden="true">
                 <form action="{{ route('workers.associateJob', $worker) }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="uploadIdModal">توظيف العامله!</h5>
+                                <h5 class="modal-title" id="associateJob">توظيف العامله!</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="col-lg-8">
@@ -293,6 +293,7 @@
                             <a class="btn btn-outline-default btn-sm float-left"
                                target="_blank">استعراض</a>
                             <img style="width: 100%"
+                                 src="{{ asset("storage/$worker->national_id_image") }}"
                                  class="img-thumbnail mt-3" alt="">
                         @else
                             <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> عفوا هذه العامله لم

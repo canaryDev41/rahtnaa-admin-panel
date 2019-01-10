@@ -99,7 +99,7 @@ Route::get('getTasks/{jobID}', function ($jobID) {
 
     $tasks = \App\Task::where('job_id', $jobID)->get()->each(function ($task) use ($jobID) {
         $task->quantity = 0;
-        $task->job = \App\Job::find($jobID)->get(['name'])[0]->name;
+        $task->job = \App\Job::find($jobID)->name;
     });
 
     return response()->json($tasks);

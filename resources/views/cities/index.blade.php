@@ -31,7 +31,6 @@
                                     <th>الاسم</th>
                                     <th>عدد العمال</th>
                                     <th>عدد المستخدمين</th>
-                                    <th></th>
                                     <th>الضبط</th>
                                 </tr>
                                 </thead>
@@ -41,7 +40,6 @@
                                         <td>{{ $city->name }}</td>
                                         <td>{{ $city->workers->count() }}</td>
                                         <td>{{ $city->users->count() }}</td>
-                                        <td>{{ $city->name }}</td>
                                         <td>
                                             <a href="" class="btn btn-success btn-sm">
                                                 <span class="icon-btn"><i class="fa fa-expand"></i></span></a>

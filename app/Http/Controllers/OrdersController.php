@@ -119,8 +119,6 @@ class OrdersController extends Controller
 
     public function dissociateWorker(Order $order){
 
-//        dd($order);
-
         $order->worker()->dissociate()->save();
         return back();
 
