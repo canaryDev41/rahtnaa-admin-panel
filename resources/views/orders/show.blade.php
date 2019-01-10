@@ -195,8 +195,8 @@
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <th>المهمه</th>
-                                                        <th>الكميه</th>
                                                         <th>الصنف</th>
+                                                        <th>الكميه</th>
                                                         <th>الوحده</th>
                                                         <th>السعر</th>
                                                     </tr>
@@ -205,8 +205,8 @@
                                                     @foreach($order->tasks as $task)
                                                         <tr>
                                                             <td>{{ $task->job ?? '--' }}</td>
-                                                            <td>{{ $task->quantity ?? '--' }}</td>
                                                             <td>{{ $task->name ?? '--' }}</td>
+                                                            <td>{{ $task->quantity ?? '--' }}</td>
                                                             <td>{{ $task->measure ?? '--' }}</td>
                                                             <td>{{ $task->price ?? '--' }}</td>
                                                         </tr>
