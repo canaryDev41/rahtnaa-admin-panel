@@ -291,7 +291,7 @@
                            data-target="#uploadIdModal">إضافة اثبات شخصيه</a>
                         @if($worker->national_id_image)
                             <a class="btn btn-outline-default btn-sm float-left"
-                               href={{ asset($worker->national_image_id) }}
+                               href={{ asset($worker->national_id_image) }}
                                target="_blank">استعراض</a>
                         <img src="{{ asset($worker->national_id_image) }}" class="mt-2" width="100%" alt="Generic placeholder image">
                         @else
