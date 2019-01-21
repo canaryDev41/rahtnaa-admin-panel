@@ -6,6 +6,7 @@ use App\City;
 use App\Job;
 use App\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WorkersController extends Controller
 {

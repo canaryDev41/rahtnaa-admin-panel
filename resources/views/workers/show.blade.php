@@ -291,10 +291,9 @@
                            data-target="#uploadIdModal">إضافة اثبات شخصيه</a>
                         @if($worker->national_id_image)
                             <a class="btn btn-outline-default btn-sm float-left"
+                               href={{ asset($worker->national_image_id) }}
                                target="_blank">استعراض</a>
-                            <img style="width: 100%"
-                                 src="{{ asset("storage/$worker->national_id_image") }}"
-                                 class="img-thumbnail mt-3" alt="">
+                        <img src="{{ asset($worker->national_id_image) }}" class="mt-2" width="100%" alt="Generic placeholder image">
                         @else
                             <p class="alert alert-default mt-3"><i class="fa fa-exclamation"></i> عفوا هذه العامله لم
                                 تضف اثبات الشخصيه بعد!</p>

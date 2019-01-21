@@ -43,7 +43,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
         $worker->national_id_image = $imageName;
         $worker->update();
 
-       return $worker;
+       return back();
 
     })->name('workers.upload');
 
