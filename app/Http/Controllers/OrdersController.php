@@ -17,7 +17,7 @@ class OrdersController extends Controller
 {
     public function index(){
 
-        $orders = request('search') ? Order::search(request('search'))->orderBy('id', 'DESC')->paginate(10) : Order::orderBy('id', 'DESC')->paginate(10);
+        $orders = Order::orderBy('id', 'DESC')->paginate(10);
         
         if (request()->has('search')){
             

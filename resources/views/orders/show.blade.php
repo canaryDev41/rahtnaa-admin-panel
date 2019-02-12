@@ -220,6 +220,27 @@
                                                     </tr>
                                                     </tbody>
                                                 </table>
+
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p class="title">ملاحظات على الطلب</p>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    @if($order->note)
+                                                        <div class="card-body" style="background: #ffeaa7;">
+                                                            <p>{{ $order->note }}</p>
+                                                        </div>
+                                                        @else
+                                                        <div class="alert alert-info">عفوا لا توجد اي ملاحظات على هذا الطلب</div>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
 

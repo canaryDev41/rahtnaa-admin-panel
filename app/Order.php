@@ -4,9 +4,6 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
-use function MongoDB\BSON\fromJSON;
-use function MongoDB\BSON\toJSON;
 
 /**
  * @property mixed status
@@ -22,14 +19,11 @@ use function MongoDB\BSON\toJSON;
  * @property mixed tasks
  * @property mixed job
  * @property mixed user
+ * @property mixed note
  * @property mixed worker
  */
 class Order extends Model
 {
-
-//    use Searchable;
-
-//    public $asYouType = false;
 
     protected $fillable = [
         'worker_id',
@@ -42,6 +36,7 @@ class Order extends Model
         'end_date',
         'tasks',
         'status',
+        'note',
     ];
 
     protected $casts = [
