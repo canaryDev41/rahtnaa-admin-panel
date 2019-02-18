@@ -12,13 +12,12 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-12 col-md-10">
-                        <h1 class="text-white">إدراه الطلبات</h1>
+                        <h1 class="text-white">إداره الطلبات</h1>
                         <p class="text-white mt-0 mb-5">من هنا يمكنك إداره جميع الطلبات</p>
 
                         <a type="button" class="btn btn-block btn-info" href="{{ route('orders.create') }}">
                             إنشاء طلب جديد
                         </a>
-
                     </div>
                 </div>
             </div>
@@ -26,6 +25,88 @@
         </div>
 
         <div class="container-fluid mt--7">
+            <!-- Table -->
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row mb-3">
+
+                                <div class="col col-md-4">
+                                    <h3 class="mb-0">البحث المتقدم</h3>
+                                </div>
+
+                            </div>
+
+                            <form action="{{ route('orders.index') }}" method="get">
+
+                                <div class="row">
+
+                                    <div class="col col-md-4">
+                                        <div class="form-group mb-0">
+                                            <label for="">
+                                                اسم المستخدمه
+                                                <input type="text" name="userName" value="{{ request('userName') ?? null  }}" class="form-control form-control-alternative">
+                                            </label>
+
+                                            <label for="">
+                                                رقم هاتف المستخدمه
+                                                <input type="text" name="userPhone" value="{{ request('userPhone') ?? null  }}" class="form-control form-control-alternative">
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-4">
+                                        <div class="form-group mb-0">
+                                            <label for="">
+                                                اسم العامله
+                                                <input type="text" name="workerName"
+                                                       value="{{ request('workerName') ?? null }}"
+                                                       class="form-control form-control-alternative">
+                                            </label>
+
+                                            <label for="">
+                                                رقم جوال العامله
+                                                <input type="text" name="workerPhone" value="{{ request('workerPhone') ?? null }}" class="form-control form-control-alternative">
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-4">
+                                        <div class="form-group mb-0">
+                                            <label for="">
+                                                التصنيف - الباقة
+                                                <select name="job_id" class="form-control-alternative form-control">
+                                                    <option value="">اختار الوظيفه من هنا</option>
+                                                    @foreach($jobs as $job)
+                                                        <option value="{{ $job->id }}"
+                                                                @if(request('job_id') == $job->id) selected @endif>
+                                                            {{ $job->category->name }} - {{ $job->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+
+                                            <button type="submit" name="search" class="btn btn-white mr-3"><i
+                                                        class="fa fa-search"></i></button>
+                                            <a href="{{ route('orders.index') }}" class="btn btn-white mr-2"><i
+                                                        class="fa fa-ban"></i></a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-4">
             <!-- Table -->
             <div class="row">
                 <div class="col">

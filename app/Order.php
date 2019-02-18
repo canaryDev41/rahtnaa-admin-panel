@@ -4,6 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property mixed status
@@ -42,6 +44,58 @@ class Order extends Model
     protected $casts = [
         'tasks' => 'object'
     ];
+
+    public static function search(Request $request)
+    {
+
+        $orders = Order::with('job', 'worker');
+
+        if ($request->workerName or $request->workerPhone) {
+
+            $workersIds = null;
+
+            if ($request->workerName)
+                $workersIds = DB::table('workers')->where('name', 'like', '%' . $request->workerName . '%')->get(['id']);
+
+            if ($request->workerPhone)
+                $workersIds = DB::table('workers')->where('phone', 'like', '%' . $request->workerPhone . '%')->get(['id']);
+
+            $workers = [];
+
+            foreach ($workersIds as $workersId) {
+                array_push($workers, $workersId->id);
+            }
+
+            $orders->whereIn('worker_id', $workers);
+        }
+
+        if ($request->userName or $request->userPhone) {
+
+            $usersIds = null;
+
+            if ($request->userName)
+                $usersIds = DB::table('users')->where('name', 'like', '%' . $request->userName . '%')->get(['id']);
+
+            if ($request->userPhone)
+                $usersIds = DB::table('users')->where('phone', 'like', '%' . $request->userPhone . '%')->get(['id']);
+
+            $users = [];
+
+            foreach ($usersIds as $usersId) {
+                array_push($users, $usersId->id);
+            }
+
+            $orders->whereIn('user_id', $users);
+        }
+
+
+        if ($request->job_id) {
+            $orders->where('job_id', request('job_id'));
+        }
+
+        return $orders->orderBy('id', 'DESC')->paginate(10);
+
+    }
 
     public function worker()
     {

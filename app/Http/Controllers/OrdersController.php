@@ -10,18 +10,19 @@ use App\User;
 use App\Worker;
 use FarhanWazir\GoogleMaps\Facades\GMapsFacade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 use Mike42\Escpos\Printer;
+use phpDocumentor\Reflection\DocBlockFactoryInterface;
+use function PHPSTORM_META\type;
 
 class OrdersController extends Controller
 {
     public function index(){
 
+        $jobs = Job::all();
+
         $orders = Order::orderBy('id', 'DESC')->paginate(10);
-        
-        if (request()->has('search')){
-            
-        }
 
         if (request()->has('status')){
             switch (request('status')){
@@ -61,8 +62,12 @@ class OrdersController extends Controller
             }
         }
 
+        if (request()->has('search'))
+            $orders = Order::search(request());
+
         return view('orders.index')->with([
-            'orders' => $orders
+            'orders' => $orders,
+            'jobs' => $jobs
         ]);
 
     }
@@ -79,11 +84,6 @@ class OrdersController extends Controller
         $config['places'] = TRUE;
         $config['placesLocation'] = $order->lat .','. $order->lng;
         $config['placesRadius'] = 200;
-
-//        $config['directions'] = false;
-//        $config['directionsStart'] = '15.565760, 32.517937';
-//        $config['directionsEnd'] = '15.579741, 32.535823';
-//        $config['directionsDivID'] = 'directionsDiv';
 
         GMapsFacade::initialize($config);
 
