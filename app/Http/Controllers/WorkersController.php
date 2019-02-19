@@ -19,8 +19,11 @@ class WorkersController extends Controller
      */
     public function index(Request $request)
     {
-        //workers search!
-        $workers = $request->search ? Worker::where('name', 'like', '%' . $request->search . '%')->orderBy('id', 'DESC')->paginate(10) : Worker::orderBy('id', 'DESC')->paginate(10);
+        $workers = Worker::orderBy('id', 'DESC')->paginate(10);
+        
+        if ($request->has('search')){
+            $workers = Worker::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
+        }
 
         if ($request->orders) {
             switch ($request->orders) {

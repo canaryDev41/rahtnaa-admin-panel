@@ -19,7 +19,11 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $request->search ? User::where('name', 'like', '%' . $request->search . '%')->orderBy('id', 'DESC')->paginate(10) : User::orderBy('id', 'DESC')->paginate(10);
+        $users = User::orderBy('id', 'DESC')->paginate(10);
+
+        if ($request->has('search')){
+            $users = User::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
+        }
 
         return view('users.index', ['users' => $users]);
     }
