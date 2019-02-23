@@ -20,7 +20,7 @@ class WorkersController extends Controller
     public function index(Request $request)
     {
         $workers = Worker::orderBy('id', 'DESC')->paginate(10);
-        
+
         if ($request->has('search')){
             $workers = Worker::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
         }
@@ -37,7 +37,13 @@ class WorkersController extends Controller
             }
         }
 
-        return view('workers.index', compact('workers'));
+        $jobs = Job::all();
+        $cities = City::all();
+
+        if ($request->has('search'))
+            $workers = Worker::search($request);
+
+        return view('workers.index', compact('workers', 'jobs', 'cities'));
 
     }
 

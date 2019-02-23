@@ -25,7 +25,12 @@ class UsersController extends Controller
             $users = User::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
         }
 
-        return view('users.index', ['users' => $users]);
+        $cities = City::all();
+
+        if ($request->has('search'))
+            $users = User::search($request);
+
+        return view('users.index', ['users' => $users, 'cities' => $cities]);
     }
 
     /**

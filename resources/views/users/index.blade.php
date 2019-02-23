@@ -53,6 +53,72 @@
             </div>
 
             <div class="container-fluid mt--7">
+                <!-- Table -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row mb-3">
+
+                                    <div class="col col-md-4">
+                                        <h3 class="mb-0">البحث المتقدم</h3>
+                                    </div>
+
+                                </div>
+
+                                <form action="{{ route('users.index') }}" method="get">
+
+                                    <div class="row">
+
+                                        <div class="col col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="">
+                                                    اسم المستخدمه
+                                                    <input type="text" name="name" value="{{ request('name') ?? null  }}" class="form-control form-control-alternative">
+                                                </label>
+
+                                                <label for="">
+                                                    رقم هاتف المستىخدمه
+                                                    <input type="text" name="phone" value="{{ request('phone') ?? null  }}" class="form-control form-control-alternative">
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="">
+                                                    المدينة
+                                                    <select name="city_id" class="form-control-alternative form-control">
+                                                        <option value="">اختر المدينة من هنا</option>
+                                                        @foreach($cities as $city)
+                                                            <option value="{{ $city->id }}"
+                                                                    @if(request('city_id') == $city->id) selected @endif>
+                                                                {{ $city->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </label>
+
+                                                <button type="submit" name="search" class="btn btn-white mr-3"><i
+                                                            class="fa fa-search"></i></button>
+                                                <a href="{{ route('users.index') }}" class="btn btn-white mr-2"><i
+                                                            class="fa fa-ban"></i></a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid mt-4">
 
                 <!-- Table -->
                 <div class="row">

@@ -5,6 +5,8 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
 
@@ -90,6 +92,38 @@ class Worker extends Model
     public function galleries(){
         return $this->hasMany(Gallery::class);
     }
+
+    public static function search(Request $request)
+    {
+
+        $workers = Worker::with('city');
+        
+        if ($request->name){
+            $workers->where('name', 'like', '%' .$request->name. '%');
+        }
+
+        if ($request->phone){
+            $workers->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        if ($request->city_id){
+            $workers->where('city_id', $request->city_id);
+        }
+
+        if ($request->job_id){
+
+            $workers->whereHas('jobs', function ($query) use ($request){
+                if ($request->job_id){
+                    $query->where('worker_job.job_id', '=', $request->job_id);
+                }
+            })->with('jobs');
+
+        }
+
+        return $workers->orderBy('id', 'DESC')->paginate(10);
+
+    }
+
 
     public function getCreatedAtAttribute($date)
     {

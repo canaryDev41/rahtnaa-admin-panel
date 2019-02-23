@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Laravel\Scout\Searchable;
 
 /**
@@ -43,6 +44,28 @@ class User extends Model
         return (boolean) $status;
 
     }
+
+    public static function search(Request $request)
+    {
+
+        $users = User::with('city');
+
+        if ($request->name){
+            $users->where('name', 'like', '%' .$request->name. '%');
+        }
+
+        if ($request->phone){
+            $users->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        if ($request->city_id){
+            $users->where('city_id', $request->city_id);
+        }
+
+        return $users->orderBy('id', 'DESC')->paginate(10);
+
+    }
+
 
     public function city(){
         return $this->belongsTo(City::class);
