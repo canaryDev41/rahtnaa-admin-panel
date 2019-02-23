@@ -21,10 +21,6 @@ class WorkersController extends Controller
     {
         $workers = Worker::orderBy('id', 'DESC')->paginate(10);
 
-        if ($request->has('search')){
-            $workers = Worker::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
-        }
-
         if ($request->orders) {
             switch ($request->orders) {
                 case 'max':

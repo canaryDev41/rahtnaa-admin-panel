@@ -21,10 +21,6 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'DESC')->paginate(10);
 
-        if ($request->has('search')){
-            $users = User::where('name', 'like', '%' . $request->search . '%')->orWhere('phone', 'like', '%' .$request->search. '%')->orderBy('id', 'DESC')->paginate(10);
-        }
-
         $cities = City::all();
 
         if ($request->has('search'))
