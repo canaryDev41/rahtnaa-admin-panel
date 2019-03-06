@@ -97,6 +97,26 @@ class Order extends Model
 
     }
 
+    /**
+     * @param Order $order
+     */
+    public static function increaseTax(Order $order)
+    {
+        $record = WorkerTax::where('worker_id', $order->worker_id)->first();
+
+        if ($record){
+            $record->total += ($order->total * (10/100));
+            $record->update();
+        }else{
+            $record = new WorkerTax();
+
+            $record->worker_id = $order->worker_id;
+            $record->total = ($order->total * (10/100));
+            $record->save();
+        }
+
+    }
+
     public function worker()
     {
         return $this->belongsTo(Worker::class);

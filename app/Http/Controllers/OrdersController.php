@@ -8,6 +8,7 @@ use App\Job;
 use App\Order;
 use App\User;
 use App\Worker;
+use App\WorkerTax;
 use FarhanWazir\GoogleMaps\Facades\GMapsFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -113,6 +114,10 @@ class OrdersController extends Controller
         $order->update([
             'status' => $status
         ]);
+
+        if ($status == 2){
+            Order::increaseTax($order);
+        }
 
         return back();
     }

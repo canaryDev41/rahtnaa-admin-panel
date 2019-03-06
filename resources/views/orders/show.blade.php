@@ -70,13 +70,16 @@
                                                     <div class="dropdown-menu">
                                                         <a href="{{ route('orders.status', [$order, 1]) }}" class="dropdown-item small">جديد / تحت المعالجه </a>
                                                         <a href="{{ route('orders.status', [$order, 0]) }}" class="dropdown-item small">ملغي</a>
-                                                        <a href="{{ route('orders.status', [$order, 2]) }}" class="dropdown-item small">اكتمل</a>
+
+                                                        {{--TODO more and more handel to more and more bugs in code--}}
+                                                        @if($order->status !== 2)
+                                                            <a href="{{ route('orders.status', [$order, 2]) }}" class="dropdown-item small">اكتمل</a>
+                                                        @endif
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
-
 
                                         <hr>
 

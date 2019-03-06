@@ -66,7 +66,6 @@ class User extends Model
 
     }
 
-
     public function city(){
         return $this->belongsTo(City::class);
     }
