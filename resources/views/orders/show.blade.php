@@ -72,7 +72,7 @@
                                                         <a href="{{ route('orders.status', [$order, 0]) }}" class="dropdown-item small">ملغي</a>
 
                                                         {{--TODO more and more handel to more and more bugs in code--}}
-                                                        @if($order->status !== 2)
+                                                        @if($order->status !== 2 and $order->worker_id)
                                                             <a href="{{ route('orders.status', [$order, 2]) }}" class="dropdown-item small">اكتمل</a>
                                                         @endif
                                                     </div>
