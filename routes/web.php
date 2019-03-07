@@ -27,6 +27,8 @@ Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
 
+    Route::resource('/employees', 'EmployeesController');
+
     //dashboard routes
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
 
